@@ -25,6 +25,7 @@ python3 main.py
 * Enable "disable repository" option instead of removing (settings)
 * Proprietary driver installation screen
 * Enabling proposed updates (proposed) (extra)
-* Update selection screen (extra)
+* Update selection view (extra)
 * Show a message when updating cache
+* Kernel update view (extra)
 
