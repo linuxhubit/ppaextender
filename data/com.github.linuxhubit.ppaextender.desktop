@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=PPA Extender
+GenericName=PPAExtender
+Comment=Easily manage PPA
+Categories=System;
+Exec=sh /usr/lib/ppaextender/pkexec
+Icon=com.github.mirkobrombin.ppaextender
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=com.github.mirkobrombin.ppaextender
+Keywords=Python;
