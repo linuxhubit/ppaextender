@@ -3,7 +3,9 @@ An application to extend repo on debian/ubuntu based systems.
 
 ⚠️ This application is under development.
 
-<center>![Screenshot](https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png)</center>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png">
+</div>
 
 ## Warning
 Edit, delete and add, repository to the system. It may damage and / or corrupt your data.
@@ -25,3 +27,4 @@ python3 main.py
 * Enabling proposed updates (proposed) (extra)
 * Update selection screen (extra)
 * Show a message when updating cache
+
