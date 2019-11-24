@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.linuxhubsubpixel.ppaextender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-24 19:57+0100\n"
+"POT-Creation-Date: 2019-11-24 21:30+0100\n"
 "PO-Revision-Date: 2019-11-24 19:54+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,14 +17,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/Widgets/Stack.vala:31
+#: src/Widgets/Stack.vala:32
 msgid "Add new"
 msgstr "Aggiungi nuovo"
 
-#: src/Widgets/Stack.vala:32
+#: src/Widgets/Stack.vala:33
 msgid "Sources"
 msgstr "Fonti"
 
-#: src/Widgets/Stack.vala:33
+#: src/Widgets/Stack.vala:34
 msgid "Preferences"
 msgstr "Preferenze"
+
+#.
+#. *  define the preferences labels
+#.
+#: src/Views/Preferences.vala:41
+msgid "Appearance"
+msgstr "Apparenza"
+
+#: src/Views/Preferences.vala:45
+msgid "Change the look of this application."
+msgstr "Modifica lo stile di questa applicazione"
+
+#: src/Views/Preferences.vala:49
+msgid "Light/Dark mode:"
+msgstr "Stile Chiaro/Scuro"
+
+#: src/Views/Preferences.vala:52
+msgid "Updates"
+msgstr "Aggiornamenti"
+
+#: src/Views/Preferences.vala:57
+msgid "Choose which updates the system should receive."
+msgstr "Scegli quali aggiornamenti il sistema deve ricevere"
+
+#: src/Views/Preferences.vala:61
+msgid "Security updates:"
+msgstr "Aggiornamenti di sicurezza"
+
+#: src/Views/Preferences.vala:64
+msgid "Recommended updates:"
+msgstr "Aggiornamenti consigliati"
+
+#: src/Views/Preferences.vala:67
+msgid "Unsupported updates:"
+msgstr "Aggiornamenti non supportati"

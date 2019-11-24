@@ -21,7 +21,7 @@
 
 public class PPAExtender.Views.List : Gtk.Box {
 
-    private Gtk.Label label_test = new Gtk.Label ("test");
+    private Gtk.Label label_test = new Gtk.Label ("list");
 
     construct {
         add(label_test);
