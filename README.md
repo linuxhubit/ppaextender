@@ -15,9 +15,10 @@ Neither you nor the developers of your distribution are responsible for what you
 ## Setup
 ⚠️ This application is still under development, use it with care and only for development purposes.
 ```
-git clone https://github.com/linuxhubit/ppaextender.git
-cd ppaextender/ppaextender
-python3 main.py
+meson build --prefix=/usr
+cd build
+ninja
+sudo ninja install
 ```
 
 ## TODO
@@ -28,4 +29,5 @@ python3 main.py
 * Update selection view (extra)
 * Show a message when updating cache
 * Kernel update view (extra)
+
 

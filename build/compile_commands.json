@@ -1,0 +1,32 @@
+[
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "valac -C --debug --debug --pkg gtk+-3.0 --pkg granite --pkg glib-2.0 --pkg gobject-2.0 --color=always --directory com.github.linuxhubsubpixel.ppaextender@exe --basedir ../ ../src/Application.vala ../src/MainWindow.vala ../src/Views/Add.vala ../src/Views/List.vala ../src/Views/Preferences.vala",
+    "file": "../src/Application.vala"
+  },
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "cc -Icom.github.linuxhubsubpixel.ppaextender@exe -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/granite -I/usr/include/gee-0.8 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -w -g '-DGETTEXT_PACKAGE=\\\\\"com.github.linuxhubsubpixel.ppaextender\\\\\"' -pthread  -MD -MQ 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Application.c.o' -MF 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Application.c.o.d' -o 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Application.c.o' -c 'com.github.linuxhubsubpixel.ppaextender@exe/src/Application.c'",
+    "file": "com.github.linuxhubsubpixel.ppaextender@exe/src/Application.c"
+  },
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "cc -Icom.github.linuxhubsubpixel.ppaextender@exe -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/granite -I/usr/include/gee-0.8 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -w -g '-DGETTEXT_PACKAGE=\\\\\"com.github.linuxhubsubpixel.ppaextender\\\\\"' -pthread  -MD -MQ 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_MainWindow.c.o' -MF 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_MainWindow.c.o.d' -o 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_MainWindow.c.o' -c 'com.github.linuxhubsubpixel.ppaextender@exe/src/MainWindow.c'",
+    "file": "com.github.linuxhubsubpixel.ppaextender@exe/src/MainWindow.c"
+  },
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "cc -Icom.github.linuxhubsubpixel.ppaextender@exe -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/granite -I/usr/include/gee-0.8 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -w -g '-DGETTEXT_PACKAGE=\\\\\"com.github.linuxhubsubpixel.ppaextender\\\\\"' -pthread  -MD -MQ 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Add.c.o' -MF 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Add.c.o.d' -o 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Add.c.o' -c 'com.github.linuxhubsubpixel.ppaextender@exe/src/Views/Add.c'",
+    "file": "com.github.linuxhubsubpixel.ppaextender@exe/src/Views/Add.c"
+  },
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "cc -Icom.github.linuxhubsubpixel.ppaextender@exe -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/granite -I/usr/include/gee-0.8 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -w -g '-DGETTEXT_PACKAGE=\\\\\"com.github.linuxhubsubpixel.ppaextender\\\\\"' -pthread  -MD -MQ 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_List.c.o' -MF 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_List.c.o.d' -o 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_List.c.o' -c 'com.github.linuxhubsubpixel.ppaextender@exe/src/Views/List.c'",
+    "file": "com.github.linuxhubsubpixel.ppaextender@exe/src/Views/List.c"
+  },
+  {
+    "directory": "/home/mirko/Progetti/ppaextender/build",
+    "command": "cc -Icom.github.linuxhubsubpixel.ppaextender@exe -I. -I.. -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/granite -I/usr/include/gee-0.8 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -w -g '-DGETTEXT_PACKAGE=\\\\\"com.github.linuxhubsubpixel.ppaextender\\\\\"' -pthread  -MD -MQ 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Preferences.c.o' -MF 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Preferences.c.o.d' -o 'com.github.linuxhubsubpixel.ppaextender@exe/meson-generated_src_Views_Preferences.c.o' -c 'com.github.linuxhubsubpixel.ppaextender@exe/src/Views/Preferences.c'",
+    "file": "com.github.linuxhubsubpixel.ppaextender@exe/src/Views/Preferences.c"
+  }
+]

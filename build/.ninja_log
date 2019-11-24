@@ -1,0 +1,8 @@
+# ninja log v5
+3	301	1574615795	data/com.github.linuxhubsubpixel.ppaextender.appdata.xml	99f95f7cce8da347
+0	348	1574615795	com.github.linuxhubsubpixel.ppaextender.appdata	5e0517cc6a97090c
+2	352	1574615795	data/com.github.linuxhubsubpixel.ppaextender.desktop	ee88e9f8f5e0dfdc
+0	344	1574615969	build.ninja	e2d8c40a1b671d21
+0	333	1574615985	build.ninja	e2d8c40a1b671d21
+0	331	1574616115	build.ninja	e2d8c40a1b671d21
+0	341	1574616145	build.ninja	e2d8c40a1b671d21

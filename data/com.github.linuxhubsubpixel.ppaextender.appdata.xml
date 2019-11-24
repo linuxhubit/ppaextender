@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2017 Adam Bieńkowski (https://github.com/donadigo/eddy) -->
+<component type="desktop">
+  <id>com.github.linuxhubsubpixel.license</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>License</name>
+  <summary>Choose your project license</summary>
+  <description>
+    <p>An application that helps you finding the best license for your open source project</p>
+  </description>
+  <provides>
+    <binary>com.github.linuxhubsubpixel.license</binary>
+  </provides>
+  <releases>
+      <release version="1.0.0" date="2019-08-31">
+        <description>
+          <p>Initial release</p>
+        </description>
+      </release>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/linuxhubsubpixel/license/master/data/screenshot-1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/linuxhubsubpixel/license/master/data/screenshot-2.png</image>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+
+  <developer_name>Mirko Brombin</developer_name>
+  <url type="homepage">https://github.com/linuxhubsubpixel/license</url>
+  <url type="bugtracker">https://github.com/linuxhubsubpixel/license/issues</url>
+  <url type="help">https://github.com/linuxhubsubpixel/license</url>
+  <update_contact>send@mirko.pm</update_contact>
+  <custom>
+    <value key="x-appcenter-color-primary">#3278cd</value>
+    <value key="x-appcenter-color-primary-text">rgb(157, 200, 236)</value>
+  </custom>
+</component>
