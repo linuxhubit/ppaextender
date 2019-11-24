@@ -10,4 +10,6 @@ sources  = files(
     'Widgets/Headerbar.vala',
     'Widgets/Stack.vala',
     'Widgets/StackSwitcher.vala',
+
+    'Models/Source.vala',
 )
