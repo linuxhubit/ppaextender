@@ -19,38 +19,18 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.MainWindow : Gtk.Window {
-
-    private Widgets.Headerbar header_bar = new Widgets.Headerbar ();
-    private Widgets.Stack stack = new Widgets.Stack ();
-    private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
+public class PPAExtender.Widgets.Stack : Gtk.Stack {
 
     private Views.Add view_add = new Views.Add ();
     private Views.List view_list = new Views.List ();
     private Views.Preferences view_preferences = new Views.Preferences ();
 
     construct {
-        /*
-        *  set default window size
-        */
-        set_size_request (800, 700);
-
-        /*
-        *  set stack (index) to stack_switcher
-        */
-        stack_switcher.set_stack (stack);
-
-        /*
-        *  add stack_switcher to header_bar title position
-        */
-        header_bar.set_custom_title (stack_switcher);
-
-        /*
-        *  set header_bar as window titlebar
-        */
-        set_titlebar (header_bar);
-
-        add(stack);
-
+        set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
+        set_transition_duration (300);
+        add_titled (view_add, "add", "Add PPA");
+        add_titled (view_list, "list", "Show all PPA");
+        add_titled (view_preferences, "preferences", "Preferences");
+        visible_child_name = "add";
     }
 }

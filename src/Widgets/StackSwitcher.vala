@@ -19,38 +19,13 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.MainWindow : Gtk.Window {
+public class PPAExtender.Widgets.StackSwitcher : Gtk.StackSwitcher {
 
-    private Widgets.Headerbar header_bar = new Widgets.Headerbar ();
     private Widgets.Stack stack = new Widgets.Stack ();
-    private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
 
-    private Views.Add view_add = new Views.Add ();
-    private Views.List view_list = new Views.List ();
-    private Views.Preferences view_preferences = new Views.Preferences ();
+    private Granite.ModeSwitch mode_switch;
 
     construct {
-        /*
-        *  set default window size
-        */
-        set_size_request (800, 700);
-
-        /*
-        *  set stack (index) to stack_switcher
-        */
-        stack_switcher.set_stack (stack);
-
-        /*
-        *  add stack_switcher to header_bar title position
-        */
-        header_bar.set_custom_title (stack_switcher);
-
-        /*
-        *  set header_bar as window titlebar
-        */
-        set_titlebar (header_bar);
-
-        add(stack);
-
+        set_baseline_position (Gtk.BaselinePosition.CENTER);
     }
 }
