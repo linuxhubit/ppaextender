@@ -24,16 +24,16 @@ sudo ninja install
 ## TODO
 * UI Edit dialog
     - Type of source
-    - Release chooser [#15](https://github.com/linuxhubit/ppaextender#15)
+    - Release chooser [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender#15)
     - Component editor
-    - Disable/Enable [#11](https://github.com/linuxhubit/ppaextender#11)
+    - Disable/Enable [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender#11)
     - Source URI
     - Delete source
 * UI Add dialog
     - Check for correct URI syntax
 * UI Preferences
     - Add warning icon for **Pre-released updates**
-* UI Show a message when updating cache [#13](https://github.com/linuxhubit/ppaextender#13)
+* UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender#13)
 * Core.Sources.list
 * Core.Sources.add
 * Core.Sources.delete
