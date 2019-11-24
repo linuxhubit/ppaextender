@@ -25,6 +25,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid {
     private Gtk.Switch security_switch;
     private Gtk.Switch recommended_switch;
     private Gtk.Switch unsupported_switch;
+    private Gtk.Switch prereleased_switch;
 
     construct {
         var gtk_settings = Gtk.Settings.get_default ();
@@ -67,6 +68,9 @@ public class PPAExtender.Views.Preferences : Gtk.Grid {
         var unsupported_updates_label = new Gtk.Label (_("Unsupported updates:"));
         unsupported_updates_label.xalign = 0;
 
+        var prereleased_updates_label = new Gtk.Label (_("Pre-released updates:"));
+        prereleased_updates_label.xalign = 0;
+
         /*
         *  define the preferences switches
         */
@@ -91,6 +95,11 @@ public class PPAExtender.Views.Preferences : Gtk.Grid {
         unsupported_switch.valign = Gtk.Align.CENTER;
         unsupported_switch.hexpand = true;
 
+        prereleased_switch = new Gtk.Switch ();
+        prereleased_switch.halign = Gtk.Align.END;
+        prereleased_switch.valign = Gtk.Align.CENTER;
+        prereleased_switch.hexpand = true;
+
         /*
         *  populate the grid
         */
@@ -107,6 +116,8 @@ public class PPAExtender.Views.Preferences : Gtk.Grid {
         attach (recommended_switch, 1, 6, 1, 1);
         attach (unsupported_updates_label, 0, 7, 1, 1);
         attach (unsupported_switch, 1, 7, 1, 1);
+        attach (prereleased_updates_label, 0, 8, 1, 1);
+        attach (prereleased_switch, 1, 8, 1, 1);
 
         show_all ();
     }

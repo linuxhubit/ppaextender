@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.linuxhubit.ppaextender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-24 23:50+0100\n"
+"POT-Creation-Date: 2019-11-25 00:11+0100\n"
 "PO-Revision-Date: 2019-11-24 19:57+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -32,34 +32,38 @@ msgstr ""
 #.
 #. *  define the preferences labels
 #.
-#: src/Views/Preferences.vala:41
+#: src/Views/Preferences.vala:42
 msgid "Appearance"
 msgstr ""
 
-#: src/Views/Preferences.vala:45
+#: src/Views/Preferences.vala:46
 msgid "Change the look of this application."
 msgstr ""
 
-#: src/Views/Preferences.vala:49
+#: src/Views/Preferences.vala:50
 msgid "Light/Dark mode:"
 msgstr ""
 
-#: src/Views/Preferences.vala:52
+#: src/Views/Preferences.vala:53
 msgid "Updates"
 msgstr ""
 
-#: src/Views/Preferences.vala:57
+#: src/Views/Preferences.vala:58
 msgid "Choose which updates the system should receive."
 msgstr ""
 
-#: src/Views/Preferences.vala:61
+#: src/Views/Preferences.vala:62
 msgid "Security updates:"
 msgstr ""
 
-#: src/Views/Preferences.vala:64
+#: src/Views/Preferences.vala:65
 msgid "Recommended updates:"
 msgstr ""
 
-#: src/Views/Preferences.vala:67
+#: src/Views/Preferences.vala:68
 msgid "Unsupported updates:"
+msgstr ""
+
+#: src/Views/Preferences.vala:71
+msgid "Pre-released updates:"
 msgstr ""

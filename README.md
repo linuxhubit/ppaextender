@@ -22,12 +22,19 @@ sudo ninja install
 ```
 
 ## TODO
-* Choose which repositories to show (main/universe/restricted/multiverse) (settings)
-* Enable "disable repository" option instead of removing (settings)
-* Proprietary driver installation screen
-* Enabling proposed updates (proposed) (extra)
-* Update selection view (extra)
-* Show a message when updating cache
-* Kernel update view (extra)
-
-
+* UI Edit dialog
+    - Type of source
+    - Release chooser [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender#15)
+    - Component editor
+    - Disable/Enable [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender#11)
+    - Source URI
+    - Delete source
+* UI Add dialog
+    - Check for correct URI syntax
+* UI Preferences
+    - Add warning icon for **Pre-released updates**
+* UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender#13)
+* Core.Sources.list
+* Core.Sources.add
+* Core.Sources.delete
+* Core.Sources.update
