@@ -19,7 +19,7 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Add : Gtk.Box {
+public class PPAExtender.Views.Add : Gtk.Box {
 
     private Gtk.Label label_test = new Gtk.Label ("add");
 

@@ -19,7 +19,7 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Preferences : Gtk.Box {
+public class PPAExtender.Views.Preferences : Gtk.Box {
 
     private Gtk.Label label_test = new Gtk.Label ("preferences");
 
