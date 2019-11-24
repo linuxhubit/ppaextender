@@ -28,9 +28,9 @@ public class PPAExtender.Widgets.Stack : Gtk.Stack {
     construct {
         set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
         set_transition_duration (300);
-        add_titled (view_add, "add", "Add PPA");
-        add_titled (view_list, "list", "Show all PPA");
-        add_titled (view_preferences, "preferences", "Preferences");
+        add_titled (view_add, "add", _("Add new"));
+        add_titled (view_list, "list", _("Sources"));
+        add_titled (view_preferences, "preferences", _("Preferences"));
         visible_child_name = "add";
     }
 }

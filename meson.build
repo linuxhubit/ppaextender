@@ -1,5 +1,5 @@
 # project name and programming language
-project('com.github.linuxhubsubpixel.ppaextender', 'vala', 'c', version: '0.1.0')
+project('com.github.linuxhubit.ppaextender', 'vala', 'c', version: '0.1.0')
 
 message ('project name and programming language')
 
@@ -20,7 +20,7 @@ i18n = import('i18n')
 # Set our translation domain
 message ('Set our translation domain')
 
-add_global_arguments('-DGETTEXT_PACKAGE=\"@0@\"'.format (meson.project_name()), language:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 
 # Adding deps
 message ('Listing dependencies')
@@ -99,5 +99,6 @@ executable(
 )
 
 subdir('data')
+subdir('po')
 
 meson.add_install_script('meson/post_install.py')

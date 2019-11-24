@@ -1,0 +1,30 @@
+# German translations for com.github.linuxhubit.ppaextender package.
+# Copyright (C) 2019 THE com.github.linuxhubit.ppaextender'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.linuxhubit.ppaextender package.
+# Automatically generated, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.linuxhubit.ppaextender\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-24 19:57+0100\n"
+"PO-Revision-Date: 2019-11-24 19:57+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Widgets/Stack.vala:31
+msgid "Add new"
+msgstr ""
+
+#: src/Widgets/Stack.vala:32
+msgid "Sources"
+msgstr ""
+
+#: src/Widgets/Stack.vala:33
+msgid "Preferences"
+msgstr ""
