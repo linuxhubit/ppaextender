@@ -22,12 +22,13 @@
 public class PPAExtender.Core.Sources : Object {
 
     private string[] sources_builtin_rows;
-    private string[] sources_3rdparty_rows;
+    public List<Models.Source> sources_builtin = new List<Models.Source> ();
+    public List<Models.Source> sources_3rdparty = new List<Models.Source> ();
 
     /*
     * list built in sources
     */
-    public string[] list_builtin () {
+    public void list_builtin () {
         string path_builtin_sources = "/etc/apt/sources.list";
         string row;
 
@@ -44,31 +45,30 @@ public class PPAExtender.Core.Sources : Object {
             */
             if (row.length > 3) {
 
+                Models.Source newRow = new Models.Source ();
+
                 /*
                 * check if row is commented
                 */
-                if ((row.substring (0, 3)).contains ("# ")) {
+                if (
+                    (row.substring (0, 3).contains ("# ") && row.contains (" deb ")) ||
+                     !row.substring (0, 3).contains ("# ")) {
 
-                    /*
-                    * check if commented row is a valid repository
-                    * in the future this control should be improved
-                    */
-                    if (row.contains (" deb ")) {
-                        sources_builtin_rows += row;
-                    }
-                } else {
-                    sources_builtin_rows += row;
+                    newRow.name = _("system");
+                    newRow.source = row;
+                    newRow.status = row.substring (0, 3).contains ("# ") ? "Disabled" : "Enabled";
+                    newRow.type_of = _("Built-in");
+
+                    sources_builtin.append (newRow);
                 }
             }
         }
-
-        return sources_builtin_rows;
     }
 
     /*
     * list third party sources
     */
-    public string[] list_3rdparty () {
+    public void list_3rdparty () {
         string path_3rdparty_sources = "/etc/apt/sources.list.d/";
         string row;
 
@@ -88,6 +88,7 @@ public class PPAExtender.Core.Sources : Object {
                 */
                 var sources_file = File.new_for_path (path_3rdparty_sources + info.get_name ());
                 var dis = new DataInputStream (sources_file.read ());
+
                 while ((row = dis.read_line (null)) != null) {
 
                     /*
@@ -95,26 +96,27 @@ public class PPAExtender.Core.Sources : Object {
                     */
                     if (row.length > 3) {
 
+                        Models.Source newRow = new Models.Source ();
+
                         /*
                         * check if row is commented
                         */
-                        if ((row.substring (0, 3)).contains ("# ")) {
+                        if (
+                            (row.substring (0, 3).contains ("# ") && row.contains (" deb ")) ||
+                            !row.substring (0, 3).contains ("# ")) {
 
-                            /*
-                            * check if commented row is a valid repository
-                            * in the future this control should be improved
-                            */
-                            if (row.contains (" deb ")) {
-                                sources_3rdparty_rows += row;
-                            }
-                        } else {
-                            sources_3rdparty_rows += row;
+                            string name = info.get_name ();
+                            name = name.substring (0, name.length - 5);
+                            newRow.name = name.length > 10 ? name.substring (0, 15) + " […]" : name;
+                            newRow.source = row;
+                            newRow.status = row.substring (0, 3).contains ("# ") ? "Disabled" : "Enabled";
+                            newRow.type_of = _("3rd-party");
+
+                            sources_3rdparty.append (newRow);
                         }
                     }
                 }
             }
         }
-
-        return sources_3rdparty_rows;
     }
 }

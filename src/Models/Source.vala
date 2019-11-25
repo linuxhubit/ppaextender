@@ -22,10 +22,7 @@
 public class PPAExtender.Models.Source : Object {
 
     public string name {set;get;default = "";}
+    public string source {set;get;default = "";}
     public string status {set;get;default = "";}
-
-    public Source.with_name (string name, string status) {
-        this.name = name;
-        this.status = status;
-    }
+    public string type_of {set;get;default = "";}
 }

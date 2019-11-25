@@ -33,7 +33,7 @@ public class PPAExtender.MainWindow : Gtk.Window {
         /*
         *  set default window size
         */
-        set_size_request (800, 700);
+        set_size_request (960, 740);
 
         /*
         *  set stack (index) to stack_switcher

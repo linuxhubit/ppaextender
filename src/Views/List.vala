@@ -34,32 +34,23 @@ public class PPAExtender.Views.List : Gtk.Grid {
     construct {
         scrolled = new Gtk.ScrolledWindow (null, null);
 
-        string[] sources_builtin_list = core_sources.list_builtin ();
-        string[] sources_3rdparty_list = core_sources.list_3rdparty ();
+        // string[] sources_builtin_list = core_sources.list_builtin ();
+        core_sources.list_builtin ();
+        core_sources.list_3rdparty ();
 
         /*
         * add list_store to store source data
         */
         list_store = new Gtk.ListStore (1, typeof (Models.Source));
 
-        string source_status = "";
-
-        foreach (string source_row in sources_builtin_list) {
-            source_status = _("Enabled");
+        foreach(Models.Source source_row in core_sources.sources_builtin) {
             list_store.append (out iter);
-            if (source_row.contains ("# ")) {
-                source_status = _("Disabled");
-            }
-            list_store.set (iter, 0, new Models.Source.with_name (source_row, source_status));
+            list_store.set (iter, 0, source_row);
         }
 
-        foreach (string source_row in sources_3rdparty_list) {
-            source_status = _("Enabled");
+        foreach(Models.Source source_row in core_sources.sources_3rdparty) {
             list_store.append (out iter);
-            if (source_row.contains ("# ")) {
-                source_status = _("Disabled");
-            }
-            list_store.set (iter, 0, new Models.Source.with_name (source_row, source_status));
+            list_store.set (iter, 0, source_row);
         }
 
         /*
@@ -83,15 +74,25 @@ public class PPAExtender.Views.List : Gtk.Grid {
         attach (edit_button, 0, 2, 1, 1);
 
         Gtk.CellRendererText cell = new Gtk.CellRendererText ();
-        tree_view.insert_column_with_data_func (-1, _("Source"), cell, (column, cell, model, iter) => { 
+        tree_view.insert_column_with_data_func (-1, _("Name"), cell, (column, cell, model, iter) => { 
             Models.Source obj;
             model.@get (iter, 0, out obj); 
             (cell as Gtk.CellRendererText).text = obj.name;
+        });
+        tree_view.insert_column_with_data_func (-1, _("Source"), cell, (column, cell, model, iter) => { 
+            Models.Source obj;
+            model.@get (iter, 0, out obj); 
+            (cell as Gtk.CellRendererText).text = obj.source;
         }); 
         tree_view.insert_column_with_data_func (-1, _("Status"), cell, (column, cell, model, iter) => { 
             Models.Source obj;
             model.@get (iter, 0, out obj); 
             (cell as Gtk.CellRendererText).text = obj.status;
+        }); 
+        tree_view.insert_column_with_data_func (-1, _("Type"), cell, (column, cell, model, iter) => { 
+            Models.Source obj;
+            model.@get (iter, 0, out obj); 
+            (cell as Gtk.CellRendererText).text = obj.type_of;
         }); 
 
         /*
