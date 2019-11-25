@@ -34,7 +34,8 @@ public class PPAExtender.Views.List : Gtk.Grid {
     construct {
         scrolled = new Gtk.ScrolledWindow (null, null);
 
-        string[] sources_list = core_sources.list ();
+        string[] sources_builtin_list = core_sources.list_builtin ();
+        string[] sources_3rdparty_list = core_sources.list_3rdparty ();
 
         /*
         * add list_store to store source data
@@ -43,7 +44,16 @@ public class PPAExtender.Views.List : Gtk.Grid {
 
         string source_status = "";
 
-        foreach (string source_row in sources_list) {
+        foreach (string source_row in sources_builtin_list) {
+            source_status = _("Enabled");
+            list_store.append (out iter);
+            if (source_row.contains ("# ")) {
+                source_status = _("Disabled");
+            }
+            list_store.set (iter, 0, new Models.Source.with_name (source_row, source_status));
+        }
+
+        foreach (string source_row in sources_3rdparty_list) {
             source_status = _("Enabled");
             list_store.append (out iter);
             if (source_row.contains ("# ")) {
@@ -85,7 +95,7 @@ public class PPAExtender.Views.List : Gtk.Grid {
         }); 
 
         /*
-        * call Edit dialog on edit_button is clicked
+        * call Edit dialog when edit_button is clicked
         */
         edit_button.clicked.connect (() => {
             edit_dialog = new Dialogs.Edit ();
