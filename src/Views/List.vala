@@ -41,9 +41,15 @@ public class PPAExtender.Views.List : Gtk.Grid {
         */
         list_store = new Gtk.ListStore (1, typeof (Models.Source));
 
+        string source_status = "";
+
         foreach (string source_row in sources_list) {
+            source_status = _("Enabled");
             list_store.append (out iter);
-            list_store.set (iter, 0, new Models.Source.with_name (source_row));
+            if (source_row.contains ("# ")) {
+                source_status = _("Disabled");
+            }
+            list_store.set (iter, 0, new Models.Source.with_name (source_row, source_status));
         }
 
         /*
@@ -72,8 +78,15 @@ public class PPAExtender.Views.List : Gtk.Grid {
             model.@get (iter, 0, out obj); 
             (cell as Gtk.CellRendererText).text = obj.name;
         }); 
+        tree_view.insert_column_with_data_func (-1, _("Status"), cell, (column, cell, model, iter) => { 
+            Models.Source obj;
+            model.@get (iter, 0, out obj); 
+            (cell as Gtk.CellRendererText).text = obj.status;
+        }); 
 
-
+        /*
+        * call Edit dialog on edit_button is clicked
+        */
         edit_button.clicked.connect (() => {
             edit_dialog = new Dialogs.Edit ();
             edit_dialog.show_all ();

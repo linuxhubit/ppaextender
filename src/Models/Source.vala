@@ -22,9 +22,10 @@
 public class PPAExtender.Models.Source : Object {
 
     public string name {set;get;default = "";}
-    public uint age {set;get;default = 0;}
+    public string status {set;get;default = "";}
 
-    public Source.with_name (string name) {
+    public Source.with_name (string name, string status) {
         this.name = name;
+        this.status = status;
     }
 }
