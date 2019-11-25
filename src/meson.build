@@ -14,4 +14,6 @@ sources  = files(
     'Models/Source.vala',
 
     'Dialogs/Edit.vala',
+
+    'Core/Sources.vala',
 )

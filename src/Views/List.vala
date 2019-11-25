@@ -29,17 +29,22 @@ public class PPAExtender.Views.List : Gtk.Grid {
 
     private Dialogs.Edit edit_dialog;
 
+    private Core.Sources core_sources = new Core.Sources ();
+
     construct {
         scrolled = new Gtk.ScrolledWindow (null, null);
+
+        string[] sources_list = core_sources.list ();
 
         /*
         * add list_store to store source data
         */
         list_store = new Gtk.ListStore (1, typeof (Models.Source));
-        list_store.append (out iter);
-        list_store.set (iter, 0, new Models.Source.with_name ("example.1"));
-        list_store.append (out iter);
-        list_store.set (iter, 0, new Models.Source.with_name ("example.2"));
+
+        foreach (string source_row in sources_list) {
+            list_store.append (out iter);
+            list_store.set (iter, 0, new Models.Source.with_name (source_row));
+        }
 
         /*
         * add tree_view to display source data
@@ -70,7 +75,7 @@ public class PPAExtender.Views.List : Gtk.Grid {
 
 
         edit_button.clicked.connect (() => {
-            var edit_dialog = new Dialogs.Edit ();
+            edit_dialog = new Dialogs.Edit ();
             edit_dialog.show_all ();
         });
 

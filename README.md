@@ -40,11 +40,11 @@ sudo ninja install
 * UI Preferences
     - ~~Add warning icon for **Pre-released updates**~~
 * UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
-* Core.Sources.list
-* Core.Sources.add
-* Core.Sources.delete
-* Core.Sources.edit
-* Core.Sources.update
+* Core.Source.list
+* Core.Source.add
+* Core.Source.delete
+* Core.Source.edit
+* Core.Source.update
 
 # Project info
 * Based on the [previous](https://github.com/mirkobrombin/PPAExtender) python version (end of life)
