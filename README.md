@@ -8,6 +8,7 @@ An application to extend repo on debian/ubuntu based systems.
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-1.png" width="300">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-2.png" width="300">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-3.png" width="300">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-4.png" width="300">
 </div>
 
 ## Warning
@@ -26,12 +27,12 @@ sudo ninja install
 
 ## TODO
 * UI Edit dialog
-    - Type of source
-    - Release chooser [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/15)
-    - Component editor
-    - Disable/Enable [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/11)
-    - Source URI
-    - Delete source
+    - ~~Type of source~~
+    - ~~Release chooser~~ [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/15)
+    - ~~Component editor~~
+    - ~~Disable/Enable~~ [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/11)
+    - ~~Source URI~~
+    - ~~Delete source~~
 * UI Add view
     - ~~PPA UI~~
     - Flatpak UI
@@ -42,5 +43,6 @@ sudo ninja install
 * Core.Sources.list
 * Core.Sources.add
 * Core.Sources.delete
+* Core.Sources.edit
 * Core.Sources.update
 

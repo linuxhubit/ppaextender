@@ -21,7 +21,7 @@
 
 public class PPAExtender.Application : Gtk.Application {
 
-    private MainWindow? window = null;
+    public MainWindow? window = null;
 
     construct {
         flags |= ApplicationFlags.HANDLES_OPEN;
@@ -32,6 +32,16 @@ public class PPAExtender.Application : Gtk.Application {
     public static int main (string[] args) {
         var app = new Application ();
         return app.run (args);
+    }
+
+    public static Application _instance = null;
+    public static Application instance {
+        get {
+            if (_instance == null) {
+                _instance = new Application ();
+            }
+            return _instance;
+        }
     }
 
     public override void activate () {

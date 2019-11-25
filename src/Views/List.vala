@@ -27,6 +27,8 @@ public class PPAExtender.Views.List : Gtk.Grid {
     private Gtk.Button edit_button;
     private Gtk.TreeIter iter;
 
+    private Dialogs.Edit edit_dialog;
+
     construct {
         scrolled = new Gtk.ScrolledWindow (null, null);
 
@@ -65,6 +67,12 @@ public class PPAExtender.Views.List : Gtk.Grid {
             model.@get (iter, 0, out obj); 
             (cell as Gtk.CellRendererText).text = obj.name;
         }); 
+
+
+        edit_button.clicked.connect (() => {
+            var edit_dialog = new Dialogs.Edit ();
+            edit_dialog.show_all ();
+        });
 
         show_all ();
     }
