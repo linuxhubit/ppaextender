@@ -67,4 +67,4 @@ msgstr "Aggiornamenti non supportati"
 #: src/Views/Preferences.vala:71
 #, fuzzy
 msgid "⚠️ Pre-released updates:"
-msgstr "Aggiornamenti in anticipo"
+msgstr "Aggiornamenti consigliati"

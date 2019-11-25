@@ -4,7 +4,10 @@ An application to extend repo on debian/ubuntu based systems.
 ⚠️ This application is under development.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png" width="300">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-1.png" width="300">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-2.png" width="300">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-3.png" width="300">
 </div>
 
 ## Warning
@@ -40,3 +43,4 @@ sudo ninja install
 * Core.Sources.add
 * Core.Sources.delete
 * Core.Sources.update
+
