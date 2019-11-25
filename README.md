@@ -40,7 +40,7 @@ sudo ninja install
 * UI Preferences
     - ~~Add warning icon for **Pre-released updates**~~
 * UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
-* Core.Source.list
+* ~~Core.Source.list~~
 * Core.Source.add
 * Core.Source.delete
 * Core.Source.edit
