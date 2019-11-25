@@ -29,10 +29,12 @@ sudo ninja install
     - Disable/Enable [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/11)
     - Source URI
     - Delete source
-* UI Add dialog
+* UI Add view
+    - ~~PPA UI~~
+    - Flatpak UI
     - Check for correct URI syntax
 * UI Preferences
-    - Add warning icon for **Pre-released updates**
+    - ~~Add warning icon for **Pre-released updates**~~
 * UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
 * Core.Sources.list
 * Core.Sources.add

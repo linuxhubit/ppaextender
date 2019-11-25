@@ -28,7 +28,6 @@ public class PPAExtender.Views.List : Gtk.Grid {
     private Gtk.TreeIter iter;
 
     construct {
-
         scrolled = new Gtk.ScrolledWindow (null, null);
 
         /*
@@ -52,10 +51,9 @@ public class PPAExtender.Views.List : Gtk.Grid {
         /*
         * create edit_button to modify source data
         */
-        edit_button = new Gtk.Button.with_label (_("Edit"));
+        edit_button = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
         edit_button.set_tooltip_text(_("Edit selected source"));
         edit_button.halign = Gtk.Align.END;
-        edit_button.margin = 4;
 
         attach (scrolled, 0, 0, 1, 1);
         attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1);

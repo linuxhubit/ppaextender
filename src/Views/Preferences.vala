@@ -68,7 +68,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid {
         var unsupported_updates_label = new Gtk.Label (_("Unsupported updates:"));
         unsupported_updates_label.xalign = 0;
 
-        var prereleased_updates_label = new Gtk.Label (_("Pre-released updates:"));
+        var prereleased_updates_label = new Gtk.Label (_("⚠️ Pre-released updates:"));
         prereleased_updates_label.xalign = 0;
 
         /*

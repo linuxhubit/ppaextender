@@ -19,12 +19,63 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.Add : Gtk.Box {
+public class PPAExtender.Views.Add : Gtk.Grid {
 
-    private Gtk.Label label_test = new Gtk.Label ("add");
+    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
     construct {
-        add(label_test);
+        var gtk_settings = Gtk.Settings.get_default ();
+        var css_provider = new Gtk.CssProvider ();
+
+        css_provider.load_from_data("
+            .source-entry { min-width: 200px; }
+            .source-validation--waiting { color: grey; }
+            .source-validation--success { color: green; }
+            .source-validation--failed { color: red; }
+        ");
+
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+
+        column_spacing = 12;
+        row_spacing = 6;
+
+        halign = Gtk.Align.CENTER;
+        valign = Gtk.Align.CENTER;
+
+        var source_label = new Gtk.Label (_("Add new source"));
+        source_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        source_label.halign = Gtk.Align.CENTER;
+        source_label.xalign = 0;
+
+        var source_description_label = new Gtk.Label (_("Enter the complete PPA path and press enter."));
+        source_description_label.halign = Gtk.Align.CENTER;
+        source_description_label.xalign = 0;
+
+        var source_entry = new Gtk.Entry ();
+        source_entry.get_style_context ().add_class ("source-entry");
+        source_entry.placeholder_text = _("ex: ppa:mirkobrombin/ppa");
+        source_entry.set_tooltip_text(_("ex: ppa:mirkobrombin/ppa"));
+        source_entry.halign = Gtk.Align.CENTER;
+
+        /* 
+        * css classes for source_validation_label:
+        * .source-validation--waiting
+        * .source-validation--success
+        * .source-validation--failed
+        */
+        var source_validation_label = new Gtk.Label (_("Waiting for PPA to be entered."));
+        source_validation_label.get_style_context ().add_class ("source-validation--waiting");
+        source_validation_label.halign = Gtk.Align.CENTER;
+        source_validation_label.xalign = 0;
+
+        /*
+        *  populate the grid
+        */
+        attach (source_label, 0, 0, 1, 1);
+        attach (source_description_label, 0, 1, 1, 1);
+        attach (source_entry, 0, 2, 1, 1);
+        attach (source_validation_label, 0, 3, 1, 1);
+
         show_all ();
     }
 }
