@@ -11,9 +11,9 @@ An application to extend repo on debian/ubuntu based systems.
 </div>
 
 ## Warning
-Edit, delete and add, repository to the system. It may damage and / or corrupt your data.
+Modifying system repositories can compromise the functioning of your distribution.
 
-Neither you nor the developers of your distribution are responsible for what you do with this application.
+The developers of ppaextender and your distribution are not responsible for any problems.
 
 ## Setup
 ⚠️ This application is still under development, use it with care and only for development purposes.
