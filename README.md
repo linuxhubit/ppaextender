@@ -46,3 +46,6 @@ sudo ninja install
 * Core.Sources.edit
 * Core.Sources.update
 
+# Project info
+* Based on the [previous](https://github.com/mirkobrombin/PPAExtender) python version (end of life)
+* Design inspired by [repoman](https://github.com/pop-os/repoman) (a fork of PPAExtender)
