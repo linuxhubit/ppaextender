@@ -41,16 +41,17 @@ public class PPAExtender.Views.List : Gtk.Grid {
         /*
         * add list_store to store source data
         */
-        list_store = new Gtk.ListStore (1, typeof (Models.Source));
+        list_store = new Gtk.ListStore (4, typeof (string), typeof (string),
+                                          typeof (string), typeof (string));
 
         foreach(Models.Source source_row in core_sources.sources_builtin) {
             list_store.append (out iter);
-            list_store.set (iter, 0, source_row);
+            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
 
         foreach(Models.Source source_row in core_sources.sources_3rdparty) {
             list_store.append (out iter);
-            list_store.set (iter, 0, source_row);
+            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
 
         /*
@@ -73,27 +74,29 @@ public class PPAExtender.Views.List : Gtk.Grid {
         attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1);
         attach (edit_button, 0, 2, 1, 1);
 
-        Gtk.CellRendererText cell = new Gtk.CellRendererText ();
-        tree_view.insert_column_with_data_func (-1, _("Name"), cell, (column, cell, model, iter) => { 
-            Models.Source obj;
-            model.@get (iter, 0, out obj); 
-            (cell as Gtk.CellRendererText).text = obj.name;
+        tree_view.insert_column_with_attributes (-1, _("Name"), new Gtk.CellRendererText (), "text", 0);
+        tree_view.insert_column_with_attributes (-1, _("Source"), new Gtk.CellRendererText (), "text", 1);
+        tree_view.insert_column_with_attributes (-1, _("Status"), new Gtk.CellRendererText (), "text", 2);
+        tree_view.insert_column_with_attributes (-1, _("Type"), new Gtk.CellRendererText (), "text", 3);
+
+        tree_view.get_selection().changed.connect(()=>{
+	        Gtk.TreeSelection selection= tree_view.get_selection();
+	        selection.set_mode(Gtk.SelectionMode.SINGLE);
+	        Gtk.TreeModel model;
+
+	        if (selection.get_selected (out model, out iter)) 
+	        {
+		        string Name, Source, Status, Type_Of;
+
+		        model.get (iter, 0, out Name);
+		        model.get (iter, 1, out Source);
+		        model.get (iter, 2, out Status);
+		        model.get (iter, 3, out Type_Of);
+
+		        stdout.printf (Name);
+	        }
+
         });
-        tree_view.insert_column_with_data_func (-1, _("Source"), cell, (column, cell, model, iter) => { 
-            Models.Source obj;
-            model.@get (iter, 0, out obj); 
-            (cell as Gtk.CellRendererText).text = obj.source;
-        }); 
-        tree_view.insert_column_with_data_func (-1, _("Status"), cell, (column, cell, model, iter) => { 
-            Models.Source obj;
-            model.@get (iter, 0, out obj); 
-            (cell as Gtk.CellRendererText).text = obj.status;
-        }); 
-        tree_view.insert_column_with_data_func (-1, _("Type"), cell, (column, cell, model, iter) => { 
-            Models.Source obj;
-            model.@get (iter, 0, out obj); 
-            (cell as Gtk.CellRendererText).text = obj.type_of;
-        }); 
 
         /*
         * call Edit dialog when edit_button is clicked
@@ -106,3 +109,4 @@ public class PPAExtender.Views.List : Gtk.Grid {
         show_all ();
     }
 }
+

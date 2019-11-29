@@ -21,6 +21,7 @@
 
 public class PPAExtender.Models.Source : Object {
 
+    public int id {set;get;default = 0;}
     public string name {set;get;default = "";}
     public string source {set;get;default = "";}
     public string status {set;get;default = "";}
