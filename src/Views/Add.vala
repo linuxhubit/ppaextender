@@ -19,9 +19,17 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.Add : Gtk.Grid {
+public class PPAExtender.Views.Add : Gtk.Box {
 
+    public MainWindow window { get; construct; }
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
+
+    public Add () {
+        GLib.Object (
+            orientation: Gtk.Orientation.VERTICAL,
+            spacing: 150
+        );
+    }
 
     construct {
         var gtk_settings = Gtk.Settings.get_default ();
@@ -36,11 +44,18 @@ public class PPAExtender.Views.Add : Gtk.Grid {
 
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
-        column_spacing = 12;
-        row_spacing = 6;
+        var grid = new Gtk.Grid ();
+        grid.column_spacing = 12;
+        grid.row_spacing = 6;
 
-        halign = Gtk.Align.CENTER;
-        valign = Gtk.Align.CENTER;
+        grid.halign = Gtk.Align.CENTER;
+        grid.valign = Gtk.Align.CENTER;
+
+        var warning_label = new Gtk.Label (_("Be careful. Modifying repositories can damage the system."));
+        var warning_infobar = new Gtk.InfoBar ();
+        var warning_infobar_content = warning_infobar.get_content_area ();
+        warning_infobar_content.add (warning_label);
+        warning_infobar.set_message_type (Gtk.MessageType.WARNING);
 
         var source_label = new Gtk.Label (_("Add new source"));
         source_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
@@ -71,10 +86,13 @@ public class PPAExtender.Views.Add : Gtk.Grid {
         /*
         *  populate the grid
         */
-        attach (source_label, 0, 0, 1, 1);
-        attach (source_description_label, 0, 1, 1, 1);
-        attach (source_entry, 0, 2, 1, 1);
-        attach (source_validation_label, 0, 3, 1, 1);
+        grid.attach (source_label, 0, 0, 1, 1);
+        grid.attach (source_description_label, 0, 1, 1, 1);
+        grid.attach (source_entry, 0, 2, 1, 1);
+        grid.attach (source_validation_label, 0, 3, 1, 1);
+
+        add (warning_infobar);
+        add (grid);
 
         show_all ();
     }
