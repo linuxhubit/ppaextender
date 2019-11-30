@@ -21,7 +21,6 @@
 
 public class PPAExtender.Core.Sources : Object {
 
-    private string[] sources_builtin_rows;
     public List<Models.Source> sources_builtin = new List<Models.Source> ();
     public List<Models.Source> sources_3rdparty = new List<Models.Source> ();
 
@@ -120,3 +119,4 @@ public class PPAExtender.Core.Sources : Object {
         }
     }
 }
+

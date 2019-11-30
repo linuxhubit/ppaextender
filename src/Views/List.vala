@@ -28,7 +28,6 @@ public class PPAExtender.Views.List : Gtk.Grid {
     private Gtk.TreeIter iter;
 
     private Dialogs.Edit edit_dialog;
-
     private Core.Sources core_sources = new Core.Sources ();
 
     construct {
@@ -79,29 +78,19 @@ public class PPAExtender.Views.List : Gtk.Grid {
         tree_view.insert_column_with_attributes (-1, _("Status"), new Gtk.CellRendererText (), "text", 2);
         tree_view.insert_column_with_attributes (-1, _("Type"), new Gtk.CellRendererText (), "text", 3);
 
-        tree_view.get_selection().changed.connect(()=>{
-	        Gtk.TreeSelection selection= tree_view.get_selection();
-	        selection.set_mode(Gtk.SelectionMode.SINGLE);
-	        Gtk.TreeModel model;
-
-	        if (selection.get_selected (out model, out iter)) 
-	        {
-		        string Name, Source, Status, Type_Of;
-
-		        model.get (iter, 0, out Name);
-		        model.get (iter, 1, out Source);
-		        model.get (iter, 2, out Status);
-		        model.get (iter, 3, out Type_Of);
-
-		        stdout.printf (Name);
-	        }
-
-        });
-
         /*
         * call Edit dialog when edit_button is clicked
         */
         edit_button.clicked.connect (() => {
+            Gtk.TreeSelection selection= tree_view.get_selection();
+	        selection.set_mode(Gtk.SelectionMode.SINGLE);
+	        Gtk.TreeModel model;
+
+	        if (selection.get_selected (out model, out iter))  {
+		        string Name, Source, Status, Type_Of;
+		        model.get (iter, 0, out Name, 1, out Source, 2, out Status, 3, out Type_Of);
+	            stdout.printf (Name);
+            }
             edit_dialog = new Dialogs.Edit ();
             edit_dialog.show_all ();
         });
