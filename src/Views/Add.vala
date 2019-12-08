@@ -36,7 +36,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
         var css_provider = new Gtk.CssProvider ();
 
         css_provider.load_from_data("
-            .source-entry { min-width: 200px; }
+            .source-entry { min-width: 300px; font-size: 15px;}
             .source-validation--waiting { color: grey; }
             .source-validation--success { color: green; }
             .source-validation--failed { color: red; }
@@ -51,7 +51,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
         grid.halign = Gtk.Align.CENTER;
         grid.valign = Gtk.Align.CENTER;
 
-        var warning_label = new Gtk.Label (_("Be careful. Modifying repositories can damage the system."));
+        var warning_label = new Gtk.Label (_("Be careful. Modifying repositories can damage your system."));
         var warning_infobar = new Gtk.InfoBar ();
         var warning_infobar_content = warning_infobar.get_content_area ();
         warning_infobar_content.add (warning_label);
@@ -62,7 +62,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
         source_label.halign = Gtk.Align.CENTER;
         source_label.xalign = 0;
 
-        var source_description_label = new Gtk.Label (_("Enter the complete PPA path and press enter."));
+        var source_description_label = new Gtk.Label (_("Enter the complete PPA URI and press enter."));
         source_description_label.halign = Gtk.Align.CENTER;
         source_description_label.xalign = 0;
 
