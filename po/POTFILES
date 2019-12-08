@@ -1,2 +1,7 @@
+src/Constants.vala
 src/Widgets/Stack.vala
+src/Views/Add.vala
+src/Views/List.vala
 src/Views/Preferences.vala
+src/Core/Sources.vala
+src/Dialogs/Edit.vala

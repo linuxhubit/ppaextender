@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.linuxhubit.ppaextender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-25 22:42+0100\n"
+"POT-Creation-Date: 2019-12-08 09:30+0100\n"
 "PO-Revision-Date: 2019-11-24 19:57+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Constants.vala:23
+msgid "PPA Extender"
+msgstr ""
+
+#: src/Constants.vala:24
+msgid "Extend your system PPA"
+msgstr ""
 
 #: src/Widgets/Stack.vala:32
 msgid "Add new"
@@ -27,6 +35,52 @@ msgstr ""
 
 #: src/Widgets/Stack.vala:34
 msgid "Preferences"
+msgstr ""
+
+#: src/Views/Add.vala:54
+msgid "Be careful. Modifying repositories can damage your system."
+msgstr ""
+
+#: src/Views/Add.vala:60
+msgid "Add new source"
+msgstr ""
+
+#: src/Views/Add.vala:65
+msgid "Enter the complete PPA URI and press enter."
+msgstr ""
+
+#: src/Views/Add.vala:71 src/Views/Add.vala:72
+msgid "ex: ppa:mirkobrombin/ppa"
+msgstr ""
+
+#.
+#. * css classes for source_validation_label:
+#. * .source-validation--waiting
+#. * .source-validation--success
+#. * .source-validation--failed
+#.
+#: src/Views/Add.vala:81
+msgid "Waiting for PPA to be entered."
+msgstr ""
+
+#: src/Views/List.vala:69
+msgid "Edit selected source"
+msgstr ""
+
+#: src/Views/List.vala:76
+msgid "Name"
+msgstr ""
+
+#: src/Views/List.vala:77
+msgid "Source"
+msgstr ""
+
+#: src/Views/List.vala:78
+msgid "Status"
+msgstr ""
+
+#: src/Views/List.vala:79
+msgid "Type"
 msgstr ""
 
 #.
@@ -66,4 +120,74 @@ msgstr ""
 
 #: src/Views/Preferences.vala:71
 msgid "⚠️ Pre-released updates:"
+msgstr ""
+
+#: src/Core/Sources.vala:56
+msgid "system"
+msgstr ""
+
+#: src/Core/Sources.vala:58 src/Core/Sources.vala:111
+msgid "Disabled"
+msgstr ""
+
+#: src/Core/Sources.vala:58 src/Core/Sources.vala:111
+msgid "Enabled"
+msgstr ""
+
+#: src/Core/Sources.vala:59
+msgid "Built-in"
+msgstr ""
+
+#: src/Core/Sources.vala:112
+msgid "3rd-party"
+msgstr ""
+
+#.
+#. * define the edit labels
+#.
+#: src/Dialogs/Edit.vala:56
+msgid "Type:"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:59
+msgid "Release:"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:62
+msgid "Component:"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:65
+msgid "Status:"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:68
+msgid "URI:"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:76
+msgid "Binary"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:77
+msgid "Source code"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:99
+msgid "https://ppa.launchpad.net/..."
+msgstr ""
+
+#: src/Dialogs/Edit.vala:100
+msgid "ppa:mirkobrombin/ppa"
+msgstr ""
+
+#.
+#. *  define the action buttons
+#.
+#: src/Dialogs/Edit.vala:119
+msgid "Remove Source"
+msgstr ""
+
+#: src/Dialogs/Edit.vala:122
+msgid "Save"
 msgstr ""

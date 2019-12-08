@@ -55,7 +55,7 @@ public class PPAExtender.Core.Sources : Object {
 
                     newRow.name = _("system");
                     newRow.source = row;
-                    newRow.status = row.substring (0, 3).contains ("# ") ? "Disabled" : "Enabled";
+                    newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
                     newRow.type_of = _("Built-in");
 
                     sources_builtin.append (newRow);
@@ -108,7 +108,7 @@ public class PPAExtender.Core.Sources : Object {
                             name = name.substring (0, name.length - 5);
                             newRow.name = name.length > 10 ? name.substring (0, 15) + " […]" : name;
                             newRow.source = row;
-                            newRow.status = row.substring (0, 3).contains ("# ") ? "Disabled" : "Enabled";
+                            newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
                             newRow.type_of = _("3rd-party");
 
                             sources_3rdparty.append (newRow);

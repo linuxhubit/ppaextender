@@ -96,8 +96,8 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
         edit_grid.attach (status_switch, 1, 3, 1, 1);
 
         uri_entry = new Gtk.Entry ();
-        uri_entry.set_placeholder_text ("https://ppa.launchpad.net/...");
-        uri_entry.set_text ("ppa:mirkobrombin/ppa");
+        uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/..."));
+        uri_entry.set_text (_("ppa:mirkobrombin/ppa"));
         uri_entry.set_activates_default (false);
         uri_entry.set_width_chars (40);
         edit_grid.attach (uri_entry, 1,4, 1, 1);

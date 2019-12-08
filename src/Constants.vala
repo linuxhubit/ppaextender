@@ -20,8 +20,8 @@
 */
 
 namespace PPAExtender.Constants {
-    public const string APP_NAME = "PPA Extender";
-    public const string APP_DESCRIPTION = "Extend your system PPA";
+    public const string APP_NAME = _("PPA Extender");
+    public const string APP_DESCRIPTION = _("Extend your system PPA");
     public const string APP_ID = "com.github.linuxhubit.ppaextender";
     public const string SCHEMA_NAME = APP_ID;
     public const string DESKTOP_NAME = "com.github.linuxhubit.ppaextender.desktop";
