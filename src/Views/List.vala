@@ -87,12 +87,17 @@ public class PPAExtender.Views.List : Gtk.Grid {
 	        Gtk.TreeModel model;
 
 	        if (selection.get_selected (out model, out iter))  {
-		        string Name, Source, Status, Type_Of;
-		        model.get (iter, 0, out Name, 1, out Source, 2, out Status, 3, out Type_Of);
-	            stdout.printf (Name);
+		        string name, source, status, type_of;
+                model.get (iter, 0, out name, 1, out source, 2, out status, 3, out type_of);
+                /*
+                * TODO: 
+                * - get type/component/release from source
+                * - pass clean source as uri
+                * - pass status as bool
+                */
+                edit_dialog = new Dialogs.Edit (name, source, status, type_of);
+                edit_dialog.show_all ();
             }
-            edit_dialog = new Dialogs.Edit ();
-            edit_dialog.show_all ();
         });
 
         show_all ();

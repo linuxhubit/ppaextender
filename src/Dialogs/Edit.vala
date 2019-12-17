@@ -30,6 +30,15 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
     private Gtk.Entry release_entry;
     private Gtk.Switch status_switch;
 
+    public string name { get; construct set; }
+    public string source { get; construct set; }
+    public string status { get; construct set; }
+    public string type_of { get; construct set; }
+
+    public Edit (string name, string source, string status, string type_of) {
+        Object (resizable: false, deletable: true, skip_taskbar_hint: true, name: name, source: source, status: status, type_of: type_of);
+    }
+
     construct {
         var css_provider = new Gtk.CssProvider ();
 
@@ -97,7 +106,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
 
         uri_entry = new Gtk.Entry ();
         uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/..."));
-        uri_entry.set_text (_("ppa:mirkobrombin/ppa"));
+        uri_entry.set_text (source);
         uri_entry.set_activates_default (false);
         uri_entry.set_width_chars (40);
         edit_grid.attach (uri_entry, 1,4, 1, 1);
