@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.linuxhubit.ppaextender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-08 09:30+0100\n"
+"POT-Creation-Date: 2019-12-22 13:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,49 +145,45 @@ msgstr ""
 #.
 #. * define the edit labels
 #.
-#: src/Dialogs/Edit.vala:56
+#: src/Dialogs/Edit.vala:61
 msgid "Type:"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:59
+#: src/Dialogs/Edit.vala:64
 msgid "Release:"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:62
+#: src/Dialogs/Edit.vala:67
 msgid "Component:"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:65
+#: src/Dialogs/Edit.vala:70
 msgid "Status:"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:68
+#: src/Dialogs/Edit.vala:73
 msgid "URI:"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:76
+#: src/Dialogs/Edit.vala:81
 msgid "Binary"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:77
+#: src/Dialogs/Edit.vala:82
 msgid "Source code"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:99
+#: src/Dialogs/Edit.vala:104
 msgid "https://ppa.launchpad.net/..."
-msgstr ""
-
-#: src/Dialogs/Edit.vala:100
-msgid "ppa:mirkobrombin/ppa"
 msgstr ""
 
 #.
 #. *  define the action buttons
 #.
-#: src/Dialogs/Edit.vala:119
+#: src/Dialogs/Edit.vala:124
 msgid "Remove Source"
 msgstr ""
 
-#: src/Dialogs/Edit.vala:122
+#: src/Dialogs/Edit.vala:127
 msgid "Save"
 msgstr ""

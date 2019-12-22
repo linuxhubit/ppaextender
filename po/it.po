@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.linuxhubsubpixel.ppaextender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-08 09:30+0100\n"
+"POT-Creation-Date: 2019-12-22 13:32+0100\n"
 "PO-Revision-Date: 2019-11-24 19:54+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/Constants.vala:24
 msgid "Extend your system PPA"
-msgstr ""
+msgstr "Estendi le repository di sistema"
 
 #: src/Widgets/Stack.vala:32
 msgid "Add new"
@@ -145,57 +145,46 @@ msgstr "Integrato"
 msgid "3rd-party"
 msgstr "Terze parti"
 
-#.
-#. * define the edit labels
-#.
-#: src/Dialogs/Edit.vala:56
-#, fuzzy
+#: src/Dialogs/Edit.vala:61
 msgid "Type:"
-msgstr "Tipo"
+msgstr "Tipo:"
 
-#: src/Dialogs/Edit.vala:59
+#: src/Dialogs/Edit.vala:64
 msgid "Release:"
 msgstr "Rilascio"
 
-#: src/Dialogs/Edit.vala:62
+#: src/Dialogs/Edit.vala:67
 msgid "Component:"
 msgstr "Componente"
 
-#: src/Dialogs/Edit.vala:65
-#, fuzzy
+#: src/Dialogs/Edit.vala:70
 msgid "Status:"
 msgstr "Stato:"
 
-#: src/Dialogs/Edit.vala:68
+#: src/Dialogs/Edit.vala:73
 msgid "URI:"
 msgstr "URI"
 
-#: src/Dialogs/Edit.vala:76
+#: src/Dialogs/Edit.vala:81
 msgid "Binary"
 msgstr "Binario"
 
-#: src/Dialogs/Edit.vala:77
-#, fuzzy
+#: src/Dialogs/Edit.vala:82
 msgid "Source code"
 msgstr "Codice sorgente"
 
-#: src/Dialogs/Edit.vala:99
+#: src/Dialogs/Edit.vala:104
 msgid "https://ppa.launchpad.net/..."
 msgstr "https://ppa.launchpad.net/..."
 
-#: src/Dialogs/Edit.vala:100
-#, fuzzy
-msgid "ppa:mirkobrombin/ppa"
-msgstr "es: ppa:mirkobrombin/ppa"
-
-#.
-#. *  define the action buttons
-#.
-#: src/Dialogs/Edit.vala:119
-#, fuzzy
+#: src/Dialogs/Edit.vala:124
 msgid "Remove Source"
 msgstr "Rimuovi fonte"
 
-#: src/Dialogs/Edit.vala:122
+#: src/Dialogs/Edit.vala:127
 msgid "Save"
 msgstr "Salva"
+
+#, fuzzy
+#~ msgid "ppa:mirkobrombin/ppa"
+#~ msgstr "es: ppa:mirkobrombin/ppa"
