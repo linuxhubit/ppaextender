@@ -118,5 +118,20 @@ public class PPAExtender.Core.Sources : Object {
             }
         }
     }
+
+    /*
+    * create object from source
+    */
+    public Models.SourceComponents create_object (string source_line) {
+        string[] source_array = source_line.split(" ");
+        Models.SourceComponents source_components = new Models.SourceComponents ();
+        // deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
+        source_components.type_of = source_array[0];
+        source_components.release = source_array[3];
+        source_components.component = source_array[2];
+        source_components.status = source_array[0];
+        source_components.uri = source_array[1];
+        return source_components;
+    }
 }
 

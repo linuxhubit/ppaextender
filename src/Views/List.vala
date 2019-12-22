@@ -95,7 +95,7 @@ public class PPAExtender.Views.List : Gtk.Grid {
                 * - pass clean source as uri
                 * - pass status as bool
                 */
-                edit_dialog = new Dialogs.Edit (name, source, status, type_of);
+                edit_dialog = new Dialogs.Edit (core_sources.create_object (source));
                 edit_dialog.show_all ();
             }
         });

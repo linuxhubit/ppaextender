@@ -12,6 +12,7 @@ sources  = files(
     'Widgets/StackSwitcher.vala',
 
     'Models/Source.vala',
+    'Models/SourceComponents.vala',
 
     'Dialogs/Edit.vala',
 
