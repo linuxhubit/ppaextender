@@ -84,7 +84,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
         source_validation_label.xalign = 0;
 
         /*
-        *  populate the grid
+        *  populate grid
         */
         grid.attach (source_label, 0, 0, 1, 1);
         grid.attach (source_description_label, 0, 1, 1, 1);
@@ -98,7 +98,14 @@ public class PPAExtender.Views.Add : Gtk.Box {
         * validate uri when stop typing in source_entry
         */
         source_entry.key_release_event.connect (() => {
-            source_validation_label.get_style_context ().remove_class ();
+
+            /*
+            * reset source_validation_label style
+            */
+            source_validation_label.get_style_context ().remove_class ("source-validation--waiting");
+            source_validation_label.get_style_context ().remove_class ("source-validation--success");
+            source_validation_label.get_style_context ().remove_class ("source-validation--failed");
+
             if (source_entry.get_text ().substring (0, 4) == "ppa:") {
                 source_validation_label.get_style_context ().add_class ("source-validation--success");
                 source_validation_label.set_text (_("Valid PPA found."));
