@@ -49,9 +49,7 @@ public class PPAExtender.Core.Sources : Object {
                 /*
                 * check if row is commented
                 */
-                if (
-                    (row.substring (0, 3).contains ("# ") && row.contains (" deb ")) ||
-                     !row.substring (0, 3).contains ("# ")) {
+                if (row.contains ("deb")) {
 
                     newRow.name = _("system");
                     newRow.source = row;
@@ -100,9 +98,7 @@ public class PPAExtender.Core.Sources : Object {
                         /*
                         * check if row is commented
                         */
-                        if (
-                            (row.substring (0, 3).contains ("# ") && row.contains (" deb ")) ||
-                            !row.substring (0, 3).contains ("# ")) {
+                        if (row.contains ("deb")) {
 
                             string name = info.get_name ();
                             name = name.substring (0, name.length - 5);
