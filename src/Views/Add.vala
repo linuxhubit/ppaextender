@@ -106,13 +106,24 @@ public class PPAExtender.Views.Add : Gtk.Box {
             source_validation_label.get_style_context ().remove_class ("source-validation--success");
             source_validation_label.get_style_context ().remove_class ("source-validation--failed");
 
-            if (source_entry.get_text ().substring (0, 4) == "ppa:") {
+            /*
+             * TODO: perform pattern check for best validation results
+            */
+            if (source_entry.get_text ().substring (0, 4) == "ppa:" &
+                source_entry.get_text ().split("/").length > 1) {
                 source_validation_label.get_style_context ().add_class ("source-validation--success");
                 source_validation_label.set_text (_("Valid PPA found."));
             } else {
                 source_validation_label.get_style_context ().add_class ("source-validation--failed");
                 source_validation_label.set_text (_("This PPA doesn't look good."));
             }
+        });
+
+        /*
+        * add new ppa when hit enter in source_entry
+        */
+        source_entry.activate.connect (() => {
+            stdout.printf ("activate");
         });
         show_all ();
     }
