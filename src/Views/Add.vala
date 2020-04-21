@@ -94,6 +94,19 @@ public class PPAExtender.Views.Add : Gtk.Box {
         add (warning_infobar);
         add (grid);
 
+        /*
+        * validate uri when stop typing in source_entry
+        */
+        source_entry.key_release_event.connect (() => {
+            source_validation_label.get_style_context ().remove_class ();
+            if (source_entry.get_text ().substring (0, 4) == "ppa:") {
+                source_validation_label.get_style_context ().add_class ("source-validation--success");
+                source_validation_label.set_text (_("Valid PPA found."));
+            } else {
+                source_validation_label.get_style_context ().add_class ("source-validation--failed");
+                source_validation_label.set_text (_("This PPA doesn't look good."));
+            }
+        });
         show_all ();
     }
 }
