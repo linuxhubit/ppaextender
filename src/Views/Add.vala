@@ -21,6 +21,8 @@
 
 public class PPAExtender.Views.Add : Gtk.Box {
 
+    private Dialogs.Add add_dialog;
+
     public MainWindow window { get; construct; }
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
@@ -124,6 +126,8 @@ public class PPAExtender.Views.Add : Gtk.Box {
         */
         source_entry.activate.connect (() => {
             stdout.printf ("activate");
+            add_dialog = new Dialogs.Add ("a");
+            add_dialog.show_all ();
         });
         show_all ();
     }
