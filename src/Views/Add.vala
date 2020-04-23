@@ -129,6 +129,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
             add_dialog = new Dialogs.Add ("a");
             add_dialog.show_all ();
         });
+
         show_all ();
     }
 }

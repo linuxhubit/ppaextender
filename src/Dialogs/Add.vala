@@ -76,6 +76,21 @@ public class PPAExtender.Dialogs.Add : Gtk.Dialog {
 
         get_content_area ().pack_end (action_grid, true, true, 0);
 
+        /*
+        * add ppa if user confirm action
+        */
+        save_button.activate.connect (() => {
+            stdout.printf ("ADD_PPA");
+            // Posix.system ();
+        });
+
+        /*
+        * user cancel action
+        */
+        cancel_button.activate.connect (() => {
+            stdout.printf ("CLOSE_DIALOG");
+        });
+
         show_all ();
     }
 }
