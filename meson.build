@@ -30,6 +30,7 @@ dependencies = [
     dependency('glib-2.0'),
     dependency('granite'),
     dependency('gtk+-3.0'),
+    meson.get_compiler('vala').find_library('posix')
 ]
 
 # Adds subfolders specific build system
