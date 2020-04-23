@@ -73,7 +73,6 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
         var uri_label = new Gtk.Label (_("URI:"));
         uri_label.set_halign (Gtk.Align.END);
 
-
         /*
         * define value fields
         */
