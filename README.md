@@ -47,6 +47,9 @@ sudo ninja install
 * Core.Source.delete
 * Core.Source.edit
 * Core.Source.update
+* Settings
+    - Remember settings
+    - Make repositories filters working
 
 # Project info
 * Based on the [previous](https://github.com/mirkobrombin/PPAExtender) python version (end of life)
