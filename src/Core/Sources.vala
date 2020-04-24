@@ -129,5 +129,37 @@ public class PPAExtender.Core.Sources : Object {
         source_components.uri = source_array[1];
         return source_components;
     }
+
+    /*
+    * add new source to the system
+    */
+   public bool add (string source_line) {
+        return true;
+   }
+
+    /*
+    * delete source from the system
+    */
+   public bool delete (string source_line) {
+        return true;
+   }
+
+    /*
+    * edit source and save to the system
+    */
+   public bool edit (string source_line) {
+        return true;
+   }
+
+    /*
+    * update sources and reload list
+    */
+   public bool update () {
+        // delete all entries
+        // call list_builtin ();
+        // call list_3rdparty ();
+        // populate list
+        return true;
+   }
 }
 
