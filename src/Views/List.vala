@@ -33,22 +33,18 @@ public class PPAExtender.Views.List : Gtk.Grid {
     construct {
         scrolled = new Gtk.ScrolledWindow (null, null);
 
-        // string[] sources_builtin_list = core_sources.list_builtin ();
-        core_sources.list_builtin ();
-        core_sources.list_3rdparty ();
-
         /*
         * add list_store to store source data
         */
         list_store = new Gtk.ListStore (4, typeof (string), typeof (string),
                                           typeof (string), typeof (string));
 
-        foreach(Models.Source source_row in core_sources.sources_builtin) {
+        foreach(Models.Source source_row in core_sources.list()) {
             list_store.append (out iter);
             list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
 
-        foreach(Models.Source source_row in core_sources.sources_3rdparty) {
+        foreach(Models.Source source_row in core_sources.list_3rdparty()) {
             list_store.append (out iter);
             list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
@@ -87,15 +83,21 @@ public class PPAExtender.Views.List : Gtk.Grid {
 	        Gtk.TreeModel model;
 
 	        if (selection.get_selected (out model, out iter))  {
-		        string name, source, status, type_of;
-                model.get (iter, 0, out name, 1, out source, 2, out status, 3, out type_of);
+		        string _name, _source, _status, _type_of;
+                model.get (iter, 0, out _name, 1, out _source, 2, out _status, 3, out _type_of);
                 /*
                 * TODO: 
                 * - get type/component/release from source
                 * - pass clean source as uri
                 * - pass status as bool
                 */
-                edit_dialog = new Dialogs.Edit (core_sources.create_object (source));
+               stdout.printf(_name);
+                edit_dialog = new Dialogs.Edit (new Models.Source(){
+                    name = _name,
+                    source = _source,
+                    status = _status,
+                    type_of = _type_of
+                });
                 edit_dialog.show_all ();
             }
         });

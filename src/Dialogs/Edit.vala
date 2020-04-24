@@ -29,10 +29,11 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
     private Gtk.Entry component_entry;
     private Gtk.Entry release_entry;
     private Gtk.Switch status_switch;
-    public Models.SourceComponents source_components { get; construct set; }
+    private static Models.Source _source;
 
-    public Edit (Models.SourceComponents source_components) {
-        Object (resizable: false, deletable: true, skip_taskbar_hint: true, source_components: source_components);
+    public Edit (Models.Source source) {
+        _source = source;
+        Object (resizable: false, deletable: true, skip_taskbar_hint: true);
     }
 
     construct {
@@ -73,35 +74,47 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
         var uri_label = new Gtk.Label (_("URI:"));
         uri_label.set_halign (Gtk.Align.END);
 
+
+        /*
+         * Remove comment if present
+         */
+        if(_source.source.substring (0, 1) == "#")
+            _source.source = _source.source.substring (3, _source.source.length -3);
+        /*
+         * Get properties of source string
+         */
+        string[] subParams = _source.source.split(" ");
+
         /*
         * define value fields
         */
         type_box = new Gtk.ComboBoxText ();
         type_box.append ("deb", _("Binary"));
         type_box.append ("deb-src", _("Source code"));
-        type_box.set_active_id (source_components.type_of);
+        type_box.set_active_id (_source.source
+                .substring (0, 3) == "deb" ? "deb" : "deb-src");
         edit_grid.attach (type_box, 1, 0, 1, 1);
 
         component_entry = new Gtk.Entry ();
         component_entry.set_placeholder_text ("artful");
-        component_entry.set_text (source_components.component);
+        component_entry.set_text (subParams[2]);
         component_entry.set_activates_default (false);
         edit_grid.attach (component_entry, 1, 1, 1, 1);
 
         release_entry = new Gtk.Entry ();
         release_entry.set_placeholder_text ("main");
-        release_entry.set_text (source_components.release);
+        release_entry.set_text (subParams[3]);
         release_entry.set_activates_default (false);
         edit_grid.attach (release_entry, 1, 2, 1, 1);
 
         status_switch = new Gtk.Switch ();
         status_switch.set_halign (Gtk.Align.START);
-        status_switch.set_active (true);
+        status_switch.set_active (_source.status == _("Enabled"));
         edit_grid.attach (status_switch, 1, 3, 1, 1);
 
         uri_entry = new Gtk.Entry ();
         uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/..."));
-        uri_entry.set_text (source_components.uri);
+        uri_entry.set_text (subParams[1]);
         uri_entry.set_activates_default (false);
         uri_entry.set_width_chars (40);
         edit_grid.attach (uri_entry, 1,4, 1, 1);

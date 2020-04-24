@@ -21,17 +21,17 @@
 
 public class PPAExtender.Core.Sources : Object {
 
-    public List<Models.Source> sources_builtin = new List<Models.Source> ();
-    public List<Models.Source> sources_3rdparty = new List<Models.Source> ();
-
     /*
-    * list built in sources
+    * list sources
     */
-    public void list_builtin () {
-        string path_builtin_sources = "/etc/apt/sources.list";
+    public List<Models.Source> list (
+        string sourcesList = "/etc/apt/sources.list",
+        string? name = null)
+    {
+        List<Models.Source> sources = new List<Models.Source>();
         string row;
 
-        var sources_file = File.new_for_path (path_builtin_sources);
+        var sources_file = File.new_for_path (sourcesList);
         var dis = new DataInputStream (sources_file.read ());
 
         /*
@@ -43,29 +43,31 @@ public class PPAExtender.Core.Sources : Object {
             * check if row has at least 3 characters
             */
             if (row.length > 3) {
-
                 Models.Source newRow = new Models.Source ();
 
                 /*
                 * check if row is commented
                 */
-                if (row.contains ("deb")) {
-
-                    newRow.name = _("system");
+                if (row.contains ("deb") && !row.contains("cdrom:"))
+                {
+                    newRow.name = name == null ? _("system") : name;
                     newRow.source = row;
                     newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
-                    newRow.type_of = _("Built-in");
+                    newRow.type_of = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
 
-                    sources_builtin.append (newRow);
+                    sources.append (newRow);
                 }
             }
         }
+
+        return sources;
     }
 
     /*
     * list third party sources
     */
-    public void list_3rdparty () {
+    public List<Models.Source> list_3rdparty () {
+        List<Models.Source> sources = new List<Models.Source>();
         string path_3rdparty_sources = "/etc/apt/sources.list.d/";
         string row;
 
@@ -79,40 +81,17 @@ public class PPAExtender.Core.Sources : Object {
             /*
             * exclude sources backup files (.save)
             */
-            if (info.get_name ().substring (info.get_name ().length - 5, 5) != ".save") {
-                /*
-                * populate sources_3rdparty_rows with source rows
-                */
-                var sources_file = File.new_for_path (path_3rdparty_sources + info.get_name ());
-                var dis = new DataInputStream (sources_file.read ());
+            string fileName = info.get_name ();
+            string cleanName = fileName.substring (0,fileName.length - 5);
+            if(cleanName.length > 10)
+                cleanName = cleanName.substring (0, 15) + " […]";
 
-                while ((row = dis.read_line (null)) != null) {
-
-                    /*
-                    * check if row has at least 3 characters
-                    */
-                    if (row.length > 3) {
-
-                        Models.Source newRow = new Models.Source ();
-
-                        /*
-                        * check if row is commented
-                        */
-                        if (row.contains ("deb")) {
-
-                            string name = info.get_name ();
-                            name = name.substring (0, name.length - 5);
-                            newRow.name = name.length > 10 ? name.substring (0, 15) + " […]" : name;
-                            newRow.source = row;
-                            newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
-                            newRow.type_of = _("3rd-party");
-
-                            sources_3rdparty.append (newRow);
-                        }
-                    }
-                }
+            if (fileName.substring (fileName.length - 5, 5) != ".save") {
+                sources.concat(list(path_3rdparty_sources + fileName, cleanName));
             }
         }
+
+        return sources;
     }
 
     /*
