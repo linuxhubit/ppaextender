@@ -36,6 +36,7 @@ public class PPAExtender.Widgets.Stack : Gtk.Stack
         set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
         set_transition_duration (300);
 
+        // add stack elements
         add_titled (view_add, "add", _("Add new"));
         add_titled (view_list, "list", _("Sources"));
         add_titled (view_preferences, "preferences", _("Preferences"));

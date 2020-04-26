@@ -21,9 +21,7 @@
 
 public class PPAExtender.Core.Sources : Object
 {
-    /*
-    * list sources
-    */
+    // List sources
     public List<Models.Source> list (
         string sourcesList = "/etc/apt/sources.list",
         string? name = null)
@@ -34,22 +32,13 @@ public class PPAExtender.Core.Sources : Object
         var sources_file = File.new_for_path (sourcesList);
         var dis = new DataInputStream (sources_file.read ());
 
-        /*
-        * populate sources_builtin_rows with sources.list rows
-        */
         while ((row = dis.read_line (null)) != null)
         {
-
-            /*
-            * check if row has at least 3 characters
-            */
+            // check if row has at least 3 characters
             if (row.length > 3)
             {
                 Models.Source newRow = new Models.Source ();
 
-                /*
-                * check if row is commented
-                */
                 if (row.contains ("deb") && !row.contains("cdrom:"))
                 {
                     newRow.name = name == null ? _("system") : name;
@@ -65,9 +54,7 @@ public class PPAExtender.Core.Sources : Object
         return sources;
     }
 
-    /*
-    * list third party sources
-    */
+    // List third-party sources
     public List<Models.Source> list_3rdparty ()
     {
         List<Models.Source> sources = new List<Models.Source>();
@@ -77,16 +64,12 @@ public class PPAExtender.Core.Sources : Object
         var sources_path = File.new_for_path (path_3rdparty_sources);
         var enumerator = sources_path.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE, null);
 
-        /*
-        * populate sources_3rdparty_files with files in sources.list.dir path
-        */
         for ( GLib.FileInfo? info = enumerator.next_file (null) ; info != null ; info = enumerator.next_file (null) )
         {
-            /*
-            * exclude sources backup files (.save)
-            */
+            // exclude sources backup files (.save)
             string fileName = info.get_name ();
             string cleanName = fileName.substring (0,fileName.length - 5);
+
             if(cleanName.length > 10)
                 cleanName = cleanName.substring (0, 15) + " […]";
 
@@ -99,40 +82,32 @@ public class PPAExtender.Core.Sources : Object
         return sources;
     }
 
-    /*
-    * add new source to the system
-    */
-   public bool add (string source_line)
-   {
+    // Add new source to the system
+    public bool add (string source_line)
+    {
         return true;
-   }
+    }
 
-    /*
-    * delete source from the system
-    */
-   public bool delete (string source_line)
-   {
+    // Delete source from the system
+    public bool delete (string source_line)
+    {
         return true;
-   }
+    }
 
-    /*
-    * edit source and save to the system
-    */
-   public bool edit (string source_line)
-   {
+    // Edit source and save to the system
+    public bool edit (string source_line)
+    {
         return true;
-   }
+    }
 
-    /*
-    * update sources and reload list
-    */
-   public bool update ()
-   {
-        // delete all entries
-        // call list_builtin ();
-        // call list_3rdparty ();
-        // populate list
+    // Update sources and reload list
+    public bool update ()
+    {
+        /* delete all entries
+         * call list_builtin ();
+         * call list_3rdparty ();
+         * populate list */
         return true;
-   }
+    }
 }
 

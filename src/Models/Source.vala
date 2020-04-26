@@ -19,8 +19,8 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Models.Source : Object {
-
+public class PPAExtender.Models.Source : Object
+{
     public int id {set;get;default = 0;}
     public string name {set;get;default = "";}
     public string source {set;get;default = "";}

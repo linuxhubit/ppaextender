@@ -47,9 +47,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         height_request = 500;
         width_request = 600;
 
-        /*
-        * create grid for labels and values
-        */
+        // create grid (edit_grid) for labels and values
         var edit_grid = new Gtk.Grid ();
         edit_grid.set_margin_top (24);
         edit_grid.set_margin_left (24);
@@ -59,9 +57,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         edit_grid.set_row_spacing (12);
         edit_grid.set_halign (Gtk.Align.CENTER);
 
-        /*
-        * define the edit labels
-        */
+        // define the edit labels
         var type_label = new Gtk.Label (_("Type:"));
         type_label.set_halign (Gtk.Align.END);
 
@@ -78,24 +74,18 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         uri_label.set_halign (Gtk.Align.END);
 
 
-        /*
-         * Remove comment if present
-         */
+        // remove comment if present
         if(_source.source.substring (0, 1) == "#")
             _source.source = _source.source.substring (3, _source.source.length -3);
-        /*
-         * Get properties of source string
-         */
+
+        // get properties of source string
         string[] subParams = _source.source.split(" ");
 
-        /*
-        * define value fields
-        */
+        // set value fields
         type_box = new Gtk.ComboBoxText ();
         type_box.append ("deb", _("Binary"));
         type_box.append ("deb-src", _("Source code"));
-        type_box.set_active_id (_source.source
-                .substring (0, 3) == "deb" ? "deb" : "deb-src");
+        type_box.set_active_id (_source.source.substring (0, 3) == "deb" ? "deb" : "deb-src");
         edit_grid.attach (type_box, 1, 0, 1, 1);
 
         component_entry = new Gtk.Entry ();
@@ -122,9 +112,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         uri_entry.set_width_chars (40);
         edit_grid.attach (uri_entry, 1,4, 1, 1);
 
-        /*
-        *  populate the edit_grid
-        */
+        // populate the grid (edit_grid)
         edit_grid.attach (type_label, 0, 0, 1, 1);
         edit_grid.attach (release_label, 0, 1, 1, 1);
         edit_grid.attach (component_label, 0, 2, 1, 1);
@@ -133,26 +121,20 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
 
         get_content_area ().pack_start (edit_grid, true, true, 0);
 
-        /*
-        *  define the action buttons
-        */
+        // define action buttons
         remove_button = new Gtk.Button.with_label (_("Remove Source"));
         remove_button.get_style_context ().add_class ("destructive-action");
 
         save_button = new Gtk.Button.with_label (_("Save"));
         save_button.get_style_context ().add_class ("suggested-action");
 
-        /*
-        * create grid for action buttons
-        */
+        // create grid (action_grid) for action buttons
         var action_grid = new Gtk.Grid ();
         action_grid.set_margin_top (24);
         action_grid.set_column_spacing (12);
         action_grid.set_halign (Gtk.Align.CENTER);
 
-        /*
-        *  populate the action_grid
-        */
+        // populate grid (action_grid)
         action_grid.attach (remove_button, 0, 0, 1, 1);
         action_grid.attach (save_button, 1, 0, 1, 1);
 

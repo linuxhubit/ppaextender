@@ -41,55 +41,41 @@ public class PPAExtender.Dialogs.Add : Gtk.Dialog
         height_request = 300;
         width_request = 600;
 
-        /*
-        * define the add labels
-        */
+        // define labels
         var info_label = new Gtk.Label (_("Confirming, you will add this repository to your system."));
         var disclaimer_label = new Gtk.Label (_("Remember that third-party repositories can compromise your system\nmaking it unstable and (sometimes) unusable."));
 
-        /*
-        * add labels to the content area
-        */
+        // add labels to the content area
         get_content_area ().pack_start (info_label, true, true, 0);
         get_content_area ().pack_start (disclaimer_label, true, true, 0);
 
-        /*
-        *  define the action buttons
-        */
+        // define action buttons
         cancel_button = new Gtk.Button.with_label (_("Cancel"));
         cancel_button.get_style_context ().add_class ("suggested-action");
 
         save_button = new Gtk.Button.with_label (_("Save changes"));
         save_button.get_style_context ().add_class ("destructive-action");
 
-        /*
-        * create grid for action buttons
-        */
+        // create grid (action_grid) for action buttons
         var action_grid = new Gtk.Grid ();
         action_grid.set_margin_top (24);
         action_grid.set_column_spacing (12);
         action_grid.set_halign (Gtk.Align.CENTER);
 
-        /*
-        *  populate the action_grid
-        */
+        // add buttons to grid (action_grid)
         action_grid.attach (cancel_button, 0, 0, 1, 1);
         action_grid.attach (save_button, 1, 0, 1, 1);
 
         get_content_area ().pack_end (action_grid, true, true, 0);
 
-        /*
-        * add ppa if user confirm action
-        */
+        // add ppa if user confirm action
         save_button.clicked.connect (() =>
         {
             stdout.printf ("ADD_PPA");
             // Posix.system ();
         });
 
-        /*
-        * user cancel action
-        */
+        // user cancel action
         cancel_button.clicked.connect (() =>
         {
             hide ();

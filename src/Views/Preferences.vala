@@ -37,9 +37,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
 
-        /*
-        *  define the preferences labels
-        */
+        // define labels
         var appearance_label = new Gtk.Label (_("Appearance"));
         appearance_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
         appearance_label.xalign = 0;
@@ -72,9 +70,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         var prereleased_updates_label = new Gtk.Label (_("⚠️ Pre-released updates:"));
         prereleased_updates_label.xalign = 0;
 
-        /*
-        *  define the preferences switches
-        */
+        // define switches
         mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
         mode_switch.primary_icon_tooltip_text = ("Light");
         mode_switch.secondary_icon_tooltip_text = ("Dark");
@@ -101,9 +97,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         prereleased_switch.valign = Gtk.Align.CENTER;
         prereleased_switch.hexpand = true;
 
-        /*
-        *  populate the grid
-        */
+        // populate grid
         attach (appearance_label, 0, 0, 1, 1);
         attach (appearance_description_label, 0, 1, 1, 1);
         attach (selected_mode_label, 0, 2, 1, 1);

@@ -28,27 +28,20 @@ public class PPAExtender.MainWindow : Gtk.Window
 
     construct
     {
-        /*
-        *  set default window size
-        */
+        // set default window size and position
         set_size_request (960, 740);
         set_position(Gtk.WindowPosition.CENTER);
 
         stack = new Widgets.Stack();
         stack.Load(this);
-        /*
-        *  set stack (index) to stack_switcher
-        */
+
+        // set stack (index) to stack_switcher
         stack_switcher.set_stack (stack);
 
-        /*
-        *  add stack_switcher to header_bar title position
-        */
+        // set stack_switcher as header_bar custom title
         header_bar.set_custom_title (stack_switcher);
 
-        /*
-        *  set header_bar as window titlebar
-        */
+        // set header_bar as window titlebar
         set_titlebar (header_bar);
 
         add(stack);

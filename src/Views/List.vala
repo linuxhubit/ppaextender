@@ -33,10 +33,6 @@ public class PPAExtender.Views.List : Gtk.Grid
     construct
     {
         scrolled = new Gtk.ScrolledWindow (null, null);
-
-        /*
-        * add list_store to store source data
-        */
         list_store = new Gtk.ListStore (4, typeof (string), typeof (string),
                                           typeof (string), typeof (string));
 
@@ -52,18 +48,14 @@ public class PPAExtender.Views.List : Gtk.Grid
             list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
 
-        /*
-        * add tree_view to display source data
-        */
+        // create tree_view to display source data
         tree_view = new Gtk.TreeView.with_model (list_store);
 
         scrolled.expand = true;
         scrolled.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         scrolled.add (tree_view);
 
-        /*
-        * create edit_button to modify source data
-        */
+        // create button (edit_button) to modify source data
         edit_button = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
         edit_button.set_tooltip_text(_("Edit selected source"));
         edit_button.halign = Gtk.Align.END;
@@ -77,9 +69,7 @@ public class PPAExtender.Views.List : Gtk.Grid
         tree_view.insert_column_with_attributes (-1, _("Status"), new Gtk.CellRendererText (), "text", 2);
         tree_view.insert_column_with_attributes (-1, _("Type"), new Gtk.CellRendererText (), "text", 3);
 
-        /*
-        * call Edit dialog when edit_button is clicked
-        */
+        // prompt Edit dialog on edit_button click
         edit_button.clicked.connect (() =>
         {
             Gtk.TreeSelection selection= tree_view.get_selection();
@@ -90,13 +80,7 @@ public class PPAExtender.Views.List : Gtk.Grid
 	        {
 		        string _name, _source, _status, _type_of;
                 model.get (iter, 0, out _name, 1, out _source, 2, out _status, 3, out _type_of);
-                /*
-                * TODO: 
-                * - get type/component/release from source
-                * - pass clean source as uri
-                * - pass status as bool
-                */
-                stdout.printf(_name);
+
                 edit_dialog = new Dialogs.Edit (new Models.Source()
                 {
                     name = _name,
@@ -104,6 +88,7 @@ public class PPAExtender.Views.List : Gtk.Grid
                     status = _status,
                     type_of = _type_of
                 });
+
                 edit_dialog.show_all ();
             }
         });

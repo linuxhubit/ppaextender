@@ -58,6 +58,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         grid.halign = Gtk.Align.CENTER;
         grid.valign = Gtk.Align.CENTER;
 
+        // create warning_infobar for disclaimer
         var warning_label = new Gtk.Label (_("Be careful. Modifying repositories can damage your system."));
         var warning_infobar = new Gtk.InfoBar ();
         var warning_infobar_content = warning_infobar.get_content_area ();
@@ -79,20 +80,17 @@ public class PPAExtender.Views.Add : Gtk.Box
         source_entry.set_tooltip_text(_("ex: ppa:mirkobrombin/ppa"));
         source_entry.halign = Gtk.Align.CENTER;
 
-        /* 
-        * css classes for source_validation_label:
+        /* css classes for source_validation_label:
         * .source-validation--waiting
         * .source-validation--success
-        * .source-validation--failed
-        */
+        * .source-validation--failed*/
+
         var source_validation_label = new Gtk.Label (_("Waiting for PPA to be entered."));
         source_validation_label.get_style_context ().add_class ("source-validation--waiting");
         source_validation_label.halign = Gtk.Align.CENTER;
         source_validation_label.xalign = 0;
 
-        /*
-        *  populate grid
-        */
+        // populate grid
         grid.attach (source_label, 0, 0, 1, 1);
         grid.attach (source_description_label, 0, 1, 1, 1);
         grid.attach (source_entry, 0, 2, 1, 1);
@@ -101,21 +99,15 @@ public class PPAExtender.Views.Add : Gtk.Box
         add (warning_infobar);
         add (grid);
 
-        /*
-        * validate uri when stop typing in source_entry
-        */
+        // validate uri when stop typing in source_entry
         source_entry.key_release_event.connect (() =>
         {
-            /*
-            * reset source_validation_label style
-            */
+            // reset source_validation_label style
             source_validation_label.get_style_context ().remove_class ("source-validation--waiting");
             source_validation_label.get_style_context ().remove_class ("source-validation--success");
             source_validation_label.get_style_context ().remove_class ("source-validation--failed");
 
-            /*
-             * TODO: perform pattern check for best validation results
-            */
+            // TODO: perform pattern check for best validation results
             if (source_entry.get_text ().substring (0, 4) == "ppa:" &
                 source_entry.get_text ().split("/").length > 1)
             {
@@ -129,13 +121,10 @@ public class PPAExtender.Views.Add : Gtk.Box
             }
         });
 
-        /*
-        * add new ppa when hit enter in source_entry
-        */
+        // add new ppa when hit enter in source_entry
         source_entry.activate.connect (() =>
         {
             window.header_bar.spinner.start();
-            stdout.printf ("activate");
             add_dialog = new Dialogs.Add ("a");
             add_dialog.show_all ();
         });

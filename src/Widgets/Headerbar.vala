@@ -29,7 +29,8 @@ public class PPAExtender.Widgets.Headerbar : Gtk.HeaderBar
         has_subtitle = true;
 
         spinner = new Gtk.Spinner ();
-        // spinner.start ();
+        spinner.stop ();
+
         pack_end (spinner);
     }
 }
