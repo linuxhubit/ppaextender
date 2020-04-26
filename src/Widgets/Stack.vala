@@ -21,11 +21,19 @@
 
 public class PPAExtender.Widgets.Stack : Gtk.Stack {
 
-    private Views.Add view_add = new Views.Add ();
-    private Views.List view_list = new Views.List ();
-    private Views.Preferences view_preferences = new Views.Preferences ();
+    private Views.Add view_add;
+    private Views.List view_list;
+    private Views.Preferences view_preferences;
 
     construct {
+
+    }
+
+    public void Load(MainWindow mainWindow) {
+        view_add = new Views.Add (mainWindow);
+        view_list = new Views.List ();
+        view_preferences = new Views.Preferences ();
+
         set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
         set_transition_duration (300);
 

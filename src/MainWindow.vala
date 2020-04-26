@@ -21,13 +21,9 @@
 
 public class PPAExtender.MainWindow : Gtk.Window {
 
-    private Widgets.Headerbar header_bar = new Widgets.Headerbar ();
-    private Widgets.Stack stack = new Widgets.Stack ();
+    public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
+    private Widgets.Stack stack;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
-
-    private Views.Add view_add = new Views.Add ();
-    private Views.List view_list = new Views.List ();
-    private Views.Preferences view_preferences = new Views.Preferences ();
 
     construct {
         /*
@@ -36,6 +32,8 @@ public class PPAExtender.MainWindow : Gtk.Window {
         set_size_request (960, 740);
         set_position(Gtk.WindowPosition.CENTER);
 
+        stack = new Widgets.Stack();
+        stack.Load(this);
         /*
         *  set stack (index) to stack_switcher
         */

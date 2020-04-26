@@ -21,10 +21,6 @@
 
 public class PPAExtender.Widgets.StackSwitcher : Gtk.StackSwitcher {
 
-    private Widgets.Stack stack = new Widgets.Stack ();
-
-    private Granite.ModeSwitch mode_switch;
-
     construct {
         set_baseline_position (Gtk.BaselinePosition.CENTER);
     }

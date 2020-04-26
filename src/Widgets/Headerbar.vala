@@ -21,8 +21,14 @@
 
 public class PPAExtender.Widgets.Headerbar : Gtk.HeaderBar {
 
+    public Gtk.Spinner spinner;
+
     construct {
         show_close_button = true;
         has_subtitle = true;
+
+        spinner = new Gtk.Spinner ();
+        // spinner.start ();
+        pack_end (spinner);
     }
 }

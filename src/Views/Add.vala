@@ -23,10 +23,11 @@ public class PPAExtender.Views.Add : Gtk.Box {
 
     private Dialogs.Add add_dialog;
 
-    public MainWindow window { get; construct; }
+    private static MainWindow window;
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
-    public Add () {
+    public Add (MainWindow mainWindow) {
+        this.window = mainWindow;
         GLib.Object (
             orientation: Gtk.Orientation.VERTICAL,
             spacing: 150
@@ -125,6 +126,7 @@ public class PPAExtender.Views.Add : Gtk.Box {
         * add new ppa when hit enter in source_entry
         */
         source_entry.activate.connect (() => {
+            window.header_bar.spinner.start();
             stdout.printf ("activate");
             add_dialog = new Dialogs.Add ("a");
             add_dialog.show_all ();
