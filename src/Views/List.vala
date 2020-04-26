@@ -19,8 +19,8 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.List : Gtk.Grid {
-
+public class PPAExtender.Views.List : Gtk.Grid
+{
     private Gtk.ScrolledWindow scrolled;
     private Gtk.TreeView tree_view;
     private Gtk.ListStore list_store;
@@ -30,7 +30,8 @@ public class PPAExtender.Views.List : Gtk.Grid {
     private Dialogs.Edit edit_dialog;
     private Core.Sources core_sources = new Core.Sources ();
 
-    construct {
+    construct
+    {
         scrolled = new Gtk.ScrolledWindow (null, null);
 
         /*
@@ -39,12 +40,14 @@ public class PPAExtender.Views.List : Gtk.Grid {
         list_store = new Gtk.ListStore (4, typeof (string), typeof (string),
                                           typeof (string), typeof (string));
 
-        foreach(Models.Source source_row in core_sources.list()) {
+        foreach(Models.Source source_row in core_sources.list())
+        {
             list_store.append (out iter);
             list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
 
-        foreach(Models.Source source_row in core_sources.list_3rdparty()) {
+        foreach(Models.Source source_row in core_sources.list_3rdparty())
+        {
             list_store.append (out iter);
             list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
         }
@@ -77,12 +80,14 @@ public class PPAExtender.Views.List : Gtk.Grid {
         /*
         * call Edit dialog when edit_button is clicked
         */
-        edit_button.clicked.connect (() => {
+        edit_button.clicked.connect (() =>
+        {
             Gtk.TreeSelection selection= tree_view.get_selection();
 	        selection.set_mode(Gtk.SelectionMode.SINGLE);
 	        Gtk.TreeModel model;
 
-	        if (selection.get_selected (out model, out iter))  {
+	        if (selection.get_selected (out model, out iter))
+	        {
 		        string _name, _source, _status, _type_of;
                 model.get (iter, 0, out _name, 1, out _source, 2, out _status, 3, out _type_of);
                 /*
@@ -91,8 +96,9 @@ public class PPAExtender.Views.List : Gtk.Grid {
                 * - pass clean source as uri
                 * - pass status as bool
                 */
-               stdout.printf(_name);
-                edit_dialog = new Dialogs.Edit (new Models.Source(){
+                stdout.printf(_name);
+                edit_dialog = new Dialogs.Edit (new Models.Source()
+                {
                     name = _name,
                     source = _source,
                     status = _status,
@@ -105,4 +111,3 @@ public class PPAExtender.Views.List : Gtk.Grid {
         show_all ();
     }
 }
-

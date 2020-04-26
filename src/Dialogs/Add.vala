@@ -19,19 +19,21 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Dialogs.Add : Gtk.Dialog {
-
+public class PPAExtender.Dialogs.Add : Gtk.Dialog
+{
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
     private Gtk.Button cancel_button;
     private Gtk.Button save_button;
 
     public string source { get; construct set; }
 
-    public Add (string source) {
+    public Add (string source)
+    {
         Object (resizable: false, deletable: true, skip_taskbar_hint: true, source: source);
     }
 
-    construct {
+    construct
+    {
         var css_provider = new Gtk.CssProvider ();
 
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
@@ -79,7 +81,8 @@ public class PPAExtender.Dialogs.Add : Gtk.Dialog {
         /*
         * add ppa if user confirm action
         */
-        save_button.clicked.connect (() => {
+        save_button.clicked.connect (() =>
+        {
             stdout.printf ("ADD_PPA");
             // Posix.system ();
         });
@@ -87,7 +90,8 @@ public class PPAExtender.Dialogs.Add : Gtk.Dialog {
         /*
         * user cancel action
         */
-        cancel_button.clicked.connect (() => {
+        cancel_button.clicked.connect (() =>
+        {
             hide ();
         });
 

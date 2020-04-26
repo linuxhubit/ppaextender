@@ -19,7 +19,8 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-namespace PPAExtender.Constants {
+namespace PPAExtender.Constants
+{
     public const string APP_NAME = _("PPA Extender");
     public const string APP_DESCRIPTION = _("Extend your system PPA");
     public const string APP_ID = "com.github.linuxhubit.ppaextender";

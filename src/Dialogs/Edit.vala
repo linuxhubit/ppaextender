@@ -19,8 +19,8 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
-
+public class PPAExtender.Dialogs.Edit : Gtk.Dialog
+{
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
     private Gtk.Button remove_button;
     private Gtk.Button save_button;
@@ -31,12 +31,14 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
     private Gtk.Switch status_switch;
     private static Models.Source _source;
 
-    public Edit (Models.Source source) {
+    public Edit (Models.Source source)
+    {
         _source = source;
         Object (resizable: false, deletable: true, skip_taskbar_hint: true);
     }
 
-    construct {
+    construct
+    {
         var css_provider = new Gtk.CssProvider ();
 
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
@@ -113,7 +115,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog {
         edit_grid.attach (status_switch, 1, 3, 1, 1);
 
         uri_entry = new Gtk.Entry ();
-        uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/..."));
+        uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/…"));
         uri_entry.set_text (subParams[1]);
         uri_entry.set_activates_default (false);
         uri_entry.set_width_chars (40);

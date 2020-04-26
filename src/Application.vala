@@ -19,37 +19,46 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Application : Gtk.Application {
+public class PPAExtender.Application : Gtk.Application
+{
 
     public MainWindow? window = null;
 
-    construct {
+    construct
+    {
         flags |= ApplicationFlags.HANDLES_OPEN;
-
         application_id = Constants.APP_ID;
     }
 
-    public static int main (string[] args) {
+    public static int main (string[] args)
+    {
         var app = new Application ();
         return app.run (args);
     }
 
     public static Application _instance = null;
-    public static Application instance {
-        get {
-            if (_instance == null) {
+    public static Application instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
                 _instance = new Application ();
             }
             return _instance;
         }
     }
 
-    public override void activate () {
-        if (window == null) {
+    public override void activate ()
+    {
+        if (window == null)
+        {
             window = new MainWindow ();
             add_window (window);
             window.show_all ();
-        } else {
+        }
+        else
+        {
             window.present ();
         }
     }

@@ -19,13 +19,15 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.MainWindow : Gtk.Window {
+public class PPAExtender.MainWindow : Gtk.Window
+{
 
     public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
     private Widgets.Stack stack;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
 
-    construct {
+    construct
+    {
         /*
         *  set default window size
         */
@@ -50,6 +52,5 @@ public class PPAExtender.MainWindow : Gtk.Window {
         set_titlebar (header_bar);
 
         add(stack);
-
     }
 }

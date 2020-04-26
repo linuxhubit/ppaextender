@@ -19,15 +19,16 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.Preferences : Gtk.Grid {
-
+public class PPAExtender.Views.Preferences : Gtk.Grid
+{
     private Granite.ModeSwitch mode_switch;
     private Gtk.Switch security_switch;
     private Gtk.Switch recommended_switch;
     private Gtk.Switch unsupported_switch;
     private Gtk.Switch prereleased_switch;
 
-    construct {
+    construct
+    {
         var gtk_settings = Gtk.Settings.get_default ();
 
         column_spacing = 12;

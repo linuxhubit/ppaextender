@@ -19,31 +19,34 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.Add : Gtk.Box {
-
+public class PPAExtender.Views.Add : Gtk.Box
+{
     private Dialogs.Add add_dialog;
 
     private static MainWindow window;
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
-    public Add (MainWindow mainWindow) {
+    public Add (MainWindow mainWindow)
+    {
         this.window = mainWindow;
-        GLib.Object (
+        GLib.Object
+        (
             orientation: Gtk.Orientation.VERTICAL,
             spacing: 150
         );
     }
 
-    construct {
+    construct
+    {
         var gtk_settings = Gtk.Settings.get_default ();
         var css_provider = new Gtk.CssProvider ();
 
-        css_provider.load_from_data("
-            .source-entry { min-width: 300px; font-size: 15px;}
-            .source-validation--waiting { color: grey; }
-            .source-validation--success { color: green; }
-            .source-validation--failed { color: red; }
-        ");
+        css_provider.load_from_data(""
+            + ".source-entry { min-width: 300px; font-size: 15px;}"
+            + ".source-validation--waiting { color: grey; }"
+            + ".source-validation--success { color: green; }"
+            + ".source-validation--failed { color: red; }"
+        );
 
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
@@ -100,8 +103,8 @@ public class PPAExtender.Views.Add : Gtk.Box {
         /*
         * validate uri when stop typing in source_entry
         */
-        source_entry.key_release_event.connect (() => {
-
+        source_entry.key_release_event.connect (() =>
+        {
             /*
             * reset source_validation_label style
             */
@@ -113,10 +116,13 @@ public class PPAExtender.Views.Add : Gtk.Box {
              * TODO: perform pattern check for best validation results
             */
             if (source_entry.get_text ().substring (0, 4) == "ppa:" &
-                source_entry.get_text ().split("/").length > 1) {
+                source_entry.get_text ().split("/").length > 1)
+            {
                 source_validation_label.get_style_context ().add_class ("source-validation--success");
                 source_validation_label.set_text (_("Valid PPA found."));
-            } else {
+            }
+            else
+            {
                 source_validation_label.get_style_context ().add_class ("source-validation--failed");
                 source_validation_label.set_text (_("This PPA doesn't look good."));
             }
@@ -125,7 +131,8 @@ public class PPAExtender.Views.Add : Gtk.Box {
         /*
         * add new ppa when hit enter in source_entry
         */
-        source_entry.activate.connect (() => {
+        source_entry.activate.connect (() =>
+        {
             window.header_bar.spinner.start();
             stdout.printf ("activate");
             add_dialog = new Dialogs.Add ("a");
@@ -135,4 +142,3 @@ public class PPAExtender.Views.Add : Gtk.Box {
         show_all ();
     }
 }
-

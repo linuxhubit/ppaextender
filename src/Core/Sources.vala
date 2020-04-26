@@ -19,8 +19,8 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Core.Sources : Object {
-
+public class PPAExtender.Core.Sources : Object
+{
     /*
     * list sources
     */
@@ -37,12 +37,14 @@ public class PPAExtender.Core.Sources : Object {
         /*
         * populate sources_builtin_rows with sources.list rows
         */
-        while ((row = dis.read_line (null)) != null) {
+        while ((row = dis.read_line (null)) != null)
+        {
 
             /*
             * check if row has at least 3 characters
             */
-            if (row.length > 3) {
+            if (row.length > 3)
+            {
                 Models.Source newRow = new Models.Source ();
 
                 /*
@@ -66,7 +68,8 @@ public class PPAExtender.Core.Sources : Object {
     /*
     * list third party sources
     */
-    public List<Models.Source> list_3rdparty () {
+    public List<Models.Source> list_3rdparty ()
+    {
         List<Models.Source> sources = new List<Models.Source>();
         string path_3rdparty_sources = "/etc/apt/sources.list.d/";
         string row;
@@ -77,7 +80,8 @@ public class PPAExtender.Core.Sources : Object {
         /*
         * populate sources_3rdparty_files with files in sources.list.dir path
         */
-        for ( GLib.FileInfo? info = enumerator.next_file (null) ; info != null ; info = enumerator.next_file (null) ) {
+        for ( GLib.FileInfo? info = enumerator.next_file (null) ; info != null ; info = enumerator.next_file (null) )
+        {
             /*
             * exclude sources backup files (.save)
             */
@@ -86,7 +90,8 @@ public class PPAExtender.Core.Sources : Object {
             if(cleanName.length > 10)
                 cleanName = cleanName.substring (0, 15) + " […]";
 
-            if (fileName.substring (fileName.length - 5, 5) != ".save") {
+            if (fileName.substring (fileName.length - 5, 5) != ".save")
+            {
                 sources.concat(list(path_3rdparty_sources + fileName, cleanName));
             }
         }
@@ -95,45 +100,34 @@ public class PPAExtender.Core.Sources : Object {
     }
 
     /*
-    * create object from source
-    */
-    public Models.SourceComponents create_object (string source_line) {
-        string[] source_array = source_line.split(" ");
-        Models.SourceComponents source_components = new Models.SourceComponents ();
-        // deb http://it.archive.ubuntu.com/ubuntu/ bionic-updates universe
-        source_components.type_of = source_array[0];
-        source_components.release = source_array[3];
-        source_components.component = source_array[2];
-        source_components.status = source_array[0];
-        source_components.uri = source_array[1];
-        return source_components;
-    }
-
-    /*
     * add new source to the system
     */
-   public bool add (string source_line) {
+   public bool add (string source_line)
+   {
         return true;
    }
 
     /*
     * delete source from the system
     */
-   public bool delete (string source_line) {
+   public bool delete (string source_line)
+   {
         return true;
    }
 
     /*
     * edit source and save to the system
     */
-   public bool edit (string source_line) {
+   public bool edit (string source_line)
+   {
         return true;
    }
 
     /*
     * update sources and reload list
     */
-   public bool update () {
+   public bool update ()
+   {
         // delete all entries
         // call list_builtin ();
         // call list_3rdparty ();
