@@ -78,7 +78,7 @@ public class PPAExtender.Views.List : Gtk.Grid
 
 	        if (selection.get_selected (out model, out iter))
 	        {
-		        string _name, _source, _status, _type_of;
+                string _name, _source, _status, _type_of;
                 model.get (iter, 0, out _name, 1, out _source, 2, out _status, 3, out _type_of);
 
                 edit_dialog = new Dialogs.Edit (new Models.Source()
