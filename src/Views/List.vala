@@ -36,17 +36,7 @@ public class PPAExtender.Views.List : Gtk.Grid
         list_store = new Gtk.ListStore (4, typeof (string), typeof (string),
                                           typeof (string), typeof (string));
 
-        foreach(Models.Source source_row in core_sources.list())
-        {
-            list_store.append (out iter);
-            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
-        }
-
-        foreach(Models.Source source_row in core_sources.list_3rdparty())
-        {
-            list_store.append (out iter);
-            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
-        }
+        populate_list_store ();
 
         // create tree_view to display source data
         tree_view = new Gtk.TreeView.with_model (list_store);
@@ -94,5 +84,21 @@ public class PPAExtender.Views.List : Gtk.Grid
         });
 
         show_all ();
+    }
+
+    // populate list_store with sources
+    private void populate_list_store ()
+    {
+        foreach(Models.Source source_row in core_sources.list())
+        {
+            list_store.append (out iter);
+            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
+        }
+
+        foreach(Models.Source source_row in core_sources.list_3rdparty())
+        {
+            list_store.append (out iter);
+            list_store.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.type_of);
+        }
     }
 }
