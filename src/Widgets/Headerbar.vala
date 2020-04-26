@@ -19,11 +19,12 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Widgets.Headerbar : Gtk.HeaderBar {
-
+public class PPAExtender.Widgets.Headerbar : Gtk.HeaderBar
+{
     public Gtk.Spinner spinner;
 
-    construct {
+    construct
+    {
         show_close_button = true;
         has_subtitle = true;
 

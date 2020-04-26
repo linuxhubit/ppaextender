@@ -21,7 +21,6 @@
 
 public class PPAExtender.Application : Gtk.Application
 {
-
     public MainWindow? window = null;
 
     construct

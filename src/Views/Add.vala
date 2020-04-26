@@ -21,10 +21,11 @@
 
 public class PPAExtender.Views.Add : Gtk.Box
 {
+    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
+
     private Dialogs.Add add_dialog;
 
     private static MainWindow window;
-    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
     public Add (MainWindow mainWindow)
     {

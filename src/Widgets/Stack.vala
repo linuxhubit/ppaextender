@@ -19,17 +19,16 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Widgets.Stack : Gtk.Stack {
-
+public class PPAExtender.Widgets.Stack : Gtk.Stack
+{
     private Views.Add view_add;
     private Views.List view_list;
     private Views.Preferences view_preferences;
 
-    construct {
+    construct {}
 
-    }
-
-    public void Load(MainWindow mainWindow) {
+    public void Load(MainWindow mainWindow)
+    {
         view_add = new Views.Add (mainWindow);
         view_list = new Views.List ();
         view_preferences = new Views.Preferences ();

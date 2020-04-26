@@ -21,10 +21,10 @@
 
 public class PPAExtender.MainWindow : Gtk.Window
 {
-
-    public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
     private Widgets.Stack stack;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
+
+    public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
 
     construct
     {

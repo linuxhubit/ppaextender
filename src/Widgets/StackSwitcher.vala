@@ -19,9 +19,10 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Widgets.StackSwitcher : Gtk.StackSwitcher {
-
-    construct {
+public class PPAExtender.Widgets.StackSwitcher : Gtk.StackSwitcher
+{
+    construct
+    {
         set_baseline_position (Gtk.BaselinePosition.CENTER);
     }
 }

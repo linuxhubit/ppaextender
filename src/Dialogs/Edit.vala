@@ -29,6 +29,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
     private Gtk.Entry component_entry;
     private Gtk.Entry release_entry;
     private Gtk.Switch status_switch;
+
     private static Models.Source _source;
 
     public Edit (Models.Source source)
