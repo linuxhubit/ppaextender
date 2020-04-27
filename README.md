@@ -1,9 +1,8 @@
-# PPAExtender
-An application to extend repo on debian/ubuntu based systems.
-
-⚠️ This application is under development.
-
 <div align="center">
+  <h1>PPAExtender</h1>
+  <p>An application to extend repo on debian/ubuntu based systems.</p>
+  <small>⚠️ This application is under development.</small>
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/com.github.linuxhubit.ppaextender.svg" width="64">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png" width="300">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-1.png" width="300">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-2.png" width="300">
@@ -60,3 +59,4 @@ sudo ninja install
 # Project info
 * Based on the [previous](https://github.com/mirkobrombin/PPAExtender) python version (end of life)
 * Design inspired by [repoman](https://github.com/pop-os/repoman) (a fork of PPAExtender)
+
