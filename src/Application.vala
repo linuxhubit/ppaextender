@@ -41,9 +41,7 @@ public class PPAExtender.Application : Gtk.Application
         get
         {
             if (_instance == null)
-            {
                 _instance = new Application ();
-            }
             return _instance;
         }
     }
@@ -57,8 +55,6 @@ public class PPAExtender.Application : Gtk.Application
             window.show_all ();
         }
         else
-        {
             window.present ();
-        }
     }
 }

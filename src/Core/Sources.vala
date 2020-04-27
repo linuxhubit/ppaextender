@@ -74,9 +74,7 @@ public class PPAExtender.Core.Sources : Object
                 cleanName = cleanName.substring (0, 15) + " […]";
 
             if (fileName.substring (fileName.length - 5, 5) != ".save")
-            {
                 sources.concat(list(path_3rdparty_sources + fileName, cleanName));
-            }
         }
 
         return sources;
