@@ -26,34 +26,36 @@ sudo ninja install
 ```
 
 ## TODO
-* UI Edit dialog
-    - ~~Type of source~~
-    - ~~Release chooser~~ [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/15)
-    - ~~Component editor~~
-    - ~~Disable/Enable~~ [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/11)
-    - ~~Source URI~~
-    - ~~Delete source~~
-* UI Add dialog
-    - ~~Disclaimer~~
-* UI Add view
-    - ~~PPA UI~~
-    - Flatpak UI
-    - ~~Check for correct URI syntax~~
-* UI List view
-    - ~~ListStore~~
-    - ~~Action buttns~~
-    - ~~Method for sync sources~~
-* UI Preferences
-    - ~~Add warning icon for **Pre-released updates**~~
-* UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
-* ~~Core.Source.list~~
-* Core.Source.add
-* Core.Source.delete
-* Core.Source.edit
-* Core.Source.update
-* Settings
-    - Remember settings
-    - Make repositories filters working
+* [x] Edit dialog
+    - [x] ~~Type of source~~
+    - [x] ~~Release chooser~~ [#15 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/15)
+    - [x] ~~Component editor~~
+    - [x] ~~Disable/Enable~~ [#11 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/11)
+    - [x] ~~Source URI~~
+    - [x] ~~Delete source~~
+* [ ] Add dialog
+    - [x] ~~Disclaimer~~
+    - [ ] Save changes
+    - [ ] Delete source
+* [ ] Add view
+    - [x] ~~PPA UI~~
+    - [ ] Flatpak UI
+    - [x] ~~Check for correct URI syntax~~
+* [x] List view
+    - [x] ~~ListStore~~
+    - [x] ~~Action buttns~~
+    - [x] ~~Method for sync sources~~
+* [ ] Preferences
+    - [x] ~~Add warning icon for **Pre-released updates**~~
+* [ ] (UI) Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
+* [x] ~~Core.Source.list~~
+* [ ] Core.Source.add
+* [ ] Core.Source.delete
+* [ ] Core.Source.edit
+* [ ] Settings
+    - [ ] Save settings
+    - [ ] Load settings
+    - [ ] Make repositories filters working
 
 # Project info
 * Based on the [previous](https://github.com/mirkobrombin/PPAExtender) python version (end of life)
