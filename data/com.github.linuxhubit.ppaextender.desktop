@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=License
-GenericName=License chooser
-Comment=Choose your project license
-Exec=com.github.linuxhubsubpixel.license %U
-Icon=com.github.linuxhubsubpixel.license
+Name=PPAExtender
+GenericName=PPA
+Comment=An application to extend repo on debian/ubuntu based systems.
+Exec=com.github.linuxhubit.ppaextender %U
+Icon=com.github.linuxhubit.ppaextender
 Terminal=false
 Categories=System;GTK;
-Keywords=license;
+Keywords=PPA;

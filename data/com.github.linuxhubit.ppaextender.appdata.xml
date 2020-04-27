@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2017 Adam Bieńkowski (https://github.com/donadigo/eddy) -->
 <component type="desktop">
-  <id>com.github.linuxhubsubpixel.license</id>
+  <id>com.github.linuxhubit.ppaextender</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>License</name>
-  <summary>Choose your project license</summary>
+  <name>PPAExtender</name>
+  <summary>An application to extend repo on debian/ubuntu based systems.</summary>
   <description>
-    <p>An application that helps you finding the best license for your open source project</p>
+    <p>An application to extend repo on debian/ubuntu based systems.</p>
   </description>
   <provides>
-    <binary>com.github.linuxhubsubpixel.license</binary>
+    <binary>com.github.linuxhubit.ppaextender</binary>
   </provides>
   <releases>
       <release version="1.0.0" date="2019-08-31">
@@ -21,10 +21,16 @@
   </releases>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/linuxhubsubpixel/license/master/data/screenshot-1.png</image>
+      <image>https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-1.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/linuxhubsubpixel/license/master/data/screenshot-2.png</image>
+      <image>https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-2.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-3.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-4.png</image>
     </screenshot>
   </screenshots>
 
@@ -58,10 +64,10 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
 
-  <developer_name>Mirko Brombin</developer_name>
-  <url type="homepage">https://github.com/linuxhubsubpixel/license</url>
-  <url type="bugtracker">https://github.com/linuxhubsubpixel/license/issues</url>
-  <url type="help">https://github.com/linuxhubsubpixel/license</url>
+  <developer_name>linuxhub.it</developer_name>
+  <url type="homepage">https://github.com/linuxhubit/ppaextender</url>
+  <url type="bugtracker">https://github.com/linuxhubit/ppaextender/issues</url>
+  <url type="help">https://github.com/linuxhubit/ppaextender</url>
   <update_contact>send@mirko.pm</update_contact>
   <custom>
     <value key="x-appcenter-color-primary">#3278cd</value>
