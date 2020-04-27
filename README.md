@@ -1,8 +1,8 @@
 <div align="center">
+  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/com.github.linuxhubit.ppaextender.svg" width="64">
   <h1>PPAExtender</h1>
   <p>An application to extend repo on debian/ubuntu based systems.</p>
   <small>⚠️ This application is under development.</small>
-  <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/com.github.linuxhubit.ppaextender.svg" width="64">
   <br />
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot.png" width="300">
   <img src="https://raw.githubusercontent.com/linuxhubit/ppaextender/master/data/screenshot-1.png" width="300">
