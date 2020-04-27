@@ -25,9 +25,12 @@ public class PPAExtender.Views.List : Gtk.Grid
     private Gtk.TreeView tree_view;
     private Gtk.ListStore list_store;
     private Gtk.Button edit_button;
+    private Gtk.Button sync_button;
+    private Gtk.Box action_box;
     private Gtk.TreeIter iter;
 
     private Dialogs.Edit edit_dialog;
+
     private Core.Sources core_sources = new Core.Sources ();
 
     construct
@@ -49,10 +52,22 @@ public class PPAExtender.Views.List : Gtk.Grid
         edit_button = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
         edit_button.set_tooltip_text(_("Edit selected source"));
         edit_button.halign = Gtk.Align.END;
+        edit_button.set_relief (Gtk.ReliefStyle.NONE);
+
+        // create button (sync_button) to update source data
+        sync_button = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.BUTTON);
+        sync_button.set_tooltip_text(_("Sync sources"));
+        sync_button.halign = Gtk.Align.END;
+        sync_button.set_relief (Gtk.ReliefStyle.NONE);
+
+        // create horizontal box for action buttons
+        action_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        action_box.add (edit_button);
+        action_box.add (sync_button);
 
         attach (scrolled, 0, 0, 1, 1);
         attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1);
-        attach (edit_button, 0, 2, 1, 1);
+        attach (action_box, 0, 2, 1, 1);
 
         tree_view.insert_column_with_attributes (-1, _("Name"), new Gtk.CellRendererText (), "text", 0);
         tree_view.insert_column_with_attributes (-1, _("Source"), new Gtk.CellRendererText (), "text", 1);
