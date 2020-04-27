@@ -24,7 +24,9 @@ public class PPAExtender.Views.Add : Gtk.Box
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
     private Dialogs.Add add_dialog;
-
+    private bool is_valid = false;
+    private Gtk.Label source_validation_label;
+    private Gtk.Entry source_entry;
     private static MainWindow window;
 
     public Add (MainWindow mainWindow)
@@ -74,7 +76,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         source_description_label.halign = Gtk.Align.CENTER;
         source_description_label.xalign = 0;
 
-        var source_entry = new Gtk.Entry ();
+        source_entry = new Gtk.Entry ();
         source_entry.get_style_context ().add_class ("source-entry");
         source_entry.placeholder_text = _("ex: ppa:mirkobrombin/ppa");
         source_entry.set_tooltip_text(_("ex: ppa:mirkobrombin/ppa"));
@@ -83,9 +85,9 @@ public class PPAExtender.Views.Add : Gtk.Box
         /* css classes for source_validation_label:
         * .source-validation--waiting
         * .source-validation--success
-        * .source-validation--failed*/
+        * .source-validation--failed */
 
-        var source_validation_label = new Gtk.Label (_("Waiting for PPA to be entered."));
+        source_validation_label = new Gtk.Label (_("Waiting for PPA to be entered."));
         source_validation_label.get_style_context ().add_class ("source-validation--waiting");
         source_validation_label.halign = Gtk.Align.CENTER;
         source_validation_label.xalign = 0;
@@ -102,28 +104,15 @@ public class PPAExtender.Views.Add : Gtk.Box
         // validate uri when stop typing in source_entry
         source_entry.key_release_event.connect (() =>
         {
-            // reset source_validation_label style
-            source_validation_label.get_style_context ().remove_class ("source-validation--waiting");
-            source_validation_label.get_style_context ().remove_class ("source-validation--success");
-            source_validation_label.get_style_context ().remove_class ("source-validation--failed");
-
-            // TODO: perform pattern check for best validation results
-            if (source_entry.get_text ().substring (0, 4) == "ppa:" &
-                source_entry.get_text ().split("/").length > 1)
-            {
-                source_validation_label.get_style_context ().add_class ("source-validation--success");
-                source_validation_label.set_text (_("Valid PPA found."));
-            }
-            else
-            {
-                source_validation_label.get_style_context ().add_class ("source-validation--failed");
-                source_validation_label.set_text (_("This PPA doesn't look good."));
-            }
+            source_validation();
         });
 
         // add new ppa when hit enter in source_entry
         source_entry.activate.connect (() =>
         {
+            if(!is_valid)
+                return;
+
             window.header_bar.spinner.start();
             add_dialog = new Dialogs.Add ("a");
             add_dialog.show_all ();
@@ -131,4 +120,36 @@ public class PPAExtender.Views.Add : Gtk.Box
 
         show_all ();
     }
+
+    private void source_validation ()
+    {
+        // reset source_validation_label style
+        source_validation_label.get_style_context ().remove_class ("source-validation--waiting");
+        source_validation_label.get_style_context ().remove_class ("source-validation--success");
+        source_validation_label.get_style_context ().remove_class ("source-validation--failed");
+
+        // TODO: perform pattern check for best validation results
+        // Template: ppa:linuxhubit/ppaextender
+        string current_text = source_entry.get_text ();
+        if(current_text == "")
+        {
+            source_validation_label.get_style_context ().add_class ("source-validation--waiting");
+            source_validation_label.set_text (_("Waiting for PPA to be entered."));
+        }
+        else if (current_text.substring (0, 4) == "ppa:" &
+            current_text.split("/").length > 1 &
+            current_text.substring (current_text.length -1, 1) != "/")
+        {
+            source_validation_label.get_style_context ().add_class ("source-validation--success");
+            source_validation_label.set_text (_("Valid PPA found."));
+            is_valid = true;
+        }
+        else
+        {
+            source_validation_label.get_style_context ().add_class ("source-validation--failed");
+            source_validation_label.set_text (_("This PPA doesn't look good."));
+            is_valid = false;
+        }
+    }
+
 }

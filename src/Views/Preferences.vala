@@ -21,15 +21,17 @@
 
 public class PPAExtender.Views.Preferences : Gtk.Grid
 {
-    private Granite.ModeSwitch mode_switch;
+    private Gtk.Switch lights_switch;
     private Gtk.Switch security_switch;
     private Gtk.Switch recommended_switch;
     private Gtk.Switch unsupported_switch;
     private Gtk.Switch prereleased_switch;
+    private Gtk.Settings gtk_settings = null;
 
     construct
     {
-        var gtk_settings = Gtk.Settings.get_default ();
+        if(gtk_settings == null)
+            gtk_settings = Gtk.Settings.get_default ();
 
         column_spacing = 12;
         row_spacing = 6;
@@ -46,7 +48,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         appearance_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
         appearance_description_label.xalign = 0;
 
-        var selected_mode_label = new Gtk.Label (_("Light/Dark mode:"));
+        var selected_mode_label = new Gtk.Label (_("Turn off the lights:"));
         selected_mode_label.xalign = 0;
 
         var updates_label = new Gtk.Label (_("Updates"));
@@ -71,11 +73,10 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         prereleased_updates_label.xalign = 0;
 
         // define switches
-        mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
-        mode_switch.primary_icon_tooltip_text = ("Light");
-        mode_switch.secondary_icon_tooltip_text = ("Dark");
-        mode_switch.valign = Gtk.Align.END;
-        mode_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
+        lights_switch = new Gtk.Switch ();
+        lights_switch.halign = Gtk.Align.END;
+        lights_switch.valign = Gtk.Align.CENTER;
+        lights_switch.hexpand = true;
 
         security_switch = new Gtk.Switch ();
         security_switch.halign = Gtk.Align.END;
@@ -101,7 +102,7 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         attach (appearance_label, 0, 0, 1, 1);
         attach (appearance_description_label, 0, 1, 1, 1);
         attach (selected_mode_label, 0, 2, 1, 1);
-        attach (mode_switch, 1, 2, 1, 1);
+        attach (lights_switch, 1, 2, 1, 1);
 
         attach (updates_label, 0, 3, 1, 1);
         attach (updates_description_label, 0, 4, 1, 1);
@@ -114,6 +115,20 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
         attach (prereleased_updates_label, 0, 8, 1, 1);
         attach (prereleased_switch, 1, 8, 1, 1);
 
+
+        lights_switch.state_set.connect (() =>
+        {
+            toggle_lights ();
+        });
+
         show_all ();
+    }
+
+    public void toggle_lights ()
+    {
+        if(gtk_settings == null)
+            return;
+
+        gtk_settings.set_property("gtk-application-prefer-dark-theme", !lights_switch.get_state ());
     }
 }
