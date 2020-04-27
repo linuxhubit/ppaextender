@@ -98,6 +98,13 @@ public class PPAExtender.Views.List : Gtk.Grid
             }
         });
 
+        // update sources data on sync_button click
+        sync_button.clicked.connect (() =>
+        {
+            list_store.clear ();
+            populate_list_store ();
+        });
+
         show_all ();
     }
 
