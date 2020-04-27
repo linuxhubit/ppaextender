@@ -39,6 +39,10 @@ sudo ninja install
     - ~~PPA UI~~
     - Flatpak UI
     - ~~Check for correct URI syntax~~
+* UI List view
+    - ~~ListStore~~
+    - ~~Action buttns~~
+    - ~~Method for sync sources~~
 * UI Preferences
     - ~~Add warning icon for **Pre-released updates**~~
 * UI Show a message when updating cache [#13 (from old repo)](https://github.com/mirkobrombin/PPAExtender/issues/13)
