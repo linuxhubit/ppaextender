@@ -83,18 +83,24 @@ public class PPAExtender.Core.Sources : Object
     // Add new source to the system
     public bool add (string source_line)
     {
+        /* Posix.system ("apt-add-repository ppa:user/repository -yu");
+         * command will add repo and update without confirm */
         return true;
     }
 
     // Delete source from the system
     public bool delete (string source_line)
     {
+        /* Posix.system ("apt-add-repository ppa:user/repository -ryu");
+         * command will remove repo and update without confirm */
         return true;
     }
 
     // Edit source and save to the system
     public bool edit (string source_line)
     {
+        /* Edit should be performed updating source file
+         * in /etc/apt/source.list.d */
         return true;
     }
 

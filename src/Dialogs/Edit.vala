@@ -140,6 +140,20 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
 
         get_content_area ().pack_end (action_grid, true, true, 0);
 
+        // edit ppa
+        save_button.clicked.connect (() =>
+        {
+            // Core.Sources.edit ();
+            hide ();
+        });
+
+        // remove ppa
+        remove_button.clicked.connect (() =>
+        {
+            // Core.Sources.remove ();
+            hide ();
+        });
+
         show_all ();
     }
 }
