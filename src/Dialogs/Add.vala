@@ -72,6 +72,7 @@ public class PPAExtender.Dialogs.Add : Gtk.Dialog
         save_button.clicked.connect (() =>
         {
             stdout.printf ("ADD_PPA");
+            hide ();
             // Posix.system ();
         });
 
