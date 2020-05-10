@@ -41,23 +41,23 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
 
         // define labels
         var appearance_label = new Gtk.Label (_("Appearance"));
-        appearance_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        appearance_label.get_style_context ().add_class (Gtk.STYLE_CLASS_LABEL);
         appearance_label.xalign = 0;
 
         var appearance_description_label = new Gtk.Label (_("Change the look of this application."));
-        appearance_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+        appearance_description_label.get_style_context ().add_class (Gtk.STYLE_CLASS_TITLE);
         appearance_description_label.xalign = 0;
 
         var selected_mode_label = new Gtk.Label (_("Turn off the lights:"));
         selected_mode_label.xalign = 0;
 
         var updates_label = new Gtk.Label (_("Updates"));
-        updates_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        updates_label.get_style_context ().add_class (Gtk.STYLE_CLASS_LABEL);
         updates_label.margin_top = 20;
         updates_label.xalign = 0;
 
         var updates_description_label = new Gtk.Label (_("Choose which updates the system should receive."));
-        updates_description_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+        updates_description_label.get_style_context ().add_class (Gtk.STYLE_CLASS_TITLE);
         updates_description_label.xalign = 0;
 
         var security_updates_label = new Gtk.Label (_("Security updates:"));

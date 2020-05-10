@@ -68,7 +68,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         warning_infobar.set_message_type (Gtk.MessageType.WARNING);
 
         var source_label = new Gtk.Label (_("Add new source"));
-        source_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        source_label.get_style_context ().add_class (Gtk.STYLE_CLASS_TITLE);
         source_label.halign = Gtk.Align.CENTER;
         source_label.xalign = 0;
 
