@@ -75,8 +75,8 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
 
 
         // remove comment if present
-        if(_source.source.substring (0, 1) == "#")
-            _source.source = _source.source.substring (3, _source.source.length -3);
+        if(_source.source.substring (0, 7) == "deb-src")
+            _source.source = _source.source.substring (7, _source.source.length -7);
 
         // get properties of source string
         string[] subParams = _source.source.split(" ");
