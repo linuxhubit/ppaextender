@@ -19,9 +19,11 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.MainWindow : Gtk.Window
+public class PPAExtender.MainWindow : Hdy.Window
 {
     private Widgets.Stack stack;
+    private Gtk.Box box;
+    private Views.List view_list;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
 
     public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
@@ -32,18 +34,13 @@ public class PPAExtender.MainWindow : Gtk.Window
         set_size_request (960, 740);
         set_position(Gtk.WindowPosition.CENTER);
 
-        stack = new Widgets.Stack();
-        stack.Load(this);
-
-        // set stack (index) to stack_switcher
-        stack_switcher.set_stack (stack);
-
-        // set stack_switcher as header_bar custom title
-        header_bar.set_custom_title (stack_switcher);
+        box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        view_list = new Views.List ();
 
         // set header_bar as window titlebar
-        set_titlebar (header_bar);
+        box.pack_start (header_bar, false, false, 0);
+        box.pack_end (view_list, true, true, 0);
 
-        add(stack);
+        add(box);
     }
 }
