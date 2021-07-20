@@ -35,19 +35,19 @@ public class PPAExtender.Core.Sources : Object
         while ((row = dis.read_line (null)) != null)
         {
             // check if row has at least 3 characters
-            if (row.length > 3)
+            if (row.length < 3)
+                continue;
+
+            Models.Source newRow = new Models.Source ();
+
+            if (row.contains ("deb") && !row.contains("cdrom:"))
             {
-                Models.Source newRow = new Models.Source ();
+                newRow.name = name == null ? _("system") : name;
+                newRow.source = row.replace ("# ", "");
+                newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
+                newRow.type_of = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
 
-                if (row.contains ("deb") && !row.contains("cdrom:"))
-                {
-                    newRow.name = name == null ? _("system") : name;
-                    newRow.source = row;
-                    newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
-                    newRow.type_of = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
-
-                    sources.append (newRow);
-                }
+                sources.append (newRow);
             }
         }
 
