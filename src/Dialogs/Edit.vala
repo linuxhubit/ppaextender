@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2019 brombinmirko (https://linuxhub.it)
+* Copyright (c) 2019 Mirko Brombin <send@mirko.pm>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,7 +16,7 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 *
-* Authored by: brombinmirko <https://linuxhub.it>
+* Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
 public class PPAExtender.Dialogs.Edit : Gtk.Dialog
@@ -41,6 +41,8 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
     construct
     {
         var css_provider = new Gtk.CssProvider ();
+
+        set_title (_("Editing %s".printf(_source.source)));
 
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2019 brombinmirko (https://linuxhub.it)
+* Copyright (c) 2019 Mirko Brombin <send@mirko.pm>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,72 +16,81 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 *
-* Authored by: brombinmirko <https://linuxhub.it>
+* Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
-public class PPAExtender.Dialogs.Add : Gtk.Dialog
+public class PPAExtender.Dialogs.Add : Hdy.Window
 {
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
-    private Gtk.Button cancel_button;
-    private Gtk.Button save_button;
+    private Views.Add view_add;
+    private Views.ConfirmAdd view_confirm;
+    private MainWindow mainWindow;
+    private Gtk.Box box;
+
+    public Hdy.HeaderBar header_bar;
+    public Gtk.Button button_next;
+    public Gtk.Stack stack;
 
     public string source { get; construct set; }
 
-    public Add (string source)
+    public Add(MainWindow mainWindow)
     {
-        Object (resizable: false, deletable: true, skip_taskbar_hint: true, source: source);
+        this.mainWindow = mainWindow;
     }
 
     construct
     {
-        var css_provider = new Gtk.CssProvider ();
+        set_modal (true);
+        set_resizable (false);
+        set_deletable (true);
+        set_destroy_with_parent (true);
+        set_size_request (400, 600);
+        set_transient_for (mainWindow);
+        set_title (_("Add new source"));
+        
+        stack = new Gtk.Stack ();
+        box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        header_bar = new Hdy.HeaderBar ();
+        button_next = new Gtk.Button ();
 
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        box.set_homogeneous (false);
 
-        height_request = 300;
-        width_request = 600;
+        button_next.set_label (_("Next"));
 
-        // define labels
-        var info_label = new Gtk.Label (_("Confirming, you will add this repository to your system."));
-        var disclaimer_label = new Gtk.Label (_("Remember that third-party repositories can compromise your system\nmaking it unstable and (sometimes) unusable."));
+        header_bar.set_title (_("Add new source"));
+        header_bar.show_close_button = true;
+        header_bar.pack_end (button_next);
 
-        // add labels to the content area
-        get_content_area ().pack_start (info_label, true, true, 0);
-        get_content_area ().pack_start (disclaimer_label, true, true, 0);
+        view_add = new Views.Add (this);
+        view_confirm = new Views.ConfirmAdd ();
+        stack.add_titled (view_add, "add", _("Add new"));
+        stack.add_titled (view_confirm, "confirm", _("Confirm"));
 
-        // define action buttons
-        cancel_button = new Gtk.Button.with_label (_("Cancel"));
-        cancel_button.get_style_context ().add_class ("suggested-action");
+        // connect stack signal to notify::visible-child
+        stack.connect ("notify::visible-child", OnStackChildChanged);
+        button_next.connect ("clicked", GoNextPage);
 
-        save_button = new Gtk.Button.with_label (_("Save changes"));
-        save_button.get_style_context ().add_class ("destructive-action");
-
-        // create grid (action_grid) for action buttons
-        var action_grid = new Gtk.Grid ();
-        action_grid.set_margin_top (24);
-        action_grid.set_column_spacing (12);
-        action_grid.set_halign (Gtk.Align.CENTER);
-
-        // add buttons to grid (action_grid)
-        action_grid.attach (cancel_button, 0, 0, 1, 1);
-        action_grid.attach (save_button, 1, 0, 1, 1);
-
-        get_content_area ().pack_end (action_grid, true, true, 0);
-
-        // add ppa if user confirm action
-        save_button.clicked.connect (() =>
-        {
-            stdout.printf ("ADD_PPA");
-            hide ();
-            // Posix.system ();
-        });
-
-        // user cancel action
-        cancel_button.clicked.connect (() =>
-        {
-            hide ();
-        });
-
+        box.add (header_bar);
+        box.add (stack);
+        
+        add (box);
         show_all ();
+
+        button_next.set_visible (false);
+    }
+
+    private void OnStackChildChanged (Gtk.Stack stack, string a)
+    {
+        if (a == "confirm") {
+            button_next.set_visible (false);
+        }
+        else {
+            button_next.set_visible (true);
+        }
+    }
+
+    private void GoNextPage (Gtk.Button button)
+    {
+        stack.set_visible_child_name ("confirm");
     }
 }

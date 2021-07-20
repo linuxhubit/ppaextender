@@ -6,9 +6,9 @@ sources  = files(
     'Views/Add.vala',
     'Views/List.vala',
     'Views/Preferences.vala',
+    'Views/ConfirmAdd.vala',
 
     'Widgets/Headerbar.vala',
-    'Widgets/Stack.vala',
     'Widgets/StackSwitcher.vala',
 
     'Models/Source.vala',

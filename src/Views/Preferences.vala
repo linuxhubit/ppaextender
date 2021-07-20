@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2019 brombinmirko (https://linuxhub.it)
+* Copyright (c) 2019 Mirko Brombin <send@mirko.pm>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,7 +16,7 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 *
-* Authored by: brombinmirko <https://linuxhub.it>
+* Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
 public class PPAExtender.Views.Preferences : Gtk.Grid

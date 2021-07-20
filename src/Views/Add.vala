@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2019 brombinmirko (https://linuxhub.it)
+* Copyright (c) 2019 Mirko Brombin <send@mirko.pm>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,7 +16,7 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 *
-* Authored by: brombinmirko <https://linuxhub.it>
+* Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
 public class PPAExtender.Views.Add : Gtk.Box
@@ -27,11 +27,11 @@ public class PPAExtender.Views.Add : Gtk.Box
     private bool is_valid = false;
     private Gtk.Label source_validation_label;
     private Gtk.Entry source_entry;
-    private static MainWindow window;
+    private static Dialogs.Add dialog;
 
-    public Add (MainWindow mainWindow)
+    public Add (Dialogs.Add dialog)
     {
-        this.window = mainWindow;
+        this.dialog = dialog;
         GLib.Object
         (
             orientation: Gtk.Orientation.VERTICAL,
@@ -113,9 +113,7 @@ public class PPAExtender.Views.Add : Gtk.Box
             if(!is_valid)
                 return;
 
-            window.header_bar.spinner.start();
-            add_dialog = new Dialogs.Add ("a");
-            add_dialog.show_all ();
+                dialog.stack.set_visible_child_name ("confirm");
         });
 
         show_all ();
@@ -135,6 +133,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         {
             source_validation_label.get_style_context ().add_class ("source-validation--waiting");
             source_validation_label.set_text (_("Waiting for PPA to be entered."));
+            dialog.button_next.set_visible (false);
         }
         else if (current_text.substring (0, 4) == "ppa:" &
             current_text.split("/").length > 1 &
@@ -143,12 +142,14 @@ public class PPAExtender.Views.Add : Gtk.Box
             source_validation_label.get_style_context ().add_class ("source-validation--success");
             source_validation_label.set_text (_("Valid PPA found."));
             is_valid = true;
+            dialog.button_next.set_visible (true);
         }
         else
         {
             source_validation_label.get_style_context ().add_class ("source-validation--failed");
             source_validation_label.set_text (_("This PPA doesn't look good."));
             is_valid = false;
+            dialog.button_next.set_visible (false);
         }
     }
 

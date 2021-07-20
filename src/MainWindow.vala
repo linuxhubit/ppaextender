@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2019 brombinmirko (https://linuxhub.it)
+* Copyright (c) 2019 Mirko Brombin <send@mirko.pm>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,23 +16,24 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 *
-* Authored by: brombinmirko <https://linuxhub.it>
+* Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
 public class PPAExtender.MainWindow : Hdy.Window
 {
-    private Widgets.Stack stack;
     private Gtk.Box box;
     private Views.List view_list;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
 
-    public Widgets.Headerbar header_bar = new Widgets.Headerbar ();
+    public Widgets.Headerbar header_bar;
 
     construct
     {
         // set default window size and position
         set_size_request (960, 740);
         set_position(Gtk.WindowPosition.CENTER);
+
+        header_bar = new Widgets.Headerbar (this);
 
         box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
         view_list = new Views.List ();
