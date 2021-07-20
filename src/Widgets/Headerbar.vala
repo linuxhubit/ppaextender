@@ -19,7 +19,7 @@
 * Authored by: brombinmirko <https://linuxhub.it>
 */
 
-public class PPAExtender.Widgets.Headerbar : Gtk.HeaderBar
+public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
 {
     public Gtk.Spinner spinner;
 
