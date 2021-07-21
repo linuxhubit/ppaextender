@@ -19,108 +19,84 @@
 * Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
-public class PPAExtender.Views.List : Gtk.Grid
+public class PPAExtender.Views.List : Gtk.ScrolledWindow
 {
-    private Gtk.ScrolledWindow scrolled;
-    private Gtk.TreeView treeView;
-    private Gtk.ListStore listStore;
-    private Gtk.Button buttonEdit;
-    private Gtk.Button buttonSync;
-    private Gtk.Box boxAction;
-    private Gtk.TreeIter iter;
-
     private Dialogs.Edit dialogEdit;
+    private Gtk.ListBox listBox;
+    private Hdy.Clamp clamp;
+    private MainWindow mainWindow;
 
     private Core.Sources coreSources = new Core.Sources ();
 
-    construct
+    public List(MainWindow mainWindow)
     {
-        scrolled = new Gtk.ScrolledWindow (null, null);
-        listStore = new Gtk.ListStore (4, typeof (string), typeof (string),
-                                          typeof (string), typeof (string));
-
-        populate_listStore ();
-
-        // create treeView to display source data
-        treeView = new Gtk.TreeView.with_model (listStore);
-
-        scrolled.expand = true;
-        scrolled.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-        scrolled.add (treeView);
-
-        // create button (buttonEdit) to modify source data
-        buttonEdit = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
-        buttonEdit.set_tooltip_text(_("Edit selected source"));
-        buttonEdit.halign = Gtk.Align.END;
-        buttonEdit.set_relief (Gtk.ReliefStyle.NONE);
-
-        // create button (buttonSync) to update source data
-        buttonSync = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.BUTTON);
-        buttonSync.set_tooltip_text(_("Sync sources"));
-        buttonSync.halign = Gtk.Align.END;
-        buttonSync.set_relief (Gtk.ReliefStyle.NONE);
-
-        // create horizontal box for action buttons
-        boxAction = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        boxAction.add (buttonEdit);
-        boxAction.add (buttonSync);
-
-        attach (scrolled, 0, 0, 1, 1);
-        attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1);
-        attach (boxAction, 0, 2, 1, 1);
-
-        treeView.insert_column_with_attributes (-1, _("Name"), new Gtk.CellRendererText (), "text", 0);
-        treeView.insert_column_with_attributes (-1, _("Source"), new Gtk.CellRendererText (), "text", 1);
-        treeView.insert_column_with_attributes (-1, _("Status"), new Gtk.CellRendererText (), "text", 2);
-        treeView.insert_column_with_attributes (-1, _("Type"), new Gtk.CellRendererText (), "text", 3);
-
-        // prompt Edit dialog on buttonEdit click
-        buttonEdit.clicked.connect (() =>
-        {
-            Gtk.TreeSelection selection= treeView.get_selection();
-            selection.set_mode(Gtk.SelectionMode.SINGLE);
-            Gtk.TreeModel model;
-
-            if (selection.get_selected (out model, out iter))
-            {
-                string _name, _source, _status, _typeOf;
-                model.get (iter, 0, out _name, 1, out _source, 2, out _status, 3, out _typeOf);
-
-                dialogEdit = new Dialogs.Edit (new Models.Source()
-                {
-                    name = _name,
-                    source = _source,
-                    status = _status,
-                    typeOf = _typeOf
-                });
-
-                dialogEdit.show_all ();
-            }
-        });
-
-        // update sources data on buttonSync click
-        buttonSync.clicked.connect (() =>
-        {
-            listStore.clear ();
-            populate_listStore ();
-        });
-
-        show_all ();
+        Object (
+            expand: true
+        );
+        this.mainWindow = mainWindow;
     }
 
-    // populate listStore with sources
-    private void populate_listStore ()
+    construct
     {
+        listBox = new Gtk.ListBox ();
+        clamp = new Hdy.Clamp ();
+        clamp.set_maximum_size (600);
+        clamp.set_tightening_threshold (600);
+
         foreach(Models.Source source_row in coreSources.ListSources())
         {
-            listStore.append (out iter);
-            listStore.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.typeOf);
+            listBox.add (SourceEntry (
+                source_row.name,
+                source_row.source,
+                source_row.status,
+                source_row.typeOf
+            ));
         }
 
         foreach(Models.Source source_row in coreSources.List3rdSources())
         {
-            listStore.append (out iter);
-            listStore.set (iter, 0, source_row.name, 1, source_row.source, 2, source_row.status, 3, source_row.typeOf);
+            listBox.add (SourceEntry (
+                source_row.name,
+                source_row.source,
+                source_row.status,
+                source_row.typeOf
+            ));
         }
+
+        clamp.add (listBox);
+        add (clamp);
+        show_all ();
+    }
+
+    private Hdy.ActionRow SourceEntry (string name, string source, string status, string typeOf)
+    {
+        Hdy.ActionRow row = new Hdy.ActionRow ();
+        row.set_title(name);
+        row.set_subtitle(source);
+
+        Gtk.Button buttonEdit = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
+        buttonEdit.set_tooltip_text(_("Edit selected source"));
+        buttonEdit.get_style_context ().add_class ("circular");
+        buttonEdit.halign = Gtk.Align.END;
+        buttonEdit.valign = Gtk.Align.CENTER;
+
+        row.add (buttonEdit);
+        buttonEdit.clicked.connect (() =>
+        {
+            dialogEdit = new Dialogs.Edit (
+                mainWindow,
+                new Models.Source()
+                {
+                    name = name,
+                    source = source,
+                    status = status,
+                    typeOf = typeOf
+                }
+            );
+
+            dialogEdit.show_all ();
+        });
+
+        return row;
     }
 }
