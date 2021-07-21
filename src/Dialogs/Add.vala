@@ -21,12 +21,12 @@
 
 public class PPAExtender.Dialogs.Add : Hdy.Window
 {
-    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
     private Views.Add viewAdd;
     private Views.ConfirmAdd viewConfirm;
     private MainWindow mainWindow;
+    
+    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
     private Gtk.Box box;
-
     public Hdy.HeaderBar headerBar;
     public Gtk.Button buttonNext;
     public Gtk.Stack stack;
