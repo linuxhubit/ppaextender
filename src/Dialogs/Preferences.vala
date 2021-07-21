@@ -23,6 +23,7 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
 {
     private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
     private MainWindow mainWindow;
+    private Gtk.Settings gtkSettings = null;
 
     public string source { get; construct set; }
 
@@ -45,13 +46,16 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
 
     construct
     {
-        add (pageGeneral ());
-        add (pageSources ());
+        if(gtkSettings == null)
+            gtkSettings = Gtk.Settings.get_default ();
+
+        add (PageGeneral ());
+        add (PageSources ());
 
         show_all ();
     }
 
-    private Hdy.PreferencesPage pageGeneral () {
+    private Hdy.PreferencesPage PageGeneral () {
         Hdy.PreferencesPage page = new Hdy.PreferencesPage ();
         page.set_title (_("General"));
         page.set_icon_name ("applications-system-symbolic");
@@ -63,6 +67,15 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
         Gtk.Switch switchDark = new Gtk.Switch ();
         switchDark.halign = Gtk.Align.END;
         switchDark.valign = Gtk.Align.CENTER;
+        switchDark.state_set.connect (() =>
+        {
+            gtkSettings.set_property(
+                "gtk-application-prefer-dark-theme", 
+                !switchDark.get_state ()
+            );
+            switchDark.set_active (!switchDark.get_state ());
+            return !switchDark.get_state ();
+        });
         
         rowDarkMode.add (switchDark);
 // endregion
@@ -76,7 +89,7 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
         return page;
     }
 
-    private Hdy.PreferencesPage pageSources () {
+    private Hdy.PreferencesPage PageSources () {
         Hdy.PreferencesPage page = new Hdy.PreferencesPage ();
         page.set_title (_("Sources"));
         page.set_icon_name ("application-x-addon-symbolic");
