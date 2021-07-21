@@ -15,6 +15,7 @@ sources  = files(
 
     'Dialogs/Edit.vala',
     'Dialogs/Add.vala',
+    'Dialogs/Preferences.vala',
 
     'Core/Sources.vala',
 )

@@ -27,6 +27,7 @@ public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
     public Gtk.Spinner spinner;
 
     private Dialogs.Add dialog_add;
+    private Dialogs.Preferences dialog_preferences;
     private MainWindow mainWindow;
 
     // private Views.List view_preferences;
@@ -53,6 +54,12 @@ public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
             dialog_add.show();
         });
 
+        button_preferences.clicked.connect (() =>
+        {
+            dialog_preferences = new Dialogs.Preferences(mainWindow);
+            dialog_preferences.show();
+        });
+        
         show_close_button = true;
         has_subtitle = true;
 
