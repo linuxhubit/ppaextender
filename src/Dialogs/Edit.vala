@@ -19,50 +19,57 @@
 * Authored by: Mirko Brombin <https://linuxhub.it>
 */
 
-public class PPAExtender.Dialogs.Edit : Gtk.Dialog
+public class PPAExtender.Dialogs.Edit : Hdy.Window
 {
+    private MainWindow mainWindow;
+
     private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
     private Gtk.Button buttonRemove;
     private Gtk.Button buttonSave;
-    private Gtk.ComboBoxText boxType;
+    private Gtk.ComboBoxText comboType;
     private Gtk.Entry entryUri;
     private Gtk.Entry entryComponent;
     private Gtk.Entry entryRelease;
     private Gtk.Switch switchStatus;
+    private Gtk.Box boxActions;
+    public Hdy.HeaderBar headerBar;
+    private Gtk.Box box;
+    private Gtk.Grid gridEdit;
 
     private static Models.Source _source;
 
-    public Edit (Models.Source source)
+    public Edit (MainWindow mainWindow, Models.Source source)
     {
-        _source = source;
+        this._source = source;
+
         Object (
-            resizable: false, 
-            deletable: true, 
-            skip_taskbar_hint: true,
-            width_request: 500,
-            height_request: 600
+            modal: true,
+            title: _("Editing %s".printf(_source.source)),
+            parent: mainWindow,
+            transient_for: mainWindow,
+            destroy_with_parent: true,
+            deletable: true,
+            resizable: false,
+            type: Gtk.WindowType.TOPLEVEL,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
+            type_hint: Gdk.WindowTypeHint.DIALOG
         );
     }
 
     construct
     {
-        var cssProvider = new Gtk.CssProvider ();
+        headerBar = new Hdy.HeaderBar ();
+        box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        boxActions = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+        gridEdit = EditGrid ();
 
-        set_title (_("Editing %s".printf(_source.source)));
+        headerBar.set_title (_("Add new source"));
+        headerBar.show_close_button = true;
 
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        box.add (headerBar);
 
         // create grid (gridEdit) for labels and values
-        var gridEdit = new Gtk.Grid ();
-        gridEdit.set_margin_top (24);
-        gridEdit.set_margin_left (24);
-        gridEdit.set_margin_right (24);
-        gridEdit.set_margin_bottom (24);
-        gridEdit.set_column_spacing (12);
-        gridEdit.set_row_spacing (12);
-        gridEdit.set_halign (Gtk.Align.CENTER);
 
-        // define the edit labels
         var labelType = new Gtk.Label (_("Type:"));
         labelType.set_halign (Gtk.Align.END);
 
@@ -78,8 +85,6 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         var labelUri = new Gtk.Label (_("URI:"));
         labelUri.set_halign (Gtk.Align.END);
 
-
-        // remove comment if present
         if(_source.source.substring (0, 7) == "deb-src")
             _source.source = _source.source.substring (7, _source.source.length -7);
 
@@ -87,11 +92,11 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         string[] subParams = _source.source.split(" ");
 
         // set value fields
-        boxType = new Gtk.ComboBoxText ();
-        boxType.append ("deb", _("Binary"));
-        boxType.append ("deb-src", _("Source code"));
-        boxType.set_active_id (_source.source.substring (0, 3) == "deb" ? "deb" : "deb-src");
-        gridEdit.attach (boxType, 1, 0, 1, 1);
+        comboType = new Gtk.ComboBoxText ();
+        comboType.append ("deb", _("Binary"));
+        comboType.append ("deb-src", _("Source code"));
+        comboType.set_active_id (_source.source.substring (0, 3) == "deb" ? "deb" : "deb-src");
+        gridEdit.attach (comboType, 1, 0, 1, 1);
 
         entryComponent = new Gtk.Entry ();
         entryComponent.set_placeholder_text ("artful");
@@ -124,7 +129,7 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         gridEdit.attach (labelEnabled, 0, 3, 1, 1);
         gridEdit.attach (labelUri, 0, 4, 1, 1);
 
-        get_content_area ().pack_start (gridEdit, true, true, 0);
+        box.add (gridEdit);
 
         // define action buttons
         buttonRemove = new Gtk.Button.with_label (_("Remove Source"));
@@ -133,17 +138,12 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         buttonSave = new Gtk.Button.with_label (_("Save"));
         buttonSave.get_style_context ().add_class ("suggested-action");
 
-        // create grid (gridAction) for action buttons
-        var gridAction = new Gtk.Grid ();
-        gridAction.set_margin_top (24);
-        gridAction.set_column_spacing (12);
-        gridAction.set_halign (Gtk.Align.CENTER);
+        boxActions.set_halign (Gtk.Align.CENTER);
+        boxActions.set_margin_bottom (24);
+        boxActions.add (buttonRemove);
+        boxActions.add (buttonSave);
 
-        // populate grid (gridAction)
-        gridAction.attach (buttonRemove, 0, 0, 1, 1);
-        gridAction.attach (buttonSave, 1, 0, 1, 1);
-
-        get_content_area ().pack_end (gridAction, true, true, 0);
+        box.add (boxActions);
 
         // edit ppa
         buttonSave.clicked.connect (() =>
@@ -159,6 +159,21 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
             hide ();
         });
 
+        add (box);
         show_all ();
+    }
+
+    private Gtk.Grid EditGrid ()
+    {
+        var grid = new Gtk.Grid ();
+        grid.set_margin_top (24);
+        grid.set_margin_left (24);
+        grid.set_margin_right (24);
+        grid.set_margin_bottom (24);
+        grid.set_column_spacing (12);
+        grid.set_row_spacing (12);
+        grid.set_halign (Gtk.Align.CENTER);
+
+        return grid;
     }
 }
