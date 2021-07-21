@@ -72,11 +72,6 @@ public class PPAExtender.Views.Add : Gtk.Box
         infobarWarning_content.add (labelWarning);
         infobarWarning.set_message_type (Gtk.MessageType.WARNING);
 
-        var labelSource = new Gtk.Label (_("Add new source"));
-        labelSource.get_style_context ().add_class (Gtk.STYLE_CLASS_TITLE);
-        labelSource.halign = Gtk.Align.CENTER;
-        labelSource.xalign = 0;
-
         var labelSourceDescription = new Gtk.Label (_("Enter the complete PPA URI and press enter."));
         labelSourceDescription.halign = Gtk.Align.CENTER;
         labelSourceDescription.xalign = 0;
@@ -98,10 +93,9 @@ public class PPAExtender.Views.Add : Gtk.Box
         labelSourceValidation.xalign = 0;
 
         // populate grid
-        grid.attach (labelSource, 0, 0, 1, 1);
-        grid.attach (labelSourceDescription, 0, 1, 1, 1);
-        grid.attach (entrySource, 0, 2, 1, 1);
-        grid.attach (labelSourceValidation, 0, 3, 1, 1);
+        grid.attach (labelSourceDescription, 0, 0, 1, 1);
+        grid.attach (entrySource, 0, 1, 1, 1);
+        grid.attach (labelSourceValidation, 0, 2, 1, 1);
 
         add (infobarWarning);
         add (grid);
