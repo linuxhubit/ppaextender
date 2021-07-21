@@ -21,14 +21,14 @@
 
 public class PPAExtender.Dialogs.Add : Hdy.Window
 {
-    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
-    private Views.Add view_add;
-    private Views.ConfirmAdd view_confirm;
+    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
+    private Views.Add viewAdd;
+    private Views.ConfirmAdd viewConfirm;
     private MainWindow mainWindow;
     private Gtk.Box box;
 
-    public Hdy.HeaderBar header_bar;
-    public Gtk.Button button_next;
+    public Hdy.HeaderBar headerBar;
+    public Gtk.Button buttonNext;
     public Gtk.Stack stack;
 
     public string source { get; construct set; }
@@ -54,33 +54,33 @@ public class PPAExtender.Dialogs.Add : Hdy.Window
     {        
         stack = new Gtk.Stack ();
         box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        header_bar = new Hdy.HeaderBar ();
-        button_next = new Gtk.Button ();
-        view_add = new Views.Add (this);
-        view_confirm = new Views.ConfirmAdd (this);
+        headerBar = new Hdy.HeaderBar ();
+        buttonNext = new Gtk.Button ();
+        viewAdd = new Views.Add (this);
+        viewConfirm = new Views.ConfirmAdd (this);
 
         box.set_homogeneous (false);
-        button_next.set_label (_("Next"));
+        buttonNext.set_label (_("Next"));
 
-        header_bar.set_title (_("Add new source"));
-        header_bar.show_close_button = true;
-        header_bar.pack_end (button_next);
+        headerBar.set_title (_("Add new source"));
+        headerBar.show_close_button = true;
+        headerBar.pack_end (buttonNext);
 
-        stack.add_titled (view_add, "add", _("Add new"));
-        stack.add_titled (view_confirm, "confirm", _("Confirm"));
+        stack.add_titled (viewAdd, "add", _("Add new"));
+        stack.add_titled (viewConfirm, "confirm", _("Confirm"));
 
-        box.add (header_bar);
+        box.add (headerBar);
         box.add (stack);
         
-        button_next.clicked.connect (() =>
+        buttonNext.clicked.connect (() =>
         {
             stack.set_visible_child_name ("confirm");
-            button_next.set_visible (false);
+            buttonNext.set_visible (false);
         });
 
         add (box);
         show_all ();
 
-        button_next.set_visible (false);
+        buttonNext.set_visible (false);
     }
 }

@@ -22,15 +22,15 @@
 public class PPAExtender.Core.Sources : Object
 {
     // List sources
-    public List<Models.Source> list (
+    public List<Models.Source> ListSources (
         string sourcesList = "/etc/apt/sources.list",
         string? name = null)
     {
         List<Models.Source> sources = new List<Models.Source>();
         string row;
 
-        var sources_file = File.new_for_path (sourcesList);
-        var dis = new DataInputStream (sources_file.read ());
+        var sourcesFile = File.new_for_path (sourcesList);
+        var dis = new DataInputStream (sourcesFile.read ());
 
         while ((row = dis.read_line (null)) != null)
         {
@@ -45,7 +45,7 @@ public class PPAExtender.Core.Sources : Object
                 newRow.name = name == null ? _("system") : name;
                 newRow.source = row.replace ("# ", "");
                 newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
-                newRow.type_of = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
+                newRow.typeOf = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
 
                 sources.append (newRow);
             }
@@ -55,14 +55,14 @@ public class PPAExtender.Core.Sources : Object
     }
 
     // List third-party sources
-    public List<Models.Source> list_3rdparty ()
+    public List<Models.Source> List3rdSources ()
     {
         List<Models.Source> sources = new List<Models.Source>();
-        string path_3rdparty_sources = "/etc/apt/sources.list.d/";
+        string path3rdSources = "/etc/apt/sources.list.d/";
         string row;
 
-        var sources_path = File.new_for_path (path_3rdparty_sources);
-        var enumerator = sources_path.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE, null);
+        var pathSources = File.new_for_path (path3rdSources);
+        var enumerator = pathSources.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE, null);
 
         for ( GLib.FileInfo? info = enumerator.next_file (null) ; info != null ; info = enumerator.next_file (null) )
         {
@@ -74,14 +74,14 @@ public class PPAExtender.Core.Sources : Object
                 cleanName = cleanName.substring (0, 15) + " […]";
 
             if (fileName.substring (fileName.length - 5, 5) != ".save")
-                sources.concat(list(path_3rdparty_sources + fileName, cleanName));
+                sources.concat(ListSources(path3rdSources + fileName, cleanName));
         }
 
         return sources;
     }
 
     // Add new source to the system
-    public bool add (string source_line)
+    public bool AddSource (string sourceRow)
     {
         /* Posix.system ("apt-add-repository ppa:user/repository -yu");
          * command will add repo and update without confirm */
@@ -89,7 +89,7 @@ public class PPAExtender.Core.Sources : Object
     }
 
     // Delete source from the system
-    public bool delete (string source_line)
+    public bool DeleteSource (string sourceRow)
     {
         /* Posix.system ("apt-add-repository ppa:user/repository -ryu");
          * command will remove repo and update without confirm */
@@ -97,7 +97,7 @@ public class PPAExtender.Core.Sources : Object
     }
 
     // Edit source and save to the system
-    public bool edit (string source_line)
+    public bool EditSource (string sourceRow)
     {
         /* Edit should be performed updating source file
          * in /etc/apt/source.list.d */
@@ -105,7 +105,7 @@ public class PPAExtender.Core.Sources : Object
     }
 
     // Update sources and reload list
-    public bool update ()
+    public bool UpdateSource ()
     {
         /* delete all entries
          * call list_builtin ();

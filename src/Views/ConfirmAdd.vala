@@ -21,10 +21,10 @@
 
 public class PPAExtender.Views.ConfirmAdd : Gtk.Box
 {
-    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
+    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
 
-    private Gtk.Button cancel_button;
-    private Gtk.Button save_button;
+    private Gtk.Button buttonCancel;
+    private Gtk.Button buttonSave;
     private static Dialogs.Add dialog;
 
     public ConfirmAdd (Dialogs.Add dialog)
@@ -40,49 +40,51 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
 
     construct
     {
-        var css_provider = new Gtk.CssProvider ();
+        var cssProvider = new Gtk.CssProvider ();
 
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (), 
-            css_provider, 
+            cssProvider, 
             Gtk.STYLE_PROVIDER_PRIORITY_USER
         );
 
         // define labels
-        var info_label = new Gtk.Label (_("Confirming, you will add this repository to your system."));
-        var disclaimer_label = new Gtk.Label (_("Remember that third-party repositories can compromise your system\nmaking it unstable and (sometimes) unusable."));
+        var labelInfo = new Gtk.Label (
+            _("Confirming, you will add this repository to your system."));
+        var labelDisclaimer = new Gtk.Label (
+            _("Remember that third-party repositories can compromise your system\nmaking it unstable and (sometimes) unusable."));
 
         // define action buttons
-        cancel_button = new Gtk.Button.with_label (_("Cancel"));
-        cancel_button.get_style_context ().add_class ("suggested-action");
+        buttonCancel = new Gtk.Button.with_label (_("Cancel"));
+        buttonCancel.get_style_context ().add_class ("suggested-action");
 
-        save_button = new Gtk.Button.with_label (_("Save changes"));
-        save_button.get_style_context ().add_class ("destructive-action");
+        buttonSave = new Gtk.Button.with_label (_("Save changes"));
+        buttonSave.get_style_context ().add_class ("destructive-action");
 
-        // create grid (action_grid) for action buttons
-        var action_grid = new Gtk.Grid ();
-        action_grid.set_margin_top (24);
-        action_grid.set_column_spacing (12);
-        action_grid.set_halign (Gtk.Align.CENTER);
+        // create grid (gridAction) for action buttons
+        var gridAction = new Gtk.Grid ();
+        gridAction.set_margin_top (24);
+        gridAction.set_column_spacing (12);
+        gridAction.set_halign (Gtk.Align.CENTER);
 
-        // add widgets to grid (action_grid)
-        action_grid.attach (cancel_button, 0, 0, 1, 1);
-        action_grid.attach (save_button, 1, 0, 1, 1);
+        // add widgets to grid (gridAction)
+        gridAction.attach (buttonCancel, 0, 0, 1, 1);
+        gridAction.attach (buttonSave, 1, 0, 1, 1);
 
-        pack_start (info_label);
-        pack_start (disclaimer_label);
+        pack_start (labelInfo);
+        pack_start (labelDisclaimer);
 
-        pack_end (action_grid, true, true, 0);
+        pack_end (gridAction, true, true, 0);
 
         // add ppa if user confirm action
-        save_button.clicked.connect (() =>
+        buttonSave.clicked.connect (() =>
         {
             dialog.hide ();
             // Posix.system ();
         });
 
         // user cancel action
-        cancel_button.clicked.connect (() =>
+        buttonCancel.clicked.connect (() =>
         {
             dialog.stack.set_visible_child_name ("add");
         });

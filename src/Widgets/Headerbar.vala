@@ -21,53 +21,46 @@
 
 public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
 {
-    private Gtk.Button button_add;
-    private Gtk.Button button_preferences;
+    private Gtk.Button buttonAdd;
+    private Gtk.Button buttonPreferences;
 
-    public Gtk.Spinner spinner;
-
-    private Dialogs.Add dialog_add;
-    private Dialogs.Preferences dialog_preferences;
+    private Dialogs.Add dialogAdd;
+    private Dialogs.Preferences dialogPreferences;
     private MainWindow mainWindow;
 
     // private Views.List view_preferences;
 
     public Headerbar(MainWindow mainWindow)
     {
+        Object (
+            title: _("PPAExtender"),
+            show_close_button: true,
+            has_subtitle: false
+        );
         this.mainWindow = mainWindow;
     }
 
     construct
     {
-        set_title("PPAExtender");
-        // view_preferences = new Views.Preferences();
+        buttonAdd = new Gtk.Button.from_icon_name("list-add-symbolic");
+        buttonAdd.set_tooltip_text(_("Add new source"));
 
-        button_add = new Gtk.Button.from_icon_name("list-add-symbolic");
-        button_add.set_tooltip_text(_("Add new source"));
+        buttonPreferences = new Gtk.Button.from_icon_name("open-menu-symbolic");
+        buttonPreferences.set_tooltip_text(_("Preferences"));
 
-        button_preferences = new Gtk.Button.from_icon_name("open-menu-symbolic");
-        button_preferences.set_tooltip_text(_("Preferences"));
-
-        button_add.clicked.connect (() =>
+        buttonAdd.clicked.connect (() =>
         {
-            dialog_add = new Dialogs.Add(mainWindow);
-            dialog_add.show();
+            dialogAdd = new Dialogs.Add(mainWindow);
+            dialogAdd.show();
         });
 
-        button_preferences.clicked.connect (() =>
+        buttonPreferences.clicked.connect (() =>
         {
-            dialog_preferences = new Dialogs.Preferences(mainWindow);
-            dialog_preferences.show();
+            dialogPreferences = new Dialogs.Preferences(mainWindow);
+            dialogPreferences.show();
         });
-        
-        show_close_button = true;
-        has_subtitle = true;
 
-        spinner = new Gtk.Spinner ();
-        spinner.stop ();
-
-        pack_start (button_add);
-        pack_end (spinner);
-        pack_end (button_preferences);
+        pack_start (buttonAdd);
+        pack_end (buttonPreferences);
     }
 }

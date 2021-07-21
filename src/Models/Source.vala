@@ -25,5 +25,5 @@ public class PPAExtender.Models.Source : Object
     public string name {set;get;default = "";}
     public string source {set;get;default = "";}
     public string status {set;get;default = "";}
-    public string type_of {set;get;default = "";}
+    public string typeOf {set;get;default = "";}
 }

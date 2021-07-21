@@ -22,10 +22,10 @@
 public class PPAExtender.MainWindow : Hdy.Window
 {
     private Gtk.Box box;
-    private Views.List view_list;
+    private Views.List viewList;
     private Widgets.StackSwitcher stack_switcher = new Widgets.StackSwitcher ();
 
-    public Widgets.Headerbar header_bar;
+    public Widgets.Headerbar headerBar;
 
     public MainWindow ()
     {
@@ -41,13 +41,13 @@ public class PPAExtender.MainWindow : Hdy.Window
     {
         Hdy.init ();
         
-        header_bar = new Widgets.Headerbar (this);
+        headerBar = new Widgets.Headerbar (this);
 
         box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        view_list = new Views.List ();
+        viewList = new Views.List ();
 
-        box.pack_start (header_bar, false, false, 0);
-        box.pack_end (view_list, true, true, 0);
+        box.pack_start (headerBar, false, false, 0);
+        box.pack_end (viewList, true, true, 0);
 
         add(box);
     }

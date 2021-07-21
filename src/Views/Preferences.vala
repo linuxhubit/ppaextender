@@ -26,12 +26,12 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
     private Gtk.Switch recommended_switch;
     private Gtk.Switch unsupported_switch;
     private Gtk.Switch prereleased_switch;
-    private Gtk.Settings gtk_settings = null;
+    private Gtk.Settings gtkSettings = null;
 
     construct
     {
-        if(gtk_settings == null)
-            gtk_settings = Gtk.Settings.get_default ();
+        if(gtkSettings == null)
+            gtkSettings = Gtk.Settings.get_default ();
 
         column_spacing = 12;
         row_spacing = 6;
@@ -126,9 +126,9 @@ public class PPAExtender.Views.Preferences : Gtk.Grid
 
     public void toggle_lights ()
     {
-        if(gtk_settings == null)
+        if(gtkSettings == null)
             return;
 
-        gtk_settings.set_property("gtk-application-prefer-dark-theme", !lights_switch.get_state ());
+        gtkSettings.set_property("gtk-application-prefer-dark-theme", !lights_switch.get_state ());
     }
 }

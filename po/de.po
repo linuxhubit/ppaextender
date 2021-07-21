@@ -54,7 +54,7 @@ msgid "ex: ppa:mirkobrombin/ppa"
 msgstr ""
 
 #.
-#. * css classes for source_validation_label:
+#. * css classes for labelSourceValidation:
 #. * .source-validation--waiting
 #. * .source-validation--success
 #. * .source-validation--failed

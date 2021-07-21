@@ -21,59 +21,62 @@
 
 public class PPAExtender.Dialogs.Edit : Gtk.Dialog
 {
-    private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
-    private Gtk.Button remove_button;
-    private Gtk.Button save_button;
-    private Gtk.ComboBoxText type_box;
-    private Gtk.Entry uri_entry;
-    private Gtk.Entry component_entry;
-    private Gtk.Entry release_entry;
-    private Gtk.Switch status_switch;
+    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
+    private Gtk.Button buttonRemove;
+    private Gtk.Button buttonSave;
+    private Gtk.ComboBoxText boxType;
+    private Gtk.Entry entryUri;
+    private Gtk.Entry entryComponent;
+    private Gtk.Entry entryRelease;
+    private Gtk.Switch switchStatus;
 
     private static Models.Source _source;
 
     public Edit (Models.Source source)
     {
         _source = source;
-        Object (resizable: false, deletable: true, skip_taskbar_hint: true);
+        Object (
+            resizable: false, 
+            deletable: true, 
+            skip_taskbar_hint: true,
+            width_request: 500,
+            height_request: 600
+        );
     }
 
     construct
     {
-        var css_provider = new Gtk.CssProvider ();
+        var cssProvider = new Gtk.CssProvider ();
 
         set_title (_("Editing %s".printf(_source.source)));
 
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
-        height_request = 500;
-        width_request = 600;
-
-        // create grid (edit_grid) for labels and values
-        var edit_grid = new Gtk.Grid ();
-        edit_grid.set_margin_top (24);
-        edit_grid.set_margin_left (24);
-        edit_grid.set_margin_right (24);
-        edit_grid.set_margin_bottom (24);
-        edit_grid.set_column_spacing (12);
-        edit_grid.set_row_spacing (12);
-        edit_grid.set_halign (Gtk.Align.CENTER);
+        // create grid (gridEdit) for labels and values
+        var gridEdit = new Gtk.Grid ();
+        gridEdit.set_margin_top (24);
+        gridEdit.set_margin_left (24);
+        gridEdit.set_margin_right (24);
+        gridEdit.set_margin_bottom (24);
+        gridEdit.set_column_spacing (12);
+        gridEdit.set_row_spacing (12);
+        gridEdit.set_halign (Gtk.Align.CENTER);
 
         // define the edit labels
-        var type_label = new Gtk.Label (_("Type:"));
-        type_label.set_halign (Gtk.Align.END);
+        var labelType = new Gtk.Label (_("Type:"));
+        labelType.set_halign (Gtk.Align.END);
 
-        var release_label = new Gtk.Label (_("Release:"));
-        release_label.set_halign (Gtk.Align.END);
+        var labelRelease = new Gtk.Label (_("Release:"));
+        labelRelease.set_halign (Gtk.Align.END);
 
-        var component_label = new Gtk.Label (_("Component:"));
-        component_label.set_halign (Gtk.Align.END);
+        var labelComponent = new Gtk.Label (_("Component:"));
+        labelComponent.set_halign (Gtk.Align.END);
 
-        var enabled_label = new Gtk.Label (_("Status:"));
-        enabled_label.set_halign (Gtk.Align.END);
+        var labelEnabled = new Gtk.Label (_("Status:"));
+        labelEnabled.set_halign (Gtk.Align.END);
 
-        var uri_label = new Gtk.Label (_("URI:"));
-        uri_label.set_halign (Gtk.Align.END);
+        var labelUri = new Gtk.Label (_("URI:"));
+        labelUri.set_halign (Gtk.Align.END);
 
 
         // remove comment if present
@@ -84,73 +87,73 @@ public class PPAExtender.Dialogs.Edit : Gtk.Dialog
         string[] subParams = _source.source.split(" ");
 
         // set value fields
-        type_box = new Gtk.ComboBoxText ();
-        type_box.append ("deb", _("Binary"));
-        type_box.append ("deb-src", _("Source code"));
-        type_box.set_active_id (_source.source.substring (0, 3) == "deb" ? "deb" : "deb-src");
-        edit_grid.attach (type_box, 1, 0, 1, 1);
+        boxType = new Gtk.ComboBoxText ();
+        boxType.append ("deb", _("Binary"));
+        boxType.append ("deb-src", _("Source code"));
+        boxType.set_active_id (_source.source.substring (0, 3) == "deb" ? "deb" : "deb-src");
+        gridEdit.attach (boxType, 1, 0, 1, 1);
 
-        component_entry = new Gtk.Entry ();
-        component_entry.set_placeholder_text ("artful");
-        component_entry.set_text (subParams[2]);
-        component_entry.set_activates_default (false);
-        edit_grid.attach (component_entry, 1, 1, 1, 1);
+        entryComponent = new Gtk.Entry ();
+        entryComponent.set_placeholder_text ("artful");
+        entryComponent.set_text (subParams[2]);
+        entryComponent.set_activates_default (false);
+        gridEdit.attach (entryComponent, 1, 1, 1, 1);
 
-        release_entry = new Gtk.Entry ();
-        release_entry.set_placeholder_text ("main");
-        release_entry.set_text (subParams[3]);
-        release_entry.set_activates_default (false);
-        edit_grid.attach (release_entry, 1, 2, 1, 1);
+        entryRelease = new Gtk.Entry ();
+        entryRelease.set_placeholder_text ("main");
+        entryRelease.set_text (subParams[3]);
+        entryRelease.set_activates_default (false);
+        gridEdit.attach (entryRelease, 1, 2, 1, 1);
 
-        status_switch = new Gtk.Switch ();
-        status_switch.set_halign (Gtk.Align.START);
-        status_switch.set_active (_source.status == _("Enabled"));
-        edit_grid.attach (status_switch, 1, 3, 1, 1);
+        switchStatus = new Gtk.Switch ();
+        switchStatus.set_halign (Gtk.Align.START);
+        switchStatus.set_active (_source.status == _("Enabled"));
+        gridEdit.attach (switchStatus, 1, 3, 1, 1);
 
-        uri_entry = new Gtk.Entry ();
-        uri_entry.set_placeholder_text (_("https://ppa.launchpad.net/…"));
-        uri_entry.set_text (subParams[1]);
-        uri_entry.set_activates_default (false);
-        uri_entry.set_width_chars (40);
-        edit_grid.attach (uri_entry, 1,4, 1, 1);
+        entryUri = new Gtk.Entry ();
+        entryUri.set_placeholder_text (_("https://ppa.launchpad.net/…"));
+        entryUri.set_text (subParams[1]);
+        entryUri.set_activates_default (false);
+        entryUri.set_width_chars (40);
+        gridEdit.attach (entryUri, 1,4, 1, 1);
 
-        // populate the grid (edit_grid)
-        edit_grid.attach (type_label, 0, 0, 1, 1);
-        edit_grid.attach (release_label, 0, 1, 1, 1);
-        edit_grid.attach (component_label, 0, 2, 1, 1);
-        edit_grid.attach (enabled_label, 0, 3, 1, 1);
-        edit_grid.attach (uri_label, 0, 4, 1, 1);
+        // populate the grid (gridEdit)
+        gridEdit.attach (labelType, 0, 0, 1, 1);
+        gridEdit.attach (labelRelease, 0, 1, 1, 1);
+        gridEdit.attach (labelComponent, 0, 2, 1, 1);
+        gridEdit.attach (labelEnabled, 0, 3, 1, 1);
+        gridEdit.attach (labelUri, 0, 4, 1, 1);
 
-        get_content_area ().pack_start (edit_grid, true, true, 0);
+        get_content_area ().pack_start (gridEdit, true, true, 0);
 
         // define action buttons
-        remove_button = new Gtk.Button.with_label (_("Remove Source"));
-        remove_button.get_style_context ().add_class ("destructive-action");
+        buttonRemove = new Gtk.Button.with_label (_("Remove Source"));
+        buttonRemove.get_style_context ().add_class ("destructive-action");
 
-        save_button = new Gtk.Button.with_label (_("Save"));
-        save_button.get_style_context ().add_class ("suggested-action");
+        buttonSave = new Gtk.Button.with_label (_("Save"));
+        buttonSave.get_style_context ().add_class ("suggested-action");
 
-        // create grid (action_grid) for action buttons
-        var action_grid = new Gtk.Grid ();
-        action_grid.set_margin_top (24);
-        action_grid.set_column_spacing (12);
-        action_grid.set_halign (Gtk.Align.CENTER);
+        // create grid (gridAction) for action buttons
+        var gridAction = new Gtk.Grid ();
+        gridAction.set_margin_top (24);
+        gridAction.set_column_spacing (12);
+        gridAction.set_halign (Gtk.Align.CENTER);
 
-        // populate grid (action_grid)
-        action_grid.attach (remove_button, 0, 0, 1, 1);
-        action_grid.attach (save_button, 1, 0, 1, 1);
+        // populate grid (gridAction)
+        gridAction.attach (buttonRemove, 0, 0, 1, 1);
+        gridAction.attach (buttonSave, 1, 0, 1, 1);
 
-        get_content_area ().pack_end (action_grid, true, true, 0);
+        get_content_area ().pack_end (gridAction, true, true, 0);
 
         // edit ppa
-        save_button.clicked.connect (() =>
+        buttonSave.clicked.connect (() =>
         {
             // Core.Sources.edit ();
             hide ();
         });
 
         // remove ppa
-        remove_button.clicked.connect (() =>
+        buttonRemove.clicked.connect (() =>
         {
             // Core.Sources.remove ();
             hide ();
