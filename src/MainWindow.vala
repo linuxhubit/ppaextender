@@ -39,6 +39,8 @@ public class PPAExtender.MainWindow : Hdy.Window
 
     construct
     {
+        Hdy.init ();
+        
         header_bar = new Widgets.Headerbar (this);
 
         box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
