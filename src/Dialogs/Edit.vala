@@ -63,7 +63,7 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
         boxActions = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
         gridEdit = EditGrid ();
 
-        headerBar.set_title (_("Add new source"));
+        headerBar.set_title (_("Edit source"));
         headerBar.show_close_button = true;
 
         box.add (headerBar);
@@ -112,7 +112,7 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
 
         switchStatus = new Gtk.Switch ();
         switchStatus.set_halign (Gtk.Align.START);
-        switchStatus.set_active (_source.status == _("Enabled"));
+        switchStatus.set_active (_source.status == true);
         gridEdit.attach (switchStatus, 1, 3, 1, 1);
 
         entryUri = new Gtk.Entry ();

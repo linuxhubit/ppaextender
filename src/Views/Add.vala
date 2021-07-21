@@ -22,16 +22,14 @@
 public class PPAExtender.Views.Add : Gtk.Box
 {
     private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
-
-    private Dialogs.Add add_dialog;
-    private bool isValid = false;
     private Gtk.Label labelSourceValidation;
     private Gtk.Entry entrySource;
-    private static Dialogs.Add dialog;
+    private static Dialogs.Add dialogAdd;
+    private bool isValid = false;
 
     public Add (Dialogs.Add dialog)
     {
-        this.dialog = dialog;
+        this.dialogAdd = dialog;
         GLib.Object
         (
             orientation: Gtk.Orientation.VERTICAL,
@@ -42,7 +40,6 @@ public class PPAExtender.Views.Add : Gtk.Box
     construct
     {
         var gtkSettings = Gtk.Settings.get_default ();
-        var cssProvider = new Gtk.CssProvider ();
 
         cssProvider.load_from_data(""
             + ".source-entry { min-width: 300px; font-size: 15px;}"
@@ -112,7 +109,8 @@ public class PPAExtender.Views.Add : Gtk.Box
             if(!isValid)
                 return;
 
-                dialog.stack.set_visible_child_name ("confirm");
+            dialogAdd.stack.set_visible_child_name ("confirm");
+            dialogAdd.ppa = entrySource.get_text ();
         });
 
         show_all ();
@@ -132,7 +130,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         {
             labelSourceValidation.get_style_context ().add_class ("source-validation--waiting");
             labelSourceValidation.set_text (_("Waiting for PPA to be entered."));
-            dialog.buttonNext.set_visible (false);
+            dialogAdd.buttonNext.set_visible (false);
         }
         else if (currentText.substring (0, 4) == "ppa:" &
             currentText.split("/").length > 1 &
@@ -141,14 +139,15 @@ public class PPAExtender.Views.Add : Gtk.Box
             labelSourceValidation.get_style_context ().add_class ("source-validation--success");
             labelSourceValidation.set_text (_("Valid PPA found."));
             isValid = true;
-            dialog.buttonNext.set_visible (true);
+            dialogAdd.buttonNext.set_visible (true);
+            dialogAdd.ppa = currentText;
         }
         else
         {
             labelSourceValidation.get_style_context ().add_class ("source-validation--failed");
             labelSourceValidation.set_text (_("This PPA doesn't look good."));
             isValid = false;
-            dialog.buttonNext.set_visible (false);
+            dialogAdd.buttonNext.set_visible (false);
         }
     }
 

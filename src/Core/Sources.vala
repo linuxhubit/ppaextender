@@ -44,7 +44,7 @@ public class PPAExtender.Core.Sources : Object
             {
                 newRow.name = name == null ? _("system") : name;
                 newRow.source = row.replace ("# ", "");
-                newRow.status = row.substring (0, 3).contains ("# ") ? _("Disabled") : _("Enabled");
+                newRow.status = row.substring (0, 3).contains ("# ") ? false : true;
                 newRow.typeOf = sourcesList == "/etc/apt/sources.list" ? _("Built-in") : _("3rd-party");
 
                 sources.append (newRow);

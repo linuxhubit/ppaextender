@@ -25,11 +25,11 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
 
     private Gtk.Button buttonCancel;
     private Gtk.Button buttonSave;
-    private static Dialogs.Add dialog;
+    private static Dialogs.Add dialogAdd;
 
     public ConfirmAdd (Dialogs.Add dialog)
     {
-        this.dialog = dialog;
+        this.dialogAdd = dialog;
         GLib.Object
         (
             orientation: Gtk.Orientation.VERTICAL,
@@ -79,14 +79,14 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
         // add ppa if user confirm action
         buttonSave.clicked.connect (() =>
         {
-            dialog.hide ();
+            dialogAdd.hide ();
             // Posix.system ();
         });
 
         // user cancel action
         buttonCancel.clicked.connect (() =>
         {
-            dialog.stack.set_visible_child_name ("add");
+            dialogAdd.stack.set_visible_child_name ("add");
         });
 
         show_all ();

@@ -21,10 +21,11 @@
 
 public class PPAExtender.Views.List : Gtk.ScrolledWindow
 {
-    private Dialogs.Edit dialogEdit;
-    private Gtk.ListBox listBox;
     private Hdy.Clamp clamp;
+    private Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
+    
     private MainWindow mainWindow;
+    private Dialogs.Edit dialogEdit;
 
     private Core.Sources coreSources = new Core.Sources ();
 
@@ -38,14 +39,25 @@ public class PPAExtender.Views.List : Gtk.ScrolledWindow
 
     construct
     {
-        listBox = new Gtk.ListBox ();
+        Gtk.ListBox sourcesListBox = SourcesListBox ();
         clamp = new Hdy.Clamp ();
+
         clamp.set_maximum_size (600);
         clamp.set_tightening_threshold (600);
 
+        cssProvider.load_from_data(""
+            + ".disabled { opacity: 0.5}"
+        );
+
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (), 
+            cssProvider, 
+            Gtk.STYLE_PROVIDER_PRIORITY_USER
+        );
+
         foreach(Models.Source source_row in coreSources.ListSources())
         {
-            listBox.add (SourceEntry (
+            sourcesListBox.add (SourceEntry (
                 source_row.name,
                 source_row.source,
                 source_row.status,
@@ -55,7 +67,7 @@ public class PPAExtender.Views.List : Gtk.ScrolledWindow
 
         foreach(Models.Source source_row in coreSources.List3rdSources())
         {
-            listBox.add (SourceEntry (
+            sourcesListBox.add (SourceEntry (
                 source_row.name,
                 source_row.source,
                 source_row.status,
@@ -63,16 +75,18 @@ public class PPAExtender.Views.List : Gtk.ScrolledWindow
             ));
         }
 
-        clamp.add (listBox);
+        clamp.add (sourcesListBox);
         add (clamp);
         show_all ();
     }
 
-    private Hdy.ActionRow SourceEntry (string name, string source, string status, string typeOf)
+    private Hdy.ActionRow SourceEntry (string name, string source, bool status, string typeOf)
     {
         Hdy.ActionRow row = new Hdy.ActionRow ();
         row.set_title(name);
         row.set_subtitle(source);
+        if (!status)
+            row.get_style_context().add_class("disabled");
 
         Gtk.Button buttonEdit = new Gtk.Button.from_icon_name ("edit-symbolic", Gtk.IconSize.BUTTON);
         buttonEdit.set_tooltip_text(_("Edit selected source"));
@@ -98,5 +112,15 @@ public class PPAExtender.Views.List : Gtk.ScrolledWindow
         });
 
         return row;
+    }
+
+    private Gtk.ListBox SourcesListBox ()
+    {
+        Gtk.ListBox listBox = new Gtk.ListBox ();
+        listBox.get_style_context ().add_class ("content");
+        listBox.set_margin_top (20);
+        listBox.set_margin_bottom (20);
+
+        return listBox;
     }
 }

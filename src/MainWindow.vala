@@ -31,7 +31,7 @@ public class PPAExtender.MainWindow : Hdy.Window
     {
         GLib.Object
         (
-            width_request: 600,
+            width_request: 700,
             height_request: 700,
             window_position: Gtk.WindowPosition.CENTER
         );

@@ -31,6 +31,8 @@ public class PPAExtender.Dialogs.Add : Hdy.Window
     public Gtk.Button buttonNext;
     public Gtk.Stack stack;
 
+    public string ppa { get; set; }
+
     public string source { get; construct set; }
 
     public Add(MainWindow mainWindow)
