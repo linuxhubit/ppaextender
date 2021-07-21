@@ -56,9 +56,16 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
         page.set_title (_("General"));
         page.set_icon_name ("applications-system-symbolic");
 
-        // Appearance
+// region Appearance
         Hdy.ActionRow rowDarkMode = new Hdy.ActionRow ();
         rowDarkMode.set_title (_("Theme"));
+
+        Gtk.Switch switchDark = new Gtk.Switch ();
+        switchDark.halign = Gtk.Align.END;
+        switchDark.valign = Gtk.Align.CENTER;
+        
+        rowDarkMode.add (switchDark);
+// endregion
 
         Hdy.PreferencesGroup groupAppearance = new Hdy.PreferencesGroup ();
         groupAppearance.title = _("Appearance");
@@ -74,18 +81,40 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
         page.set_title (_("Sources"));
         page.set_icon_name ("application-x-addon-symbolic");
 
-        // Updates
+// region Updates
         Hdy.ActionRow rowSecurity = new Hdy.ActionRow ();
         rowSecurity.set_title (_("Security updates"));
+
+        Gtk.Switch switchSecurity = new Gtk.Switch ();
+        switchSecurity.halign = Gtk.Align.END;
+        switchSecurity.valign = Gtk.Align.CENTER;
 
         Hdy.ActionRow rowRecommended = new Hdy.ActionRow ();
         rowRecommended.set_title (_("Recommended updates"));
 
+        Gtk.Switch switchRecommended = new Gtk.Switch ();
+        switchRecommended.halign = Gtk.Align.END;
+        switchRecommended.valign = Gtk.Align.CENTER;
+
         Hdy.ActionRow rowUnsupported = new Hdy.ActionRow ();
         rowUnsupported.set_title (_("Unsupported updates"));
 
+        Gtk.Switch switchUnsupported = new Gtk.Switch ();
+        switchUnsupported.halign = Gtk.Align.END;
+        switchUnsupported.valign = Gtk.Align.CENTER;
+
         Hdy.ActionRow rowPrereleased = new Hdy.ActionRow ();
-        rowPrereleased.set_title (_("Pre-released updates"));
+        rowPrereleased.set_title (_("⚠️ Pre-released updates"));
+
+        Gtk.Switch switchPrereleased = new Gtk.Switch ();
+        switchPrereleased.halign = Gtk.Align.END;
+        switchPrereleased.valign = Gtk.Align.CENTER;
+
+        rowSecurity.add (switchSecurity);
+        rowRecommended.add (switchRecommended);
+        rowUnsupported.add (switchUnsupported);
+        rowPrereleased.add (switchPrereleased);
+// endregion
 
         Hdy.PreferencesGroup groupUpdates = new Hdy.PreferencesGroup ();
         groupUpdates.title = _("Updates");
