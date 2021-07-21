@@ -81,10 +81,12 @@ public class PPAExtender.Core.Sources : Object
     }
 
     // Add new source to the system
-    public bool AddSource (string sourceRow)
+    public bool AddSource (string ppa)
     {
-        /* Posix.system ("apt-add-repository ppa:user/repository -yu");
-         * command will add repo and update without confirm */
+        var result = Posix.system("pkexec apt-add-repository %s -yu".printf (ppa));
+        if (result == 0)
+            return false;
+        
         return true;
     }
 

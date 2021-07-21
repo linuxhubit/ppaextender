@@ -25,7 +25,9 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
 
     private Gtk.Button buttonCancel;
     private Gtk.Button buttonSave;
+
     private static Dialogs.Add dialogAdd;
+    private Core.Sources coreSources;
 
     public ConfirmAdd (Dialogs.Add dialog)
     {
@@ -41,6 +43,7 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
     construct
     {
         var cssProvider = new Gtk.CssProvider ();
+        coreSources = new Core.Sources ();
 
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (), 
@@ -80,6 +83,7 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
         buttonSave.clicked.connect (() =>
         {
             dialogAdd.hide ();
+            coreSources.AddSource (dialogAdd.ppa);
             // Posix.system ();
         });
 

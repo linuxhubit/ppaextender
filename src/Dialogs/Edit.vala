@@ -32,9 +32,9 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
     private Gtk.Entry entryRelease;
     private Gtk.Switch switchStatus;
     private Gtk.Box boxActions;
-    public Hdy.HeaderBar headerBar;
     private Gtk.Box box;
     private Gtk.Grid gridEdit;
+    public Hdy.HeaderBar headerBar;
 
     private static Models.Source _source;
 
