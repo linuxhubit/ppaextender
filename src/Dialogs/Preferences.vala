@@ -23,7 +23,6 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
 {
     private Gtk.CssProvider css_provider = new Gtk.CssProvider ();
     private MainWindow mainWindow;
-    private Hdy.PreferencesGroup settings_appearance;
 
     public string source { get; construct set; }
 
@@ -46,11 +45,57 @@ public class PPAExtender.Dialogs.Preferences : Hdy.PreferencesWindow
 
     construct
     {
-        settings_appearance = new Hdy.PreferencesGroup();
-        settings_appearance.set_title(_("Appearance"));
-
-        add (settings_appearance);
+        add (settings_general ());
+        add (settings_sources ());
 
         show_all ();
+    }
+
+    private Hdy.PreferencesPage settings_general () {
+        Hdy.PreferencesPage page = new Hdy.PreferencesPage ();
+        page.set_title (_("General"));
+        page.set_icon_name ("applications-system-symbolic");
+
+        // Appearance
+        Hdy.ActionRow appearance_dark = new Hdy.ActionRow ();
+        appearance_dark.set_title (_("Theme"));
+
+        Hdy.PreferencesGroup appearance_options = new Hdy.PreferencesGroup ();
+        appearance_options.title = _("Appearance");
+        appearance_options.add (appearance_dark);
+
+        page.add (appearance_options);
+        
+        return page;
+    }
+
+    private Hdy.PreferencesPage settings_sources () {
+        Hdy.PreferencesPage page = new Hdy.PreferencesPage ();
+        page.set_title (_("Sources"));
+        page.set_icon_name ("application-x-addon-symbolic");
+
+        // Updates
+        Hdy.ActionRow updates_security = new Hdy.ActionRow ();
+        updates_security.set_title (_("Security updates"));
+
+        Hdy.ActionRow updates_recommended = new Hdy.ActionRow ();
+        updates_recommended.set_title (_("Recommended updates"));
+
+        Hdy.ActionRow updates_unsupported = new Hdy.ActionRow ();
+        updates_unsupported.set_title (_("Unsupported updates"));
+
+        Hdy.ActionRow updates_prereleased = new Hdy.ActionRow ();
+        updates_prereleased.set_title (_("Pre-released updates"));
+
+        Hdy.PreferencesGroup updates_options = new Hdy.PreferencesGroup ();
+        updates_options.title = _("Updates");
+        updates_options.add (updates_security);
+        updates_options.add (updates_recommended);
+        updates_options.add (updates_unsupported);
+        updates_options.add (updates_prereleased);
+
+        page.add (updates_options);
+        
+        return page;
     }
 }
