@@ -37,6 +37,7 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
     public Hdy.HeaderBar headerBar;
 
     private static Models.Source _source;
+    private Core.Sources coreSources;
 
     public Edit (MainWindow mainWindow, Models.Source source)
     {
@@ -61,6 +62,7 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
         headerBar = new Hdy.HeaderBar ();
         box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         boxActions = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+        coreSources = new Core.Sources ();
         gridEdit = EditGrid ();
 
         headerBar.set_title (_("Edit source"));
@@ -145,18 +147,24 @@ public class PPAExtender.Dialogs.Edit : Hdy.Window
 
         box.add (boxActions);
 
-        // edit ppa
         buttonSave.clicked.connect (() =>
         {
             // Core.Sources.edit ();
             hide ();
         });
 
-        // remove ppa
         buttonRemove.clicked.connect (() =>
         {
-            // Core.Sources.remove ();
+            coreSources.DeleteSource (subParams[1]);
             hide ();
+        });
+
+        switchStatus.state_set.connect (() =>
+        {
+            if (switchStatus.get_state ())
+                return coreSources.DisableSource (subParams[1]);
+            
+            coreSources.EnableSource (subParams[1]);
         });
 
         add (box);

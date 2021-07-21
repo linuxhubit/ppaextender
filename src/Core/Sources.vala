@@ -80,7 +80,6 @@ public class PPAExtender.Core.Sources : Object
         return sources;
     }
 
-    // Add new source to the system
     public bool AddSource (string ppa)
     {
         var result = Posix.system("pkexec apt-add-repository %s -yu".printf (ppa));
@@ -90,29 +89,37 @@ public class PPAExtender.Core.Sources : Object
         return true;
     }
 
-    // Delete source from the system
-    public bool DeleteSource (string sourceRow)
-    {
-        /* Posix.system ("apt-add-repository ppa:user/repository -ryu");
-         * command will remove repo and update without confirm */
+    public bool DeleteSource (string ppa)
+    {        
+        var result = Posix.system("pkexec apt-add-repository --uri %s -ryu".printf (ppa));
+        if (result == 0)
+            return false;
+        
         return true;
     }
 
-    // Edit source and save to the system
+    public bool DisableSource (string ppa)
+    {        
+        var result = Posix.system("pkexec apt-add-repository --uri %s -ryu".printf (ppa));
+        if (result == 0)
+            return false;
+        
+        return true;
+    }
+
+    public bool EnableSource (string ppa)
+    {        
+        var result = Posix.system("pkexec apt-add-repository --uri %s -syu".printf (ppa));
+        if (result == 0)
+            return false;
+        
+        return true;
+    }
+
     public bool EditSource (string sourceRow)
     {
         /* Edit should be performed updating source file
          * in /etc/apt/source.list.d */
-        return true;
-    }
-
-    // Update sources and reload list
-    public bool UpdateSource ()
-    {
-        /* delete all entries
-         * call list_builtin ();
-         * call list_3rdparty ();
-         * populate list */
         return true;
     }
 }

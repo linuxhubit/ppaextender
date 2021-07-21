@@ -82,9 +82,8 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
         // add ppa if user confirm action
         buttonSave.clicked.connect (() =>
         {
-            dialogAdd.hide ();
             coreSources.AddSource (dialogAdd.ppa);
-            // Posix.system ();
+            dialogAdd.hide ();
         });
 
         // user cancel action
