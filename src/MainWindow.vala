@@ -31,7 +31,7 @@ public class PPAExtender.MainWindow : Hdy.Window
     {
         GLib.Object
         (
-            width_request: 960,
+            width_request: 600,
             height_request: 700,
             window_position: Gtk.WindowPosition.CENTER
         );
@@ -44,7 +44,7 @@ public class PPAExtender.MainWindow : Hdy.Window
         headerBar = new Widgets.Headerbar (this);
 
         box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-        viewList = new Views.List ();
+        viewList = new Views.List (this);
 
         box.pack_start (headerBar, false, false, 0);
         box.pack_end (viewList, true, true, 0);
