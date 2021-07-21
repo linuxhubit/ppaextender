@@ -35,7 +35,7 @@ public class PPAExtender.Views.Add : Gtk.Box
         GLib.Object
         (
             orientation: Gtk.Orientation.VERTICAL,
-            spacing: 150
+            spacing: 40
         );
     }
 
@@ -51,11 +51,16 @@ public class PPAExtender.Views.Add : Gtk.Box
             + ".source-validation--failed { color: red; }"
         );
 
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (), 
+            css_provider, 
+            Gtk.STYLE_PROVIDER_PRIORITY_USER
+        );
 
         var grid = new Gtk.Grid ();
         grid.column_spacing = 12;
         grid.row_spacing = 6;
+        grid.margin = 20;
 
         grid.halign = Gtk.Align.CENTER;
         grid.valign = Gtk.Align.CENTER;

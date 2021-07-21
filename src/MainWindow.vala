@@ -27,18 +27,23 @@ public class PPAExtender.MainWindow : Hdy.Window
 
     public Widgets.Headerbar header_bar;
 
+    public MainWindow ()
+    {
+        GLib.Object
+        (
+            width_request: 960,
+            height_request: 700,
+            window_position: Gtk.WindowPosition.CENTER
+        );
+    }
+
     construct
     {
-        // set default window size and position
-        set_size_request (960, 740);
-        set_position(Gtk.WindowPosition.CENTER);
-
         header_bar = new Widgets.Headerbar (this);
 
         box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
         view_list = new Views.List ();
 
-        // set header_bar as window titlebar
         box.pack_start (header_bar, false, false, 0);
         box.pack_end (view_list, true, true, 0);
 

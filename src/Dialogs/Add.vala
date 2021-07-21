@@ -35,62 +35,52 @@ public class PPAExtender.Dialogs.Add : Hdy.Window
 
     public Add(MainWindow mainWindow)
     {
+        Object (
+            modal: true,
+            title: _("Add new source"),
+            parent: mainWindow,
+            transient_for: mainWindow,
+            destroy_with_parent: true,
+            deletable: true,
+            resizable: false,
+            type: Gtk.WindowType.TOPLEVEL,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT,
+            type_hint: Gdk.WindowTypeHint.DIALOG
+        );
         this.mainWindow = mainWindow;
     }
 
     construct
-    {
-        set_modal (true);
-        set_resizable (false);
-        set_deletable (true);
-        set_destroy_with_parent (true);
-        set_size_request (400, 600);
-        set_transient_for (mainWindow);
-        set_title (_("Add new source"));
-        
+    {        
         stack = new Gtk.Stack ();
         box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         header_bar = new Hdy.HeaderBar ();
         button_next = new Gtk.Button ();
+        view_add = new Views.Add (this);
+        view_confirm = new Views.ConfirmAdd (this);
 
         box.set_homogeneous (false);
-
         button_next.set_label (_("Next"));
 
         header_bar.set_title (_("Add new source"));
         header_bar.show_close_button = true;
         header_bar.pack_end (button_next);
 
-        view_add = new Views.Add (this);
-        view_confirm = new Views.ConfirmAdd ();
         stack.add_titled (view_add, "add", _("Add new"));
         stack.add_titled (view_confirm, "confirm", _("Confirm"));
-
-        // connect stack signal to notify::visible-child
-        stack.connect ("notify::visible-child", OnStackChildChanged);
-        button_next.connect ("clicked", GoNextPage);
 
         box.add (header_bar);
         box.add (stack);
         
+        button_next.clicked.connect (() =>
+        {
+            stack.set_visible_child_name ("confirm");
+            button_next.set_visible (false);
+        });
+
         add (box);
         show_all ();
 
         button_next.set_visible (false);
-    }
-
-    private void OnStackChildChanged (Gtk.Stack stack, string a)
-    {
-        if (a == "confirm") {
-            button_next.set_visible (false);
-        }
-        else {
-            button_next.set_visible (true);
-        }
-    }
-
-    private void GoNextPage (Gtk.Button button)
-    {
-        stack.set_visible_child_name ("confirm");
     }
 }

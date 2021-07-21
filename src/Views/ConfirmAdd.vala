@@ -25,16 +25,28 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
 
     private Gtk.Button cancel_button;
     private Gtk.Button save_button;
-    private static MainWindow window;
+    private static Dialogs.Add dialog;
+
+    public ConfirmAdd (Dialogs.Add dialog)
+    {
+        this.dialog = dialog;
+        GLib.Object
+        (
+            orientation: Gtk.Orientation.VERTICAL,
+            spacing: 40,
+            margin: 20
+        );
+    }
 
     construct
     {
         var css_provider = new Gtk.CssProvider ();
 
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
-
-        height_request = 300;
-        width_request = 600;
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (), 
+            css_provider, 
+            Gtk.STYLE_PROVIDER_PRIORITY_USER
+        );
 
         // define labels
         var info_label = new Gtk.Label (_("Confirming, you will add this repository to your system."));
@@ -53,24 +65,26 @@ public class PPAExtender.Views.ConfirmAdd : Gtk.Box
         action_grid.set_column_spacing (12);
         action_grid.set_halign (Gtk.Align.CENTER);
 
-        // add buttons to grid (action_grid)
+        // add widgets to grid (action_grid)
         action_grid.attach (cancel_button, 0, 0, 1, 1);
         action_grid.attach (save_button, 1, 0, 1, 1);
+
+        pack_start (info_label);
+        pack_start (disclaimer_label);
 
         pack_end (action_grid, true, true, 0);
 
         // add ppa if user confirm action
         save_button.clicked.connect (() =>
         {
-            stdout.printf ("ADD_PPA");
-            hide ();
+            dialog.hide ();
             // Posix.system ();
         });
 
         // user cancel action
         cancel_button.clicked.connect (() =>
         {
-            hide ();
+            dialog.stack.set_visible_child_name ("add");
         });
 
         show_all ();
