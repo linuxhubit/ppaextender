@@ -22,6 +22,7 @@
 public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
 {
     private Gtk.Button buttonAdd;
+    private Gtk.Button buttonSync;
     private Gtk.Button buttonPreferences;
 
     private Dialogs.Add dialogAdd;
@@ -48,6 +49,9 @@ public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
         buttonPreferences = new Gtk.Button.from_icon_name("open-menu-symbolic");
         buttonPreferences.set_tooltip_text(_("Preferences"));
 
+        buttonSync = new Gtk.Button.from_icon_name ("view-refresh-symbolic");
+        buttonAdd.set_tooltip_text(_("Refresh sources"));
+
         buttonAdd.clicked.connect (() =>
         {
             dialogAdd = new Dialogs.Add(mainWindow);
@@ -60,7 +64,13 @@ public class PPAExtender.Widgets.Headerbar : Hdy.HeaderBar
             dialogPreferences.show();
         });
 
+
+        buttonSync.clicked.connect (() =>
+        {
+        });
+
         pack_start (buttonAdd);
+        pack_start (buttonSync);
         pack_end (buttonPreferences);
     }
 }
